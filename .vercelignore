@@ -32,3 +32,12 @@ images/gallery/originals_backup/
 *.avi
 *.mkv
 *.webm
+
+# Build sources and raw images: the site serves optimised copies from assets/
+# (raw photos include unblurred originals that must not be public)
+README.md
+src/
+images/
+node_modules/
+assets/css/site.css
+assets/js/site.js

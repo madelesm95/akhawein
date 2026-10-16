@@ -1,12 +1,24 @@
 {
   "name": "akhawein-charity",
-  "version": "1.0.0",
-  "description": "جمعية اخوين الخيريه - الموقع الإلكتروني",
+  "version": "2.0.0",
+  "description": "جمعية أخوين الخيرية - الموقع الإلكتروني",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "node src/build.mjs",
+    "images": "node src/images.mjs",
+    "icons": "node src/icons.mjs",
+    "fonts": "node src/fonts.mjs"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "lightningcss": "1.33.0",
+    "lucide-static": "1.57.0",
+    "sharp": "0.35.5",
+    "simple-icons": "16.35.0"
+  }
 }

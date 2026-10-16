@@ -1,0 +1,116 @@
+const saif = { ar: 'قطاع سيف للتدريب والتطوير والاستشارات', en: 'SAIF Training, Development & Consulting' };
+
+export const protocols = [
+  {
+    id: 'caf',
+    featured: true,
+    image: 'caf-certificate',
+    icon: 'badge-check',
+    kind: { ar: 'اعتماد دولي', en: 'International validation' },
+    title: { ar: 'اعتماد منظمة CAF الدولية', en: 'CAF International validation' },
+    meta: { ar: 'صدرت في ٦ أبريل ٢٠٢٣ وسارية حتى ٦ أبريل ٢٠٢٤', en: 'Issued 6 April 2023, valid until 6 April 2024' },
+    endDate: '2024-04-06',
+    text: {
+      ar: 'حصلت جمعية أخوين الخيرية على صفة «منظمة معتمدة» (Validated Organization) في قاعدة بيانات الجمعيات الخيرية العالمية لمنظمة CAF International، بعد مراجعات دقيقة لدرء مخاطر الاحتيال وغسل الأموال، بما يؤكد استيفاءها لمعايير الحوكمة والنزاهة المؤسسية.',
+      en: 'Akhawein Charity was granted Validated Organization status in CAF International’s Global Charity Database after thorough due-diligence checks against fraud and money laundering, confirming its standards of governance and integrity.',
+    },
+  },
+  {
+    id: 'cambridge',
+    logo: 'partner-cambridge',
+    kind: { ar: 'تدريب وتأهيل', en: 'Training' },
+    title: { ar: 'أكاديمية كامبريدج', en: 'Cambridge Academy' },
+    meta: { ar: 'بروتوكول لمدة ثلاث سنوات', en: 'Three-year protocol' },
+    via: saif,
+    points: [
+      { ar: 'وضع شعار الأكاديمية على شهادات الدورات', en: 'The academy’s logo on course certificates' },
+      { ar: 'تزويد الجمعية بالمواد العلمية للدورات', en: 'Course materials supplied to Akhawein' },
+      { ar: 'تنظيم دورات ومؤتمرات علمية مشتركة', en: 'Joint courses and scientific conferences' },
+      { ar: 'تسجيل المتدربين على الموقع الرسمي للأكاديمية', en: 'Trainees registered on the academy’s official website' },
+    ],
+  },
+  {
+    id: 'phoenix',
+    logo: 'partner-phoenix-academy',
+    kind: { ar: 'تدريب وتأهيل', en: 'Training' },
+    title: { ar: 'أكاديمية فينيكس الدولية', en: 'Phoenix International Academy' },
+    meta: { ar: 'بروتوكول لمدة خمس سنوات', en: 'Five-year protocol' },
+    via: saif,
+    points: [
+      { ar: 'وضع شعار الأكاديمية على شهادات الدورات', en: 'The academy’s logo on course certificates' },
+      { ar: 'تزويد الجمعية بالمواد العلمية للدورات', en: 'Course materials supplied to Akhawein' },
+      { ar: 'دورات في التنمية البشرية والبرامج التكنولوجية', en: 'Courses in personal development and technology' },
+      { ar: 'تسجيل المتدربين على الموقع الرسمي للأكاديمية', en: 'Trainees registered on the academy’s official website' },
+    ],
+  },
+  {
+    id: 'bac',
+    logo: 'partner-bac',
+    kind: { ar: 'اعتماد أكاديمي', en: 'Accreditation' },
+    title: { ar: 'مجلس الاعتماد البريطاني', en: 'British Accreditation Board' },
+    points: [
+      { ar: 'اعتماد جميع الشهادات من المجلس والوكالات التابعة له', en: 'All certificates accredited by the board and its agencies' },
+      { ar: 'دورات في تنمية الموارد البشرية والكمبيوتر واللغات', en: 'Courses in HR development, computing and languages' },
+      { ar: 'تأهيل الطلاب للمنح الدولية المجانية والمدعمة', en: 'Preparing students for free and subsidised international scholarships' },
+      { ar: 'تنفيذ برامج تدريبية للبرنامج الائتماني للأمم المتحدة ووزارة الصناعة والتجارة', en: 'Training for a UN trust-fund programme and Egypt’s Ministry of Trade and Industry' },
+    ],
+  },
+  {
+    id: 'hekayet-hayah',
+    icon: 'hand-helping',
+    kind: { ar: 'رعاية المسنين', en: 'Elderly care' },
+    title: { ar: 'دار «حكاية حياة» مع مؤسسة سبع سنابل', en: 'The “Hekayet Hayah” home, with Sab’a Sanabel Foundation' },
+    meta: { ar: 'من ١٥ يوليو ٢٠٢٣ إلى ١٤ يوليو ٢٠٢٦', en: '15 July 2023 – 14 July 2026' },
+    endDate: '2026-07-14',
+    text: {
+      ar: 'بروتوكول لإدارة شؤون دار المسنين «حكاية حياة» لمدة ثلاث سنوات، وُقّع بحضور الأستاذ إيهاب مصطفى، مدير عام إدارة مصر الجديدة للتضامن الاجتماعي.',
+      en: 'A three-year protocol to run the “Hekayet Hayah” elderly care home, signed in the presence of Mr Ehab Mostafa, Director-General of the Heliopolis Social Solidarity Directorate.',
+    },
+  },
+  {
+    id: 'mogahed',
+    icon: 'scale',
+    kind: { ar: 'دعم قانوني', en: 'Legal aid' },
+    title: { ar: 'مؤسسة محمد مجاهد للمحاماة والاستشارات القانونية', en: 'Mohamed Mogahed Law Firm' },
+    text: {
+      ar: 'استشارات قانونية ودفاع مجاني عن غير القادرين، وفقاً للإعلان العالمي لحقوق الإنسان والمعاهدات الدولية التي وقّعت عليها مصر. ويتقدم مجلس الإدارة بالشكر للمستشار الدكتور محمد مجاهد على خدماته القانونية دون مقابل.',
+      en: 'Free legal advice and representation for those who cannot afford it, in line with the Universal Declaration of Human Rights and the treaties Egypt has signed. The board thanks Counsellor Dr Mohamed Mogahed for his pro bono service.',
+    },
+  },
+  {
+    id: 'realdeal',
+    logo: 'partner-realdeal',
+    kind: { ar: 'تكنولوجيا المعلومات', en: 'Technology' },
+    title: { ar: 'شركة ريل ديل', en: 'RealDeal' },
+    text: { ar: 'بروتوكول تعاون لتقديم خدمات بنّاءة في مجال تكنولوجيا المعلومات.', en: 'Cooperation on information-technology services.' },
+  },
+  {
+    id: 'ihostu',
+    logo: 'partner-ihostu',
+    kind: { ar: 'تكنولوجيا المعلومات', en: 'Technology' },
+    title: { ar: 'مشروع آي هوست يو', en: 'iHostU' },
+    text: { ar: 'مشروع تابع لشركة ريل ديل لتقديم خدمات بنّاءة في مجال تكنولوجيا المعلومات.', en: 'A RealDeal project providing information-technology services.' },
+  },
+  {
+    id: 'ibusiness',
+    logo: 'partner-ibusiness',
+    kind: { ar: 'تنمية اقتصادية', en: 'Economic development' },
+    title: { ar: 'مشروع آي بيزنس', en: 'iBizness' },
+    text: { ar: 'مشروع تابع لشركة ريل ديل لتقديم خدمات تسهم في تحسين الاقتصاد المصري.', en: 'A RealDeal project offering services that support the Egyptian economy.' },
+  },
+];
+
+export const partnerLogos = [
+  { logo: 'partner-banque-misr', name: 'Banque Misr' },
+  { logo: 'partner-caf-america', name: 'CAF America' },
+  { logo: 'partner-albaraka', name: 'alBaraka Bank' },
+  { logo: 'partner-fawry', name: 'Fawry' },
+  { logo: 'partner-orange', name: 'Orange' },
+  { logo: 'partner-orange-cash', name: 'Orange Cash' },
+  { logo: 'partner-cambridge', name: 'Cambridge Global College' },
+  { logo: 'partner-phoenix-academy', name: 'Phoenix Academy' },
+  { logo: 'partner-bac', name: 'British Board' },
+  { logo: 'partner-realdeal', name: 'RealDeal' },
+  { logo: 'partner-ibusiness', name: 'iBizness' },
+  { logo: 'partner-ihostu', name: 'iHostU' },
+];

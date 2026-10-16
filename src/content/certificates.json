@@ -1,0 +1,1582 @@
+[
+ {
+  "id": "cert-2026-01",
+  "group": "2026",
+  "src": "images/certificates/2026/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم",
+  "role": "رئيس مجلس ادارة"
+ },
+ {
+  "id": "cert-2026-02",
+  "group": "2026",
+  "src": "images/certificates/2026/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم",
+  "role": "نائب رئيس مجلس الادارة"
+ },
+ {
+  "id": "cert-2026-03",
+  "group": "2026",
+  "src": "images/certificates/2026/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد",
+  "role": "امين الصندوق"
+ },
+ {
+  "id": "cert-2026-04",
+  "group": "2026",
+  "src": "images/certificates/2026/مجدى عبد السلام المليجى.jpg",
+  "name": "مجدى عبد السلام المليجى",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2026-05",
+  "group": "2026",
+  "src": "images/certificates/2026/ايمان خير الله عيد.jpg",
+  "name": "ايمان خير الله عيد",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2026-06",
+  "group": "2026",
+  "src": "images/certificates/2026/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2026-07",
+  "group": "2026",
+  "src": "images/certificates/2026/شريف أحمد حسين.jpg",
+  "name": "شريف أحمد حسين",
+  "role": "مدير عام الجمعية"
+ },
+ {
+  "id": "cert-2026-08",
+  "group": "2026",
+  "src": "images/certificates/2026/أحمد محمد أحمد.jpg",
+  "name": "أحمد محمد أحمد",
+  "role": "المدير الإداري"
+ },
+ {
+  "id": "cert-2026-09",
+  "group": "2026",
+  "src": "images/certificates/2026/إسلام على اسماعيل.jpg",
+  "name": "إسلام على اسماعيل",
+  "role": "مدير الشئون القانونية"
+ },
+ {
+  "id": "cert-2026-10",
+  "group": "2026",
+  "src": "images/certificates/2026/عزه عبد المنعم حسن.jpg",
+  "name": "عزه عبد المنعم حسن",
+  "role": "المدير التنفيذي"
+ },
+ {
+  "id": "cert-2026-11",
+  "group": "2026",
+  "src": "images/certificates/2026/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد",
+  "role": "سكرتيرة تنفيذية"
+ },
+ {
+  "id": "cert-2026-12",
+  "group": "2026",
+  "src": "images/certificates/2026/هاله ياسر قاسم.jpg",
+  "name": "هاله ياسر قاسم",
+  "role": "سكرتيرة إدارية"
+ },
+ {
+  "id": "cert-2026-13",
+  "group": "2026",
+  "src": "images/certificates/2026/ماهر محمد جلال.jpg",
+  "name": "ماهر محمد جلال",
+  "role": "مدير فرع الثورة"
+ },
+ {
+  "id": "cert-2026-14",
+  "group": "2026",
+  "src": "images/certificates/2026/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2025-01",
+  "group": "2025",
+  "src": "images/certificates/2025/ندى مجدى المليجى.jpg",
+  "name": "ندى مجدى المليجى"
+ },
+ {
+  "id": "cert-2025-02",
+  "group": "2025",
+  "src": "images/certificates/2025/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2025-03",
+  "group": "2025",
+  "src": "images/certificates/2025/محمد عادل اسماعيل.jpg",
+  "name": "محمد عادل اسماعيل",
+  "role": "عضو فخرى"
+ },
+ {
+  "id": "cert-2025-04",
+  "group": "2025",
+  "src": "images/certificates/2025/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل",
+  "role": "عضو فخرى"
+ },
+ {
+  "id": "cert-2025-05",
+  "group": "2025",
+  "src": "images/certificates/2025/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2025-06",
+  "group": "2025",
+  "src": "images/certificates/2025/هبه على اسماعيل.jpg",
+  "name": "هبه على اسماعيل"
+ },
+ {
+  "id": "cert-2025-07",
+  "group": "2025",
+  "src": "images/certificates/2025/عادل اسماعيل ابراهيم.jpg",
+  "name": "عادل اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2025-08",
+  "group": "2025",
+  "src": "images/certificates/2025/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم",
+  "role": "نائب رئيس مجلس الادارة"
+ },
+ {
+  "id": "cert-2025-09",
+  "group": "2025",
+  "src": "images/certificates/2025/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2025-10",
+  "group": "2025",
+  "src": "images/certificates/2025/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2025-11",
+  "group": "2025",
+  "src": "images/certificates/2025/محمد اسماعيل ابراهيم.jpg",
+  "name": "محمد اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2025-12",
+  "group": "2025",
+  "src": "images/certificates/2025/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2025-13",
+  "group": "2025",
+  "src": "images/certificates/2025/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2025-14",
+  "group": "2025",
+  "src": "images/certificates/2025/هانى ذكى حسن.jpg",
+  "name": "هانى ذكى حسن"
+ },
+ {
+  "id": "cert-2025-15",
+  "group": "2025",
+  "src": "images/certificates/2025/ياسمين على اسماعيل.jpg",
+  "name": "ياسمين على اسماعيل"
+ },
+ {
+  "id": "cert-2025-16",
+  "group": "2025",
+  "src": "images/certificates/2025/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2025-17",
+  "group": "2025",
+  "src": "images/certificates/2025/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد"
+ },
+ {
+  "id": "cert-2025-18",
+  "group": "2025",
+  "src": "images/certificates/2025/أمل عادل اسماعيل.jpg",
+  "name": "أمل عادل اسماعيل"
+ },
+ {
+  "id": "cert-2025-19",
+  "group": "2025",
+  "src": "images/certificates/2025/احمد خلف الله احمد على.jpg",
+  "name": "احمد خلف الله احمد على"
+ },
+ {
+  "id": "cert-2025-20",
+  "group": "2025",
+  "src": "images/certificates/2025/هاله ياسر قاسم.jpg",
+  "name": "هاله ياسر قاسم",
+  "role": "سكرتيرة إدارية"
+ },
+ {
+  "id": "cert-2025-21",
+  "group": "2025",
+  "src": "images/certificates/2025/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد",
+  "role": "سكرتيرة تنفيذية"
+ },
+ {
+  "id": "cert-2025-22",
+  "group": "2025",
+  "src": "images/certificates/2025/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2024-01",
+  "group": "2024",
+  "src": "images/certificates/2024/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2024-02",
+  "group": "2024",
+  "src": "images/certificates/2024/هانى ذكى حسن.jpg",
+  "name": "هانى ذكى حسن"
+ },
+ {
+  "id": "cert-2024-03",
+  "group": "2024",
+  "src": "images/certificates/2024/ندى مجدى المليجى.jpg",
+  "name": "ندى مجدى المليجى"
+ },
+ {
+  "id": "cert-2024-04",
+  "group": "2024",
+  "src": "images/certificates/2024/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2024-05",
+  "group": "2024",
+  "src": "images/certificates/2024/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2024-06",
+  "group": "2024",
+  "src": "images/certificates/2024/عادل اسماعيل ابراهيم.jpg",
+  "name": "عادل اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2024-07",
+  "group": "2024",
+  "src": "images/certificates/2024/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2024-08",
+  "group": "2024",
+  "src": "images/certificates/2024/على اسماعيل ابراهيم.jpg",
+  "name": "على اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2024-09",
+  "group": "2024",
+  "src": "images/certificates/2024/اسلام على اسماعيل.jpg",
+  "name": "اسلام على اسماعيل"
+ },
+ {
+  "id": "cert-2024-10",
+  "group": "2024",
+  "src": "images/certificates/2024/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل"
+ },
+ {
+  "id": "cert-2024-11",
+  "group": "2024",
+  "src": "images/certificates/2024/هبه على اسماعيل.jpg",
+  "name": "هبه على اسماعيل"
+ },
+ {
+  "id": "cert-2024-12",
+  "group": "2024",
+  "src": "images/certificates/2024/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2024-13",
+  "group": "2024",
+  "src": "images/certificates/2024/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2024-14",
+  "group": "2024",
+  "src": "images/certificates/2024/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد"
+ },
+ {
+  "id": "cert-2024-15",
+  "group": "2024",
+  "src": "images/certificates/2024/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2024-16",
+  "group": "2024",
+  "src": "images/certificates/2024/ايمان خير الله عيد.jpg",
+  "name": "ايمان خير الله عيد"
+ },
+ {
+  "id": "cert-2024-17",
+  "group": "2024",
+  "src": "images/certificates/2024/مجدى عبد السلام المليجى.jpg",
+  "name": "مجدى عبد السلام المليجى"
+ },
+ {
+  "id": "cert-2024-18",
+  "group": "2024",
+  "src": "images/certificates/2024/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2024-19",
+  "group": "2024",
+  "src": "images/certificates/2024/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2024-20",
+  "group": "2024",
+  "src": "images/certificates/2024/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل"
+ },
+ {
+  "id": "cert-2024-21",
+  "group": "2024",
+  "src": "images/certificates/2024/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد"
+ },
+ {
+  "id": "cert-2024-22",
+  "group": "2024",
+  "src": "images/certificates/2024/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2024-23",
+  "group": "2024",
+  "src": "images/certificates/2024/نفيسة محمد محمود.jpg",
+  "name": "نفيسة محمد محمود"
+ },
+ {
+  "id": "cert-2024-24",
+  "group": "2024",
+  "src": "images/certificates/2024/إيهاب مصطفى عبد المعز.jpg",
+  "name": "إيهاب مصطفى عبد المعز",
+  "role": "مدير إدارة مصر الجديدة للتضامن"
+ },
+ {
+  "id": "cert-2024-25",
+  "group": "2024",
+  "src": "images/certificates/2024/عزه عبد المنعم حسن.jpg",
+  "name": "عزه عبد المنعم حسن",
+  "role": "المدير التنفيذي"
+ },
+ {
+  "id": "cert-2024-26",
+  "group": "2024",
+  "src": "images/certificates/2024/هاله ياسر قاسم.jpg",
+  "name": "هاله ياسر قاسم",
+  "role": "سكرتيرة إدارية"
+ },
+ {
+  "id": "cert-2024-27",
+  "group": "2024",
+  "src": "images/certificates/2024/مؤسسة شارم للعقارات والاستثمار.jpg",
+  "name": "مؤسسة شارم للعقارات والاستثمار"
+ },
+ {
+  "id": "cert-2024-28",
+  "group": "2024",
+  "src": "images/certificates/2024/جمعية الخليل.jpg",
+  "name": "جمعية الخليل"
+ },
+ {
+  "id": "cert-2024-29",
+  "group": "2024",
+  "src": "images/certificates/2024/جمعية فواز الخير.jpg",
+  "name": "جمعية فواز الخير"
+ },
+ {
+  "id": "cert-2023-01",
+  "group": "2023",
+  "src": "images/certificates/2023/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2023-02",
+  "group": "2023",
+  "src": "images/certificates/2023/هانى ذكى حسن.jpg",
+  "name": "هانى ذكى حسن"
+ },
+ {
+  "id": "cert-2023-03",
+  "group": "2023",
+  "src": "images/certificates/2023/ندى مجدى المليجى.jpg",
+  "name": "ندى مجدى المليجى"
+ },
+ {
+  "id": "cert-2023-04",
+  "group": "2023",
+  "src": "images/certificates/2023/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2023-05",
+  "group": "2023",
+  "src": "images/certificates/2023/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2023-06",
+  "group": "2023",
+  "src": "images/certificates/2023/عادل اسماعيل ابراهيم.jpg",
+  "name": "عادل اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2023-07",
+  "group": "2023",
+  "src": "images/certificates/2023/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2023-08",
+  "group": "2023",
+  "src": "images/certificates/2023/على اسماعيل ابراهيم.jpg",
+  "name": "على اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2023-09",
+  "group": "2023",
+  "src": "images/certificates/2023/اسلام على اسماعيل.jpg",
+  "name": "اسلام على اسماعيل"
+ },
+ {
+  "id": "cert-2023-10",
+  "group": "2023",
+  "src": "images/certificates/2023/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل"
+ },
+ {
+  "id": "cert-2023-11",
+  "group": "2023",
+  "src": "images/certificates/2023/هبه على اسماعيل.jpg",
+  "name": "هبه على اسماعيل"
+ },
+ {
+  "id": "cert-2023-12",
+  "group": "2023",
+  "src": "images/certificates/2023/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2023-13",
+  "group": "2023",
+  "src": "images/certificates/2023/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2023-14",
+  "group": "2023",
+  "src": "images/certificates/2023/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد"
+ },
+ {
+  "id": "cert-2023-15",
+  "group": "2023",
+  "src": "images/certificates/2023/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2023-16",
+  "group": "2023",
+  "src": "images/certificates/2023/ايمان خير الله عيد.jpg",
+  "name": "ايمان خير الله عيد"
+ },
+ {
+  "id": "cert-2023-17",
+  "group": "2023",
+  "src": "images/certificates/2023/مجدى عبد السلام المليجى.jpg",
+  "name": "مجدى عبد السلام المليجى"
+ },
+ {
+  "id": "cert-2023-18",
+  "group": "2023",
+  "src": "images/certificates/2023/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2023-19",
+  "group": "2023",
+  "src": "images/certificates/2023/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2023-20",
+  "group": "2023",
+  "src": "images/certificates/2023/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل"
+ },
+ {
+  "id": "cert-2023-21",
+  "group": "2023",
+  "src": "images/certificates/2023/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد"
+ },
+ {
+  "id": "cert-2023-22",
+  "group": "2023",
+  "src": "images/certificates/2023/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2023-23",
+  "group": "2023",
+  "src": "images/certificates/2023/نفيسة محمد محمود.jpg",
+  "name": "نفيسة محمد محمود"
+ },
+ {
+  "id": "cert-2023-24",
+  "group": "2023",
+  "src": "images/certificates/2023/مؤسسة شارم للعقارات والاستثمار.jpg",
+  "name": "مؤسسة شارم للعقارات والاستثمار"
+ },
+ {
+  "id": "cert-2023-25",
+  "group": "2023",
+  "src": "images/certificates/2023/جمعية الخليل.jpg",
+  "name": "جمعية الخليل"
+ },
+ {
+  "id": "cert-2023-26",
+  "group": "2023",
+  "src": "images/certificates/2023/جمعية فواز الخير.jpg",
+  "name": "جمعية فواز الخير"
+ },
+ {
+  "id": "cert-2022-01",
+  "group": "2022",
+  "src": "images/certificates/2022/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2022-02",
+  "group": "2022",
+  "src": "images/certificates/2022/هانى ذكى حسن.jpg",
+  "name": "هانى ذكى حسن",
+  "role": "عضو مجلس ادارة (الامين العام)"
+ },
+ {
+  "id": "cert-2022-03",
+  "group": "2022",
+  "src": "images/certificates/2022/ندى مجدى المليجى.jpg",
+  "name": "ندى مجدى المليجى"
+ },
+ {
+  "id": "cert-2022-04",
+  "group": "2022",
+  "src": "images/certificates/2022/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد",
+  "role": "عضو مجلس ادارة (امين الصندوق)"
+ },
+ {
+  "id": "cert-2022-05",
+  "group": "2022",
+  "src": "images/certificates/2022/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم",
+  "role": "عضو مجلس ادارة (نائب رئيس مجلس الادارة)"
+ },
+ {
+  "id": "cert-2022-06",
+  "group": "2022",
+  "src": "images/certificates/2022/عادل اسماعيل ابراهيم.jpg",
+  "name": "عادل اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2022-07",
+  "group": "2022",
+  "src": "images/certificates/2022/محمد عادل اسماعيل.jpg",
+  "name": "محمد عادل اسماعيل"
+ },
+ {
+  "id": "cert-2022-08",
+  "group": "2022",
+  "src": "images/certificates/2022/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2022-09",
+  "group": "2022",
+  "src": "images/certificates/2022/على اسماعيل ابراهيم.jpg",
+  "name": "على اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2022-10",
+  "group": "2022",
+  "src": "images/certificates/2022/اسلام على اسماعيل.jpg",
+  "name": "اسلام على اسماعيل"
+ },
+ {
+  "id": "cert-2022-11",
+  "group": "2022",
+  "src": "images/certificates/2022/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل"
+ },
+ {
+  "id": "cert-2022-12",
+  "group": "2022",
+  "src": "images/certificates/2022/هبه على اسماعيل.jpg",
+  "name": "هبه على اسماعيل",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2022-13",
+  "group": "2022",
+  "src": "images/certificates/2022/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2022-14",
+  "group": "2022",
+  "src": "images/certificates/2022/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2022-15",
+  "group": "2022",
+  "src": "images/certificates/2022/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد"
+ },
+ {
+  "id": "cert-2022-16",
+  "group": "2022",
+  "src": "images/certificates/2022/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2022-17",
+  "group": "2022",
+  "src": "images/certificates/2022/اسامه اسماعيل ابراهيم.jpg",
+  "name": "اسامه اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2022-18",
+  "group": "2022",
+  "src": "images/certificates/2022/ايمان خير الله عيد.jpg",
+  "name": "ايمان خير الله عيد",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2022-19",
+  "group": "2022",
+  "src": "images/certificates/2022/أمل عادل اسماعيل.jpg",
+  "name": "أمل عادل اسماعيل"
+ },
+ {
+  "id": "cert-2022-20",
+  "group": "2022",
+  "src": "images/certificates/2022/مجدى عبد السلام المليجى.jpg",
+  "name": "مجدى عبد السلام المليجى",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2022-21",
+  "group": "2022",
+  "src": "images/certificates/2022/نفيسة محمد محمود.jpg",
+  "name": "نفيسة محمد محمود"
+ },
+ {
+  "id": "cert-2022-22",
+  "group": "2022",
+  "src": "images/certificates/2022/سعيد سامى سعيد.jpg",
+  "name": "سعيد سامى سعيد"
+ },
+ {
+  "id": "cert-2022-23",
+  "group": "2022",
+  "src": "images/certificates/2022/سمية حسن نعمان.jpg",
+  "name": "سمية حسن نعمان"
+ },
+ {
+  "id": "cert-2022-24",
+  "group": "2022",
+  "src": "images/certificates/2022/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين",
+  "role": "مدير عام الجمعية"
+ },
+ {
+  "id": "cert-2022-25",
+  "group": "2022",
+  "src": "images/certificates/2022/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2022-26",
+  "group": "2022",
+  "src": "images/certificates/2022/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل"
+ },
+ {
+  "id": "cert-2022-27",
+  "group": "2022",
+  "src": "images/certificates/2022/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد"
+ },
+ {
+  "id": "cert-2022-28",
+  "group": "2022",
+  "src": "images/certificates/2022/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2022-29",
+  "group": "2022",
+  "src": "images/certificates/2022/مؤسسة شارم للعقارات والاستثمار.jpg",
+  "name": "مؤسسة شارم للعقارات والاستثمار"
+ },
+ {
+  "id": "cert-2022-30",
+  "group": "2022",
+  "src": "images/certificates/2022/جمعية الخليل.jpg",
+  "name": "جمعية الخليل"
+ },
+ {
+  "id": "cert-2022-31",
+  "group": "2022",
+  "src": "images/certificates/2022/جمعية فواز الخير.jpg",
+  "name": "جمعية فواز الخير"
+ },
+ {
+  "id": "cert-2021-01",
+  "group": "2021",
+  "src": "images/certificates/2021/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-02",
+  "group": "2021",
+  "src": "images/certificates/2021/هانى ذكى حسن.jpg",
+  "name": "هانى ذكى حسن"
+ },
+ {
+  "id": "cert-2021-03",
+  "group": "2021",
+  "src": "images/certificates/2021/ندى مجدى المليجى.jpg",
+  "name": "ندى مجدى المليجى"
+ },
+ {
+  "id": "cert-2021-04",
+  "group": "2021",
+  "src": "images/certificates/2021/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2021-05",
+  "group": "2021",
+  "src": "images/certificates/2021/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-06",
+  "group": "2021",
+  "src": "images/certificates/2021/عادل اسماعيل ابراهيم.jpg",
+  "name": "عادل اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-07",
+  "group": "2021",
+  "src": "images/certificates/2021/محمد عادل اسماعيل.jpg",
+  "name": "محمد عادل اسماعيل"
+ },
+ {
+  "id": "cert-2021-08",
+  "group": "2021",
+  "src": "images/certificates/2021/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-09",
+  "group": "2021",
+  "src": "images/certificates/2021/على اسماعيل ابراهيم.jpg",
+  "name": "على اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-10",
+  "group": "2021",
+  "src": "images/certificates/2021/اسلام على اسماعيل.jpg",
+  "name": "اسلام على اسماعيل",
+  "role": "مدير الشئون القانونية"
+ },
+ {
+  "id": "cert-2021-11",
+  "group": "2021",
+  "src": "images/certificates/2021/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل"
+ },
+ {
+  "id": "cert-2021-12",
+  "group": "2021",
+  "src": "images/certificates/2021/هبه على اسماعيل.jpg",
+  "name": "هبه على اسماعيل"
+ },
+ {
+  "id": "cert-2021-13",
+  "group": "2021",
+  "src": "images/certificates/2021/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-14",
+  "group": "2021",
+  "src": "images/certificates/2021/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2021-15",
+  "group": "2021",
+  "src": "images/certificates/2021/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد"
+ },
+ {
+  "id": "cert-2021-16",
+  "group": "2021",
+  "src": "images/certificates/2021/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2021-17",
+  "group": "2021",
+  "src": "images/certificates/2021/اسامه اسماعيل ابراهيم.jpg",
+  "name": "اسامه اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2021-18",
+  "group": "2021",
+  "src": "images/certificates/2021/ايمان خير الله عيد.jpg",
+  "name": "ايمان خير الله عيد"
+ },
+ {
+  "id": "cert-2021-19",
+  "group": "2021",
+  "src": "images/certificates/2021/أمل عادل اسماعيل.jpg",
+  "name": "أمل عادل اسماعيل"
+ },
+ {
+  "id": "cert-2021-20",
+  "group": "2021",
+  "src": "images/certificates/2021/مجدى عبد السلام المليجى.jpg",
+  "name": "مجدى عبد السلام المليجى"
+ },
+ {
+  "id": "cert-2021-21",
+  "group": "2021",
+  "src": "images/certificates/2021/نفيسة محمد محمود.jpg",
+  "name": "نفيسة محمد محمود"
+ },
+ {
+  "id": "cert-2021-22",
+  "group": "2021",
+  "src": "images/certificates/2021/سعيد سامى سعيد.jpg",
+  "name": "سعيد سامى سعيد"
+ },
+ {
+  "id": "cert-2021-23",
+  "group": "2021",
+  "src": "images/certificates/2021/سمية حسن نعمان.jpg",
+  "name": "سمية حسن نعمان"
+ },
+ {
+  "id": "cert-2021-24",
+  "group": "2021",
+  "src": "images/certificates/2021/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2021-25",
+  "group": "2021",
+  "src": "images/certificates/2021/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2021-26",
+  "group": "2021",
+  "src": "images/certificates/2021/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل"
+ },
+ {
+  "id": "cert-2021-27",
+  "group": "2021",
+  "src": "images/certificates/2021/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد"
+ },
+ {
+  "id": "cert-2021-28",
+  "group": "2021",
+  "src": "images/certificates/2021/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2021-29",
+  "group": "2021",
+  "src": "images/certificates/2021/مؤسسة شارم للعقارات والاستثمار.jpg",
+  "name": "مؤسسة شارم للعقارات والاستثمار"
+ },
+ {
+  "id": "cert-2021-30",
+  "group": "2021",
+  "src": "images/certificates/2021/جمعية الخليل.jpg",
+  "name": "جمعية الخليل"
+ },
+ {
+  "id": "cert-2021-31",
+  "group": "2021",
+  "src": "images/certificates/2021/جمعية فواز الخير.jpg",
+  "name": "جمعية فواز الخير"
+ },
+ {
+  "id": "cert-2019-01",
+  "group": "2019",
+  "src": "images/certificates/2019/محمد اسماعيل ابراهيم.jpg",
+  "name": "محمد اسماعيل ابراهيم",
+  "role": "رئيس مجلس ادارة"
+ },
+ {
+  "id": "cert-2019-02",
+  "group": "2019",
+  "src": "images/certificates/2019/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم",
+  "role": "نائب رئيس مجلس الادارة"
+ },
+ {
+  "id": "cert-2019-03",
+  "group": "2019",
+  "src": "images/certificates/2019/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد",
+  "role": "امين الصندوق"
+ },
+ {
+  "id": "cert-2019-04",
+  "group": "2019",
+  "src": "images/certificates/2019/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2019-05",
+  "group": "2019",
+  "src": "images/certificates/2019/هانى ذكى حسن.jpg",
+  "name": "هانى ذكى حسن",
+  "role": "الامين العام"
+ },
+ {
+  "id": "cert-2019-06",
+  "group": "2019",
+  "src": "images/certificates/2019/ندى مجدى المليجى.jpg",
+  "name": "ندى مجدى المليجى"
+ },
+ {
+  "id": "cert-2019-07",
+  "group": "2019",
+  "src": "images/certificates/2019/محمد على اسماعيل.jpg",
+  "name": "محمد على اسماعيل"
+ },
+ {
+  "id": "cert-2019-08",
+  "group": "2019",
+  "src": "images/certificates/2019/محمد عادل اسماعيل.jpg",
+  "name": "محمد عادل اسماعيل",
+  "role": "عضوية فخرية"
+ },
+ {
+  "id": "cert-2019-09",
+  "group": "2019",
+  "src": "images/certificates/2019/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل",
+  "role": "عضوية فخرية"
+ },
+ {
+  "id": "cert-2019-10",
+  "group": "2019",
+  "src": "images/certificates/2019/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن",
+  "role": "عضوية فخرية"
+ },
+ {
+  "id": "cert-2019-11",
+  "group": "2019",
+  "src": "images/certificates/2019/هبه على اسماعيل.jpg",
+  "name": "هبه على اسماعيل"
+ },
+ {
+  "id": "cert-2019-12",
+  "group": "2019",
+  "src": "images/certificates/2019/عادل اسماعيل ابراهيم.jpg",
+  "name": "عادل اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2019-13",
+  "group": "2019",
+  "src": "images/certificates/2019/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2019-14",
+  "group": "2019",
+  "src": "images/certificates/2019/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2019-15",
+  "group": "2019",
+  "src": "images/certificates/2019/ياسمين على اسماعيل.jpg",
+  "name": "ياسمين على اسماعيل"
+ },
+ {
+  "id": "cert-2019-16",
+  "group": "2019",
+  "src": "images/certificates/2019/سيف الدين محمد اسماعيل.jpg",
+  "name": "سيف الدين محمد اسماعيل"
+ },
+ {
+  "id": "cert-2019-17",
+  "group": "2019",
+  "src": "images/certificates/2019/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد",
+  "role": "عضو مجلس ادارة"
+ },
+ {
+  "id": "cert-2019-18",
+  "group": "2019",
+  "src": "images/certificates/2019/أمل عادل اسماعيل.jpg",
+  "name": "أمل عادل اسماعيل"
+ },
+ {
+  "id": "cert-2019-19",
+  "group": "2019",
+  "src": "images/certificates/2019/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2019-20",
+  "group": "2019",
+  "src": "images/certificates/2019/داليا ممدوح محمد.jpg",
+  "name": "داليا ممدوح محمد",
+  "role": "سكرتيرة تنفيذية"
+ },
+ {
+  "id": "cert-2019-21",
+  "group": "2019",
+  "src": "images/certificates/2019/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2014-01",
+  "group": "2014",
+  "src": "images/certificates/2014/اشرف سمير بندارى.jpg",
+  "name": "اشرف سمير بندارى"
+ },
+ {
+  "id": "cert-2014-02",
+  "group": "2014",
+  "src": "images/certificates/2014/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2014-03",
+  "group": "2014",
+  "src": "images/certificates/2014/محمد ابو العينين.jpg",
+  "name": "محمد ابو العينين"
+ },
+ {
+  "id": "cert-2013-01",
+  "group": "2013",
+  "src": "images/certificates/2013/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2013-02",
+  "group": "2013",
+  "src": "images/certificates/2013/اسامة اسماعيل ابراهيم.jpg",
+  "name": "اسامة اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2013-03",
+  "group": "2013",
+  "src": "images/certificates/2013/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل"
+ },
+ {
+  "id": "cert-2013-04",
+  "group": "2013",
+  "src": "images/certificates/2013/اشرف سمير بندارى.jpg",
+  "name": "اشرف سمير بندارى"
+ },
+ {
+  "id": "cert-2013-05",
+  "group": "2013",
+  "src": "images/certificates/2013/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2013-06",
+  "group": "2013",
+  "src": "images/certificates/2013/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2013-07",
+  "group": "2013",
+  "src": "images/certificates/2013/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2013-08",
+  "group": "2013",
+  "src": "images/certificates/2013/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2013-09",
+  "group": "2013",
+  "src": "images/certificates/2013/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2013-10",
+  "group": "2013",
+  "src": "images/certificates/2013/على اسماعيل ابراهية.jpg",
+  "name": "على اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2013-11",
+  "group": "2013",
+  "src": "images/certificates/2013/غادة محمد المرسى.jpg",
+  "name": "غادة محمد المرسى"
+ },
+ {
+  "id": "cert-2013-12",
+  "group": "2013",
+  "src": "images/certificates/2013/فوزية محمد احمد.jpg",
+  "name": "فوزية محمد احمد"
+ },
+ {
+  "id": "cert-2013-13",
+  "group": "2013",
+  "src": "images/certificates/2013/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2013-14",
+  "group": "2013",
+  "src": "images/certificates/2013/محمد ابو العينين.jpg",
+  "name": "محمد ابو العينين"
+ },
+ {
+  "id": "cert-2013-15",
+  "group": "2013",
+  "src": "images/certificates/2013/محمد صلاح حسانين.jpg",
+  "name": "محمد صلاح حسانين"
+ },
+ {
+  "id": "cert-2013-16",
+  "group": "2013",
+  "src": "images/certificates/2013/ناهد محمد عبد الجليل.jpg",
+  "name": "ناهد محمد عبد الجليل"
+ },
+ {
+  "id": "cert-2013-17",
+  "group": "2013",
+  "src": "images/certificates/2013/هانى ذكى حسين.jpg",
+  "name": "هانى ذكى حسين"
+ },
+ {
+  "id": "cert-2013-18",
+  "group": "2013",
+  "src": "images/certificates/2013/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2012-01",
+  "group": "2012",
+  "src": "images/certificates/2012/احسان مصطفى.jpg",
+  "name": "احسان مصطفى"
+ },
+ {
+  "id": "cert-2012-02",
+  "group": "2012",
+  "src": "images/certificates/2012/احمد خلف الله احمد.jpg",
+  "name": "احمد خلف الله احمد"
+ },
+ {
+  "id": "cert-2012-03",
+  "group": "2012",
+  "src": "images/certificates/2012/اسامة اسماعيل ابراهيم.jpg",
+  "name": "اسامة اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2012-04",
+  "group": "2012",
+  "src": "images/certificates/2012/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل"
+ },
+ {
+  "id": "cert-2012-05",
+  "group": "2012",
+  "src": "images/certificates/2012/اشرف سمير بندارى.jpg",
+  "name": "اشرف سمير بندارى"
+ },
+ {
+  "id": "cert-2012-06",
+  "group": "2012",
+  "src": "images/certificates/2012/اللواء احمد ابو النصر.jpg",
+  "name": "اللواء احمد ابو النصر"
+ },
+ {
+  "id": "cert-2012-07",
+  "group": "2012",
+  "src": "images/certificates/2012/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2012-08",
+  "group": "2012",
+  "src": "images/certificates/2012/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2012-09",
+  "group": "2012",
+  "src": "images/certificates/2012/سعاد محمد احمد.jpg",
+  "name": "سعاد محمد احمد"
+ },
+ {
+  "id": "cert-2012-10",
+  "group": "2012",
+  "src": "images/certificates/2012/سناء عبد العزيز.jpg",
+  "name": "سناء عبد العزيز"
+ },
+ {
+  "id": "cert-2012-11",
+  "group": "2012",
+  "src": "images/certificates/2012/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2012-12",
+  "group": "2012",
+  "src": "images/certificates/2012/شريف فهمى.jpg",
+  "name": "شريف فهمى"
+ },
+ {
+  "id": "cert-2012-13",
+  "group": "2012",
+  "src": "images/certificates/2012/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2012-14",
+  "group": "2012",
+  "src": "images/certificates/2012/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2012-15",
+  "group": "2012",
+  "src": "images/certificates/2012/على اسماعيل ابراهية.jpg",
+  "name": "على اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2012-16",
+  "group": "2012",
+  "src": "images/certificates/2012/على عبد الخالق بندق.jpg",
+  "name": "على عبد الخالق بندق"
+ },
+ {
+  "id": "cert-2012-17",
+  "group": "2012",
+  "src": "images/certificates/2012/غادة محمد المرسى.jpg",
+  "name": "غادة محمد المرسى"
+ },
+ {
+  "id": "cert-2012-18",
+  "group": "2012",
+  "src": "images/certificates/2012/فوزية محمد احمد.jpg",
+  "name": "فوزية محمد احمد"
+ },
+ {
+  "id": "cert-2012-19",
+  "group": "2012",
+  "src": "images/certificates/2012/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن"
+ },
+ {
+  "id": "cert-2012-20",
+  "group": "2012",
+  "src": "images/certificates/2012/ماجدة سعيد.jpg",
+  "name": "ماجدة سعيد"
+ },
+ {
+  "id": "cert-2012-21",
+  "group": "2012",
+  "src": "images/certificates/2012/محمد ابو العينين.jpg",
+  "name": "محمد ابو العينين"
+ },
+ {
+  "id": "cert-2012-22",
+  "group": "2012",
+  "src": "images/certificates/2012/محمد احمد حشاد.jpg",
+  "name": "محمد احمد حشاد"
+ },
+ {
+  "id": "cert-2012-23",
+  "group": "2012",
+  "src": "images/certificates/2012/محمد توفيق حسين.jpg",
+  "name": "محمد توفيق حسين"
+ },
+ {
+  "id": "cert-2012-24",
+  "group": "2012",
+  "src": "images/certificates/2012/محمد محمود مصطفى الاكوح.jpg",
+  "name": "محمد محمود مصطفى الاكوح"
+ },
+ {
+  "id": "cert-2012-25",
+  "group": "2012",
+  "src": "images/certificates/2012/ناهد محمد عبد الجليل.jpg",
+  "name": "ناهد محمد عبد الجليل"
+ },
+ {
+  "id": "cert-2012-26",
+  "group": "2012",
+  "src": "images/certificates/2012/هانى ذكى حسين.jpg",
+  "name": "هانى ذكى حسين"
+ },
+ {
+  "id": "cert-2012-27",
+  "group": "2012",
+  "src": "images/certificates/2012/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2011-01",
+  "group": "2011",
+  "src": "images/certificates/2011/ابتسام خليفة امام.jpg",
+  "name": "ابتسام خليفة امام"
+ },
+ {
+  "id": "cert-2011-02",
+  "group": "2011",
+  "src": "images/certificates/2011/اميرة سامى سعيد.jpg",
+  "name": "اميرة سامى سعيد"
+ },
+ {
+  "id": "cert-2011-03",
+  "group": "2011",
+  "src": "images/certificates/2011/ايمان خلف الله احمد.jpg",
+  "name": "ايمان خلف الله احمد"
+ },
+ {
+  "id": "cert-2011-04",
+  "group": "2011",
+  "src": "images/certificates/2011/داليا ممدوح.jpg",
+  "name": "داليا ممدوح"
+ },
+ {
+  "id": "cert-2011-05",
+  "group": "2011",
+  "src": "images/certificates/2011/سامية اسماعيل ابراهيم.jpg",
+  "name": "سامية اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2011-06",
+  "group": "2011",
+  "src": "images/certificates/2011/شريف احمد حسين.jpg",
+  "name": "شريف احمد حسين"
+ },
+ {
+  "id": "cert-2011-07",
+  "group": "2011",
+  "src": "images/certificates/2011/عصمت اسماعيل ابراهيم.jpg",
+  "name": "عصمت اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2011-08",
+  "group": "2011",
+  "src": "images/certificates/2011/علاء اسماعيل ابراهيم.jpg",
+  "name": "علاء اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-2011-09",
+  "group": "2011",
+  "src": "images/certificates/2011/على عبد الخالق بندق.jpg",
+  "name": "على عبد الخالق بندق"
+ },
+ {
+  "id": "cert-2011-10",
+  "group": "2011",
+  "src": "images/certificates/2011/عمرو مصطفى عبد العظيم.jpg",
+  "name": "عمرو مصطفى عبد العظيم"
+ },
+ {
+  "id": "cert-2011-11",
+  "group": "2011",
+  "src": "images/certificates/2011/فواد محى الدين.jpg",
+  "name": "فواد محى الدين"
+ },
+ {
+  "id": "cert-2011-12",
+  "group": "2011",
+  "src": "images/certificates/2011/هانى ذكى حسين.jpg",
+  "name": "هانى ذكى حسين"
+ },
+ {
+  "id": "cert-2011-13",
+  "group": "2011",
+  "src": "images/certificates/2011/هدى اسماعيل ابراهيم.jpg",
+  "name": "هدى اسماعيل ابراهيم"
+ },
+ {
+  "id": "cert-memorial-01",
+  "group": "memorial",
+  "src": "images/certificates/2025/اسماعيل ابراهيم اسماعيل.jpg",
+  "name": "اسماعيل ابراهيم اسماعيل",
+  "role": "عضوية فخرية (رحمه الله)"
+ },
+ {
+  "id": "cert-memorial-02",
+  "group": "memorial",
+  "src": "images/certificates/2025/ليلى محمد حسن.jpg",
+  "name": "ليلى محمد حسن",
+  "role": "عضوية فخرية (رحمها الله)"
+ },
+ {
+  "id": "cert-official-01",
+  "group": "official",
+  "src": "images/certificates/cert-01.jpg"
+ },
+ {
+  "id": "cert-official-02",
+  "group": "official",
+  "src": "images/certificates/cert-02.jpg"
+ },
+ {
+  "id": "cert-official-03",
+  "group": "official",
+  "src": "images/certificates/cert-03.jpg"
+ },
+ {
+  "id": "cert-official-04",
+  "group": "official",
+  "src": "images/certificates/cert-04.jpg"
+ },
+ {
+  "id": "cert-official-05",
+  "group": "official",
+  "src": "images/certificates/cert-05.jpg"
+ },
+ {
+  "id": "cert-official-06",
+  "group": "official",
+  "src": "images/certificates/cert-06.jpg"
+ },
+ {
+  "id": "cert-official-07",
+  "group": "official",
+  "src": "images/certificates/cert-07.jpg"
+ },
+ {
+  "id": "cert-official-08",
+  "group": "official",
+  "src": "images/certificates/cert-08.jpg"
+ },
+ {
+  "id": "cert-official-09",
+  "group": "official",
+  "src": "images/certificates/cert-09.jpg"
+ },
+ {
+  "id": "cert-official-10",
+  "group": "official",
+  "src": "images/certificates/cert-10.jpg"
+ },
+ {
+  "id": "cert-official-11",
+  "group": "official",
+  "src": "images/certificates/cert-11.jpg"
+ },
+ {
+  "id": "cert-official-12",
+  "group": "official",
+  "src": "images/certificates/cert-12.jpg"
+ },
+ {
+  "id": "cert-official-13",
+  "group": "official",
+  "src": "images/certificates/cert-13.jpg"
+ },
+ {
+  "id": "cert-official-14",
+  "group": "official",
+  "src": "images/certificates/cert-14.jpg"
+ },
+ {
+  "id": "cert-official-15",
+  "group": "official",
+  "src": "images/certificates/cert-15.jpg"
+ },
+ {
+  "id": "cert-official-16",
+  "group": "official",
+  "src": "images/certificates/cert-16.jpg"
+ },
+ {
+  "id": "cert-official-17",
+  "group": "official",
+  "src": "images/certificates/cert-17.jpg"
+ },
+ {
+  "id": "cert-official-18",
+  "group": "official",
+  "src": "images/certificates/cert-18.jpg"
+ },
+ {
+  "id": "cert-official-19",
+  "group": "official",
+  "src": "images/certificates/cert-19.jpg"
+ },
+ {
+  "id": "cert-official-20",
+  "group": "official",
+  "src": "images/certificates/cert-20.jpg"
+ },
+ {
+  "id": "cert-official-21",
+  "group": "official",
+  "src": "images/certificates/cert-21.jpg"
+ },
+ {
+  "id": "cert-official-22",
+  "group": "official",
+  "src": "images/certificates/cert-22.jpg"
+ },
+ {
+  "id": "cert-official-23",
+  "group": "official",
+  "src": "images/certificates/cert-23.jpg"
+ }
+]

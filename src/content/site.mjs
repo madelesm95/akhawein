@@ -1,0 +1,130 @@
+export const site = {
+  origin: 'https://www.akhawein.org',
+  founded: 2009,
+  name: { ar: 'جمعية أخوين الخيرية', en: 'Akhawein Charity' },
+  shortName: { ar: 'أخوين', en: 'Akhawein' },
+  tagline: { ar: 'معاً نصنع الأمل', en: 'Together, we build hope' },
+  registration: { ar: 'مشهرة برقم ٧٧٠٢ لسنة ٢٠٠٩', en: 'Registered under No. 7702 of 2009' },
+  publicBenefit: { ar: 'ذات نفع عام بالقرار الوزاري رقم ١٦٠ لسنة ٢٠١٣', en: 'Public-benefit status by Ministerial Decree No. 160 of 2013' },
+  supervisor: { ar: 'تحت إشراف وزارة التضامن الاجتماعي', en: 'Supervised by the Ministry of Social Solidarity' },
+  law: { ar: 'قانون تنظيم ممارسة العمل الأهلي رقم ١٤٩ لسنة ٢٠١٩', en: 'NGO Law No. 149 of 2019' },
+  phone: '01281769685',
+  phoneIntl: '+201281769685',
+  whatsapp: '201281769685',
+  email: 'info@akhawein.org',
+  address: {
+    ar: '٢٤ عمارات العبور – طريق صلاح سالم، الدور الأرضي، مصر الجديدة، القاهرة',
+    en: '24 Al-Obour Buildings, Salah Salem Road, Ground Floor, Heliopolis, Cairo',
+  },
+  addressShort: { ar: '٢٤ عمارات العبور – طريق صلاح سالم، القاهرة', en: '24 Al-Obour Buildings, Salah Salem Rd, Cairo' },
+  mapsUrl: 'https://maps.app.goo.gl/sVMgkZ7viMpMoRkz5',
+  hours: {
+    ar: 'يومياً من ٩ صباحاً حتى ٥ مساءً، عدا الجمعة والعطلات الرسمية',
+    en: 'Daily, 9 AM – 5 PM, except Fridays and public holidays',
+  },
+  socials: [
+    { id: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/profile.php?id=100066869127004' },
+    { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/akhawein6/' },
+    { id: 'x', label: 'X', url: 'https://x.com/AAkhawein' },
+    { id: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@akhaweinakhawein' },
+  ],
+  stats: [
+    { value: 10000, plus: true, label: { ar: 'أسرة مستفيدة', en: 'families supported' } },
+    { value: 4850, plus: true, label: { ar: 'حملة خيرية', en: 'charity campaigns' } },
+    { value: 3686, plus: true, label: { ar: 'طالب وطالبة', en: 'students supported' } },
+    { value: 480, plus: true, label: { ar: 'فصل تقوية مجاني', en: 'free tutoring classes' } },
+  ],
+  verse: {
+    ar: 'وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ',
+    en: 'Help one another in righteousness and piety, and do not help one another in sin and aggression.',
+    ref: { ar: 'سورة المائدة: ٢', en: 'The Holy Quran, Al-Ma’idah 5:2' },
+  },
+};
+
+export const nav = [
+  { key: 'home', label: { ar: 'الرئيسية', en: 'Home' } },
+  {
+    label: { ar: 'عن الجمعية', en: 'About' },
+    children: [
+      { key: 'about', label: { ar: 'من نحن', en: 'Who we are' }, desc: { ar: 'قصتنا ورؤيتنا ومجلس الإدارة', en: 'Our story, vision and board' }, icon: 'heart-handshake' },
+      { key: 'protocols', label: { ar: 'الشراكات والاعتمادات', en: 'Partnerships' }, desc: { ar: 'البروتوكولات والاعتماد الدولي', en: 'Protocols and accreditation' }, icon: 'handshake' },
+      { key: 'certificates', label: { ar: 'شهادات التقدير', en: 'Wall of honour' }, desc: { ar: 'سجل الشكر والتقدير', en: 'Certificates of appreciation' }, icon: 'award' },
+      { key: 'branches', label: { ar: 'الفروع والمراكز', en: 'Branches' }, desc: { ar: 'في القاهرة الكبرى والشرقية والقليوبية', en: 'Greater Cairo, Sharqia and Qalyubia' }, icon: 'map-pin' },
+    ],
+  },
+  { key: 'activities', label: { ar: 'ميادين العمل', en: 'Our work' } },
+  { key: 'causes', label: { ar: 'حالات التبرع', en: 'Causes' } },
+  { key: 'gallery', label: { ar: 'المركز الإعلامي', en: 'Media' } },
+  { key: 'contact', label: { ar: 'تواصل معنا', en: 'Contact' } },
+];
+
+export const ui = {
+  skip: { ar: 'تخطَّ إلى المحتوى', en: 'Skip to content' },
+  utilityLabel: { ar: 'معلومات التواصل والاعتماد', en: 'Contact and registration' },
+  donate: { ar: 'تبرع الآن', en: 'Donate' },
+  donateLong: { ar: 'تبرع الآن', en: 'Donate now' },
+  menu: { ar: 'القائمة', en: 'Menu' },
+  close: { ar: 'إغلاق', en: 'Close' },
+  themeToggle: { ar: 'تبديل الوضع الليلي', en: 'Toggle dark mode' },
+  langSwitch: { ar: 'English', en: 'العربية' },
+  langSwitchLabel: { ar: 'Switch to English', en: 'التبديل إلى العربية' },
+  copy: { ar: 'نسخ', en: 'Copy' },
+  copied: { ar: 'تم النسخ', en: 'Copied' },
+  copiedToast: { ar: 'تم نسخ الرقم إلى الحافظة', en: 'Copied to clipboard' },
+  accountNo: { ar: 'رقم الحساب', en: 'Account no.' },
+  iban: { ar: 'الآيبان (IBAN)', en: 'IBAN' },
+  learnMore: { ar: 'اعرف المزيد', en: 'Learn more' },
+  viewAll: { ar: 'عرض الكل', en: 'View all' },
+  all: { ar: 'الكل', en: 'All' },
+  call: { ar: 'اتصال', en: 'Call' },
+  directions: { ar: 'الاتجاهات على الخريطة', en: 'Get directions' },
+  whatsapp: { ar: 'واتساب', en: 'WhatsApp' },
+  chatWhatsapp: { ar: 'تواصل عبر واتساب', en: 'Chat on WhatsApp' },
+  play: { ar: 'تشغيل الفيديو', en: 'Play video' },
+  enlarge: { ar: 'تكبير الصورة', en: 'View larger' },
+  prev: { ar: 'السابق', en: 'Previous' },
+  next: { ar: 'التالي', en: 'Next' },
+  backToTop: { ar: 'العودة للأعلى', en: 'Back to top' },
+  home: { ar: 'الرئيسية', en: 'Home' },
+  breadcrumb: { ar: 'مسار التنقل', en: 'Breadcrumb' },
+  mainNav: { ar: 'القائمة الرئيسية', en: 'Main navigation' },
+  mobileNav: { ar: 'قائمة التصفح', en: 'Site menu' },
+  footerNav: { ar: 'روابط التذييل', en: 'Footer navigation' },
+  results: {
+    ar: { zero: 'لا توجد نتائج', one: 'نتيجة واحدة', two: 'نتيجتان', few: '{n} نتائج', many: '{n} نتيجة', other: '{n} نتيجة' },
+    en: { one: '{n} result', other: '{n} results' },
+  },
+  noResults: { ar: 'لا توجد نتائج مطابقة', en: 'No matching results' },
+  officialBadge: { ar: 'جمعية أهلية معتمدة', en: 'Officially registered NGO' },
+};
+
+export const footer = {
+  about: {
+    ar: 'جمعية أهلية مصرية تعمل منذ عام ٢٠٠٩ على رعاية الأسر الأولى بالرعاية، وكفالة الأيتام، وتقديم الدعم الصحي والتعليمي والتنموي في محافظات مصر.',
+    en: 'An Egyptian non-profit working since 2009 to support families in need, sponsor orphans, and provide health, education and development programmes across Egypt.',
+  },
+  groups: [
+    {
+      title: { ar: 'الجمعية', en: 'Organisation' },
+      links: [
+        { key: 'about', label: { ar: 'من نحن', en: 'Who we are' } },
+        { key: 'about', hash: 'board', label: { ar: 'مجلس الإدارة', en: 'Board of directors' } },
+        { key: 'protocols', label: { ar: 'الشراكات والاعتمادات', en: 'Partnerships' } },
+        { key: 'certificates', label: { ar: 'شهادات التقدير', en: 'Wall of honour' } },
+        { key: 'branches', label: { ar: 'الفروع والمراكز', en: 'Branches' } },
+      ],
+    },
+    {
+      title: { ar: 'ساهم معنا', en: 'Get involved' },
+      links: [
+        { key: 'causes', label: { ar: 'حالات التبرع', en: 'Causes' } },
+        { key: 'donations', label: { ar: 'حسابات التبرع', en: 'Donation accounts' } },
+        { key: 'activities', label: { ar: 'ميادين العمل', en: 'Our work' } },
+        { key: 'gallery', label: { ar: 'المركز الإعلامي', en: 'Media' } },
+        { key: 'contact', label: { ar: 'تطوع أو اطلب مساعدة', en: 'Volunteer or ask for help' } },
+      ],
+    },
+  ],
+  contactTitle: { ar: 'تواصل معنا', en: 'Contact us' },
+  rights: { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },
+};
