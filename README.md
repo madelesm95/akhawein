@@ -41,3 +41,5 @@ Other generators: `npm run icons` (adds Lucide/Simple Icons names listed in `src
 - Only optimised files under `assets/` are deployed. `images/` holds the originals (some are unblurred photos of beneficiaries) and is excluded in `.vercelignore`.
 - Old Arabic URLs (`/عن-الجمعية`, `/وسائل-التبرع`, …) still work through the rewrites in `vercel.json`.
 - The contact form posts to FormSubmit (`info@akhawein.org`); if that fails it opens WhatsApp with the message pre-filled. FormSubmit needs a one-time confirmation from the inbox the first time it is used.
+- `/webmail` redirects to the existing email login at `https://mail.akhawein.org:2096/`. Use the full email address and existing mailbox password; cPanel administration on port 2083 uses a separate hosting-account login.
+- Vercel hosts the website, not the mailboxes. Keep the existing email hosting active and preserve the mail server's A, MX, SPF, and DKIM records when changing DNS providers.

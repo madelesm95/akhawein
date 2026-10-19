@@ -3,6 +3,13 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/webmail",
+      "destination": "https://mail.akhawein.org:2096/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/البروتوكولات",
