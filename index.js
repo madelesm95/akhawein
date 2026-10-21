@@ -74,14 +74,41 @@ const ROUTE_MAP = {
   '/home': '/index.html'
 };
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
   try {
     let urlPath = req.url || '/';
+    const queryIndex = urlPath.indexOf('?');
+    const search = queryIndex >= 0 ? urlPath.slice(queryIndex) : '';
     // Strip query string and hashes
     urlPath = urlPath.split('?')[0].split('#')[0];
     try {
       urlPath = decodeURIComponent(urlPath);
     } catch (e) {}
+
+    // Local development only: /api/* runs the same handlers Vercel deploys.
+    if (urlPath.startsWith('/api/')) {
+      const relative = urlPath.slice('/api/'.length).replace(/\/+$/, '');
+      if (!relative || !/^[a-z0-9/_-]+$/i.test(relative)) {
+        res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, error: 'Not found' }));
+        return;
+      }
+      const apiRoot = path.join(process.cwd(), 'api');
+      const file = path.join(apiRoot, `${relative}.js`);
+      const inside = path.relative(apiRoot, file);
+      if (inside.startsWith('..') || path.isAbsolute(inside) || !fs.existsSync(file)) {
+        res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, error: 'Not found' }));
+        return;
+      }
+      const params = new URLSearchParams(search);
+      req.query = {};
+      for (const [key, value] of params) req.query[key] = value;
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      const endpoint = require(file);
+      await endpoint(req, res);
+      return;
+    }
 
     if (urlPath === '/' || urlPath === '') {
       urlPath = '/index.html';
@@ -142,8 +169,10 @@ const handler = (req, res) => {
     });
     res.end(data);
   } catch (err) {
-    res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('Server Error: ' + err.message);
+    if (!res.headersSent) {
+      res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('Server Error: ' + err.message);
+    }
   }
 };
 

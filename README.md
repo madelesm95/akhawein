@@ -1,6 +1,6 @@
 # جمعية أخوين الخيرية — Akhawein Charity website
 
-Static, bilingual (Arabic RTL at `/`, English LTR at `/en/`) site with light and dark themes. Deployed on Vercel as plain files — Vercel does not run a build; the generated HTML is committed.
+Static, bilingual (Arabic RTL at `/`, English LTR at `/en/`) site with light and dark themes. Deployed on Vercel as plain files — Vercel does not run a build; the generated HTML is committed. A small serverless layer under `api/` handles Paymob checkout and webhooks.
 
 ## Editing content
 
@@ -35,6 +35,14 @@ When you add or replace a photo:
 3. Reference the id from content, then `npm run build`.
 
 Other generators: `npm run icons` (adds Lucide/Simple Icons names listed in `src/icons.mjs`), `npm run fonts` (re-downloads the self-hosted fonts into `assets/fonts/`).
+
+## Online donations (Paymob)
+
+The donations page uses Paymob Intention API + Unified Checkout. The browser never sees the Paymob secret: `/api/donations/*` creates the intention, verifies the redirect HMAC, and receives the webhook. A pending donation is written to Google Sheets through an Apps Script gateway before checkout is created, so checkout is fail-closed. The webhook is the source of truth for paid, failed, and refunded status.
+
+- Full setup, credentials, Apps Script deployment, go-live and troubleshooting: [`docs/PAYMENTS.md`](docs/PAYMENTS.md)
+- Required Vercel variables: `PAYMOB_SECRET_KEY`, `PAYMOB_PUBLIC_KEY`, `PAYMOB_INTEGRATION_IDS`, `PAYMOB_HMAC_SECRET`, `SHEETS_WEBHOOK_URL`, `SHEETS_WEBHOOK_SECRET`, `SITE_URL`.
+- Local: copy `.env.example` to `.env.local`, run `npm run dev`, then `npm run check:paymob` and `npm run test:payments`.
 
 ## Notes
 

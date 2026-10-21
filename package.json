@@ -6,10 +6,13 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
+    "dev": "node scripts/dev.mjs",
     "build": "node src/build.mjs",
     "images": "node src/images.mjs",
     "icons": "node src/icons.mjs",
-    "fonts": "node src/fonts.mjs"
+    "fonts": "node src/fonts.mjs",
+    "check:paymob": "node scripts/paymob-check.mjs",
+    "test:payments": "node scripts/test-payment.mjs"
   },
   "keywords": [],
   "author": "",

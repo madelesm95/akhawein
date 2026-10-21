@@ -41,3 +41,13 @@ images/
 node_modules/
 assets/css/site.css
 assets/js/site.js
+
+# Payment integration internals (server-only code is bundled by Vercel)
+.env
+.env.*
+google-apps-script/
+scripts/
+docs/
+
+# Local backups must never be deployed
+*.bak

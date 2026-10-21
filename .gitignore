@@ -1,2 +1,15 @@
 node_modules/
 .DS_Store
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+.vercel/
+*.local
+
+# Apps Script CLI
+google-apps-script/.clasp.json
+
+# Local backups
+*.bak

@@ -1,0 +1,51 @@
+{
+  "currency": "EGP",
+  "minAmount": 10,
+  "maxAmount": 200000,
+  "suggested": [100, 250, 500, 1000, 2500],
+  "causes": [
+    {
+      "id": "general",
+      "label": { "ar": "التبرع العام", "en": "General donation" },
+      "desc": { "ar": "يُوجَّه إلى أكثر الاحتياجات إلحاحاً", "en": "Directed to the most urgent needs" },
+      "icon": "heart-handshake",
+      "default": true
+    },
+    {
+      "id": "meals",
+      "label": { "ar": "إطعام وجبات ساخنة", "en": "Hot meals" },
+      "desc": { "ar": "وجبات يومية للأسر المستحقة", "en": "Daily meals for families in need" },
+      "icon": "utensils"
+    },
+    {
+      "id": "food-parcels",
+      "label": { "ar": "شنط المواد الغذائية", "en": "Food parcels" },
+      "desc": { "ar": "شنطة غذائية تكفي أسرة لشهر", "en": "A parcel that feeds a family for a month" },
+      "icon": "shopping-basket"
+    },
+    {
+      "id": "udhiyah",
+      "label": { "ar": "صك الأضحية", "en": "Udhiyah voucher" },
+      "desc": { "ar": "أضحية تُوزَّع على الأسر الأولى بالرعاية", "en": "Sacrifice distributed to families in need" },
+      "icon": "gift"
+    },
+    {
+      "id": "brides",
+      "label": { "ar": "تجهيز العرائس", "en": "Bridal preparation" },
+      "desc": { "ar": "تجهيز الفتيات اليتيمات للزواج", "en": "Helping orphaned brides start a home" },
+      "icon": "sparkles"
+    },
+    {
+      "id": "dialysis",
+      "label": { "ar": "جلسات الغسيل الكلوي", "en": "Dialysis sessions" },
+      "desc": { "ar": "دعم مرضى الفشل الكلوي", "en": "Support for kidney failure patients" },
+      "icon": "activity"
+    },
+    {
+      "id": "aftercare",
+      "label": { "ar": "دار الرعاية اللاحقة", "en": "Aftercare home" },
+      "desc": { "ar": "رعاية وتأهيل بعد الخروج من المستشفى", "en": "Care and rehabilitation after hospital" },
+      "icon": "house-heart"
+    }
+  ]
+}
