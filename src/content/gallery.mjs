@@ -33,6 +33,7 @@ export const gallery = [
   { image: 'palestine-supplies', cats: ['palestine'], date: dec24, title: { ar: 'إغاثة فلسطين: مواقد طهي وأدوات معيشة لمراكز الإيواء', en: 'Palestine relief: cooking stoves and supplies for shelters' } },
   { image: 'palestine-shelter', cats: ['palestine'], date: dec24, title: { ar: 'إغاثة فلسطين: طرود أجهزة ومستلزمات منزلية', en: 'Palestine relief: appliances and household parcels' } },
   { image: 'palestine-pediatric', cats: ['palestine'], title: { ar: 'إغاثة فلسطين: كراسٍ متحركة ورعاية طبية للأطفال المصابين', en: 'Palestine relief: wheelchairs and care for injured children' } },
+  { image: 'palestine-mattresses', cats: ['palestine'], date: { ar: 'شتاء ٢٠٢٤', en: 'Winter 2024' }, title: { ar: 'إغاثة فلسطين: مراتب ومفروشات للأسر النازحة والمتضررة', en: 'Palestine relief: mattresses and furnishings for displaced families' } },
   { image: 'fayoum-assignment', cats: ['fayoum'], title: { ar: 'الفيوم: توقيع إسناد مركز أخوين للتكوين المهني', en: 'Fayoum: receiving the official assignment of the Akhawein vocational centre' } },
   { image: 'fayoum-graduates', cats: ['fayoum', 'volunteers'], title: { ar: 'الفيوم: شهادات إتمام الدورات التدريبية', en: 'Fayoum: certificates for training graduates' } },
   { image: 'fayoum-certificate', cats: ['fayoum', 'volunteers'], date: may24, title: { ar: 'الفيوم: تكريم إحدى خريجات التكوين المهني', en: 'Fayoum: honouring a vocational-training graduate' } },

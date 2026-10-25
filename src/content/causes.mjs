@@ -10,6 +10,13 @@ export const causes = [
       ar: 'مطابخ الخير توفر وجبات طازجة متكاملة للأسر الأكثر احتياجاً وعمال اليومية والمسنين في مختلف المحافظات.',
       en: 'Our charity kitchens prepare fresh, balanced meals for families in need, day labourers and the elderly across Egypt.',
     },
+    beneficiaries: [
+      { ar: 'المرأة المعيلة', en: 'Women breadwinners' },
+      { ar: 'الأيتام', en: 'Orphans' },
+      { ar: 'كبار السن', en: 'The elderly' },
+      { ar: 'ذوو الهمم', en: 'People with disabilities' },
+      { ar: 'عابرو السبيل', en: 'Wayfarers' },
+    ],
   },
   {
     id: 'food-parcels',
@@ -22,6 +29,12 @@ export const causes = [
       ar: 'شنط تموينية متكاملة تضم السلع الأساسية، تصل شهرياً إلى الأسر المتعففة في القرى والنجوع.',
       en: 'Complete grocery parcels of essential staples, delivered monthly to families in villages and hamlets.',
     },
+    beneficiaries: [
+      { ar: 'الأرامل والمرأة المعيلة', en: 'Widows and women breadwinners' },
+      { ar: 'كبار السن', en: 'The elderly' },
+      { ar: 'ذوو الاحتياجات الخاصة', en: 'People with special needs' },
+      { ar: 'الأسر الأكثر احتياجاً بالقرى', en: 'The poorest families in villages' },
+    ],
   },
   {
     id: 'orphans',
@@ -34,6 +47,12 @@ export const causes = [
       ar: 'إقامة وكفالة شهرية وغذاء ورعاية طبية ونفسية شاملة للطفل اليتيم ولكبار السن.',
       en: 'Shelter, monthly sponsorship, food, and full medical and psychological care for orphans and the elderly.',
     },
+    beneficiaries: [
+      { ar: 'الأطفال الأيتام', en: 'Orphaned children' },
+      { ar: 'المسنون وكبار السن', en: 'Older people' },
+      { ar: 'دار أخوين للأيتام', en: 'Akhawein Orphanage' },
+      { ar: 'دار حكاية حياة', en: 'Hekayet Hayah care home' },
+    ],
   },
   {
     id: 'brides',
@@ -46,6 +65,11 @@ export const causes = [
       ar: 'نساند الفتيات اليتيمات بالأجهزة الكهربائية والأساسيات ليبدأن حياة زوجية كريمة ومستقرة.',
       en: 'We help orphan girls begin married life with dignity by providing household appliances and essentials.',
     },
+    beneficiaries: [
+      { ar: 'الفتيات اليتيمات', en: 'Orphan girls' },
+      { ar: 'بنات دار الرعاية اللاحقة', en: 'Girls from our aftercare home' },
+      { ar: 'المقبلات على الزواج من الأسر المتعففة', en: 'Brides-to-be from low-income families' },
+    ],
   },
   {
     id: 'dialysis',
@@ -58,6 +82,11 @@ export const causes = [
       ar: 'نتكفل بجلسات الغسيل الكلوي والفلاتر والأدوية المصاحبة لمرضى الفشل الكلوي غير القادرين.',
       en: 'We cover dialysis sessions, filters and medication for kidney patients who cannot afford treatment.',
     },
+    beneficiaries: [
+      { ar: 'مرضى الفشل الكلوي غير القادرين', en: 'Kidney patients who cannot pay' },
+      { ar: 'الحالات الطارئة بمستشفيات الكلى', en: 'Emergency kidney cases' },
+      { ar: 'كبار السن المصابون بالقصور الكلوي', en: 'Older patients with renal failure' },
+    ],
   },
   {
     id: 'omneya',
@@ -70,6 +99,11 @@ export const causes = [
       ar: 'مبادرة «نفسك في إيه؟» لتحقيق أمنيات أطفال الأورام ورفع روحهم المعنوية خلال رحلة العلاج.',
       en: 'Our “What do you wish for?” initiative grants the wishes of children fighting cancer during treatment.',
     },
+    beneficiaries: [
+      { ar: 'أطفال مرضى الأورام والسرطان', en: 'Children with cancer' },
+      { ar: 'الحالات الحرجة والمتأخرة', en: 'Critical and advanced cases' },
+      { ar: 'أسر الأطفال المرضى', en: 'The children’s families' },
+    ],
   },
   {
     id: 'mobility',
@@ -82,6 +116,11 @@ export const causes = [
       ar: 'أطراف صناعية وكراسي متحركة وسماعات طبية تمكّن ذوي الهمم من الحركة والعمل والإنتاج.',
       en: 'Prosthetic limbs, wheelchairs and hearing aids that help people with disabilities move, work and thrive.',
     },
+    beneficiaries: [
+      { ar: 'ذوو الهمم والقدرات الخاصة', en: 'People with disabilities' },
+      { ar: 'مرضى ضمور المخ والشلل', en: 'Patients with cerebral atrophy and paralysis' },
+      { ar: 'ضعاف السمع ومبتورو الأطراف', en: 'The hard of hearing and amputees' },
+    ],
   },
   {
     id: 'relief',
@@ -94,6 +133,11 @@ export const causes = [
       ar: 'سداد ديون الغارمات، وتفريج كرب الأسر المهددة بالحبس، وإجراء العمليات الجراحية الطارئة.',
       en: 'Settling the debts of women facing prison, relieving families in crisis, and funding emergency surgery.',
     },
+    beneficiaries: [
+      { ar: 'الغارمات والغارمون المهددون بالحبس', en: 'Women and men held for debt' },
+      { ar: 'مرضى العمليات الجراحية الطارئة', en: 'Emergency surgery patients' },
+      { ar: 'الأسر المعوزة في كرب شديد', en: 'Families in severe distress' },
+    ],
   },
   {
     id: 'winter',
@@ -106,6 +150,60 @@ export const causes = [
       ar: 'بطاطين وألحفة شتوية وأسقف آمنة تحمي الأطفال والأسر في القرى النائية من برد الشتاء.',
       en: 'Blankets, quilts and safe roofs that protect children and families in remote villages from the cold.',
     },
+    beneficiaries: [
+      { ar: 'الأسر في بيوت بلا أسقف آمنة', en: 'Families without safe roofs' },
+      { ar: 'الأطفال والمسنون في القرى والنجوع', en: 'Children and the elderly in villages' },
+      { ar: 'المناطق النائية الأكثر برودة', en: 'The coldest remote areas' },
+    ],
+  },
+  {
+    id: 'udhiyah',
+    image: null,
+    icon: 'gift',
+    account: 'udhiyah',
+    tag: { ar: 'نسك وبر', en: 'Sacrifice' },
+    title: { ar: 'صكوك الأضاحي', en: 'Udhiyah vouchers' },
+    summary: {
+      ar: 'سُبع عجل بلدي أو أكثر وفق الضوابط الشرعية: يستلم المضحّي نصيبه الشرعي في أيام العيد، وتتولى الجمعية الذبح والتشفية وتوزيع باقي الحصص على الأسر الأشد احتياجاً تحت إشراف بيطري وشرعي.',
+      en: 'A seventh of a local calf or more, in line with Sharia requirements. Donors receive their share during Eid, while we oversee the slaughtering, preparation and distribution of the rest to families most in need.',
+    },
+    beneficiaries: [
+      { ar: 'الأسر الأشد احتياجاً بالقرى والنجوع', en: 'The poorest families in villages' },
+      { ar: 'الأيتام والأرامل المتعففون', en: 'Orphans and widows' },
+    ],
+  },
+  {
+    id: 'gaza-relief',
+    image: null,
+    icon: 'life-buoy',
+    account: 'general',
+    tag: { ar: 'إغاثة ونصرة', en: 'Relief' },
+    title: { ar: 'إغاثة إنسانية عاجلة لأهل غزة', en: 'Urgent relief for Gaza' },
+    summary: {
+      ar: 'حملة إغاثة عاجلة لمساندة الأسر المنكوبة والنازحة في قطاع غزة بتوفير الغذاء والدواء والإيواء الطارئ، والتخفيف من معاناتهم الإنسانية.',
+      en: 'An urgent relief campaign supporting displaced and affected families in the Gaza Strip with food, medicine and emergency shelter.',
+    },
+    beneficiaries: [
+      { ar: 'أهالي قطاع غزة والنازحون', en: 'Families in Gaza and the displaced' },
+      { ar: 'الجرحى والمرضى', en: 'The wounded and the sick' },
+      { ar: 'الأسر التي فقدت المأوى', en: 'Families who lost their homes' },
+    ],
+  },
+  {
+    id: 'animal-welfare',
+    image: null,
+    icon: 'paw-print',
+    account: 'general',
+    tag: { ar: 'رحمة ورفق', en: 'Compassion' },
+    title: { ar: 'الرأفة والرفق بالحيوان', en: 'Animal welfare' },
+    summary: {
+      ar: 'نشر ثقافة الرحمة بالحيوان، وتقديم الرعاية البيطرية للحيوانات المصابة، وتوفير نقاط إطعام وسقاية دورية للحيوانات المشردة والضعيفة.',
+      en: 'Spreading compassion for animals, providing veterinary care for the injured, and running regular feeding and watering points for stray and vulnerable animals.',
+    },
+    beneficiaries: [
+      { ar: 'الحيوانات المشردة والمصابة', en: 'Stray and injured animals' },
+      { ar: 'المجتمع والبيئة العامة', en: 'The wider community and environment' },
+    ],
   },
 ];
 

@@ -116,7 +116,7 @@ export function pageHero(ctx, { eyebrow, title, lead, crumbs = [], image, childr
       ${lead ? html`<p class="page-lead">${ctx.t(lead)}</p>` : ''}
       ${children || ''}
       </div>
-      ${image ? html`<figure class="page-hero__figure">${img(ctx, image, { alt: '', sizes: '(min-width: 1100px) 440px, 0px', eager: true, width: 960 })}</figure>` : ''}
+      ${image ? html`<figure class="page-hero__figure">${img(ctx, image, { alt: '', sizes: '(min-width: 1100px) 440px, 280px', eager: true, width: 960 })}</figure>` : ''}
     </div>
   </section>`;
 }

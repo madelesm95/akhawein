@@ -46,6 +46,18 @@
       "label": { "ar": "دار الرعاية اللاحقة", "en": "Aftercare home" },
       "desc": { "ar": "رعاية وتأهيل بعد الخروج من المستشفى", "en": "Care and rehabilitation after hospital" },
       "icon": "house-heart"
+    },
+    {
+      "id": "gaza-relief",
+      "label": { "ar": "إغاثة غزة", "en": "Gaza relief" },
+      "desc": { "ar": "غذاء ودواء وإيواء طارئ للأسر المنكوبة", "en": "Food, medicine and emergency shelter" },
+      "icon": "life-buoy"
+    },
+    {
+      "id": "animal-welfare",
+      "label": { "ar": "الرفق بالحيوان", "en": "Animal welfare" },
+      "desc": { "ar": "رعاية بيطرية وإطعام للحيوانات المشردة", "en": "Veterinary care and feeding for strays" },
+      "icon": "paw-print"
     }
   ]
 }

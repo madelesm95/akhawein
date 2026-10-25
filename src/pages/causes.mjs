@@ -7,8 +7,8 @@ import { ui } from '../content/site.mjs';
 const T = {
   title: { ar: 'حالات التبرع', en: 'Causes' },
   description: {
-    ar: 'حالات ومشاريع التبرع في جمعية أخوين الخيرية: الإطعام، كفالة الأيتام، تجهيز العرائس، الغسيل الكلوي، أطفال الأورام، ذوو الهمم، فك كرب الغارمين وحملة الشتاء.',
-    en: 'Causes you can support at Akhawein Charity: hot meals, orphan sponsorship, bridal preparation, dialysis, children with cancer, mobility aids, debt relief and the winter campaign.',
+    ar: 'حالات ومشاريع التبرع في جمعية أخوين الخيرية: الإطعام، كفالة الأيتام، تجهيز العرائس، الغسيل الكلوي، أطفال الأورام، ذوو الهمم، فك كرب الغارمين، حملة الشتاء، صكوك الأضاحي، إغاثة غزة والرفق بالحيوان.',
+    en: 'Causes you can support at Akhawein Charity: hot meals, orphan sponsorship, bridal preparation, dialysis, children with cancer, mobility aids, debt relief, the winter campaign, udhiyah vouchers, Gaza relief and animal welfare.',
   },
   eyebrow: { ar: 'أبواب الخير مفتوحة', en: 'Ways to give' },
   heroTitle: { ar: 'حالات ومشاريع التبرع', en: 'Choose a cause to support' },
@@ -34,7 +34,7 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
       <p><strong>${ctx.t(T.howTitle)}</strong> ${ctx.t(T.howText)}</p>
     </div>
     <div class="cause-grid cause-grid--page">
-      ${causes.map((c) => causeCard(ctx, c, { headingLevel: 2 }))}
+      ${causes.map((c) => causeCard(ctx, c, { headingLevel: 2, withBeneficiaries: true }))}
     </div>
   </div>
 </section>

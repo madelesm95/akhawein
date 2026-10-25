@@ -32,6 +32,7 @@ const sources = {
   'palestine-supplies': { src: 'images/gallery/palestine-living-supplies.jpg', widths: PHOTO },
   'palestine-shelter': { src: 'images/gallery/palestine-shelter-aid.jpg', widths: PHOTO },
   'palestine-pediatric': { src: 'images/gallery/palestine-pediatric-care.jpg', widths: PHOTO },
+  'palestine-mattresses': { src: 'images/gallery/palestine-mattresses-aid.jpg', widths: PHOTO },
   'ismailia-meals': { src: 'images/gallery/ismailia-meal-distribution.jpg', widths: PHOTO },
   'ismailia-loading': { src: 'images/gallery/ismailia-meals-loading.jpg', widths: PHOTO },
   'fayoum-assignment': { src: 'images/gallery/fayoum-center-assignment.jpg', widths: PHOTO },

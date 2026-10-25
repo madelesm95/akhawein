@@ -417,6 +417,11 @@ main:focus { outline: none; }
 .cause-card__title { font-size: 1.25rem; }
 :root[lang='en'] .cause-card__title { font-size: 1.3rem; }
 .cause-card__text { color: var(--muted); font-size: 0.98rem; line-height: 1.7; margin: 0; }
+.cause-card__beneficiaries { display: grid; gap: 0.45rem; }
+.cause-card__beneficiaries-label { display: flex; align-items: center; gap: 0.4rem; margin: 0; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.cause-card__beneficiaries-label .i { width: 15px; height: 15px; color: var(--brand-text); }
+.cause-card__beneficiaries ul { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+.cause-card__beneficiaries li { padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--tint-2); border: 1px solid var(--line); color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
 .cause-card__account { margin-top: auto; padding: 0.85rem 1rem; border-radius: var(--radius); background: var(--tint); border: 1px solid var(--line); }
 .cause-card__account-label { display: flex; align-items: center; gap: 0.4rem; margin: 0 0 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
 .cause-card__account-label .i { width: 15px; height: 15px; color: var(--brand-text); }

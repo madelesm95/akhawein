@@ -7,9 +7,10 @@ const T = {
   giveTo: { ar: 'تبرّع لهذا الباب', en: 'Give to this cause' },
   dedicated: { ar: 'حساب مخصص', en: 'Dedicated account' },
   general: { ar: 'عبر الحساب العام', en: 'Via the general account' },
+  beneficiaries: { ar: 'الفئات المستفيدة', en: 'Who benefits' },
 };
 
-export function causeCard(ctx, cause, { headingLevel = 3 } = {}) {
+export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = false } = {}) {
   const account = findAccount(cause.account);
   const dedicated = cause.account !== 'general';
   const h = `h${headingLevel}`;
@@ -22,7 +23,13 @@ export function causeCard(ctx, cause, { headingLevel = 3 } = {}) {
     </div>
     <div class="cause-card__body">
       <${h} class="cause-card__title">${ctx.t(cause.title)}</${h}>
-      <p class="cause-card__text">${ctx.t(cause.summary)}</p>
+      <p class="cause-card__text">${ctx.t(cause.summary)}</p>${withBeneficiaries && cause.beneficiaries?.length
+        ? html`
+      <div class="cause-card__beneficiaries">
+        <p class="cause-card__beneficiaries-label">${icon(ctx, 'users')}${ctx.t(T.beneficiaries)}</p>
+        <ul>${cause.beneficiaries.map((b) => html`<li>${ctx.t(b)}</li>`)}</ul>
+      </div>`
+        : ''}
       <div class="cause-card__account">
         <p class="cause-card__account-label">${icon(ctx, dedicated ? 'badge-check' : 'landmark')}${ctx.t(dedicated ? T.dedicated : T.general)} · ${ctx.t(account.bank.name)}</p>
         ${accountDetails(ctx, account, { compact: true })}
