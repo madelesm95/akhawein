@@ -33,7 +33,7 @@ ${pageHero(ctx, {
   <div class="container">
     ${filterBar(ctx, { group: 'programs', items, total: programs.length, label: T.filterLabel })}
     <div class="program-grid" data-filter-scope="programs">
-      ${programs.map((p) => programCard(ctx, p, { headingLevel: 2 }))}
+      ${programs.map((p, i) => programCard(ctx, p, { headingLevel: 2, revealDelay: i * 50 }))}
     </div>
   </div>
 </section>

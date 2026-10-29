@@ -101,6 +101,34 @@
       "destination": "/about.html"
     },
     {
+      "source": "/قصص-النجاح",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D9%86%D8%AC%D8%A7%D8%AD",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/قصص_النجاح",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/%D9%82%D8%B5%D8%B5_%D8%A7%D9%84%D9%86%D8%AC%D8%A7%D8%AD",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/قصص",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/%D9%82%D8%B5%D8%B5",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/stories",
+      "destination": "/stories.html"
+    },
+    {
       "source": "/الأنشطة",
       "destination": "/activities.html"
     },

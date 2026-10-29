@@ -49,6 +49,7 @@ const ROLES = {
   'الامين العام': 'Secretary-General',
   'عضوية فخرية (رحمه الله)': 'Honorary member (may he rest in peace)',
   'عضوية فخرية (رحمها الله)': 'Honorary member (may she rest in peace)',
+  'أمين الصندوق (رحمها الله)': 'Treasurer (may she rest in peace)',
 };
 
 function roleText(ctx, role) {
@@ -58,13 +59,14 @@ function roleText(ctx, role) {
   return ROLES[role];
 }
 
-function certCard(ctx, c, { grouped = true } = {}) {
+function certCard(ctx, c, { grouped = true, revealDelay } = {}) {
   const isOfficial = c.group === 'official';
   const name = c.name || ctx.t(T.appreciation);
   const year = c.group === 'memorial' ? '' : isOfficial ? ctx.t(T.official) : `${ctx.t(T.yearLabel)} ${ctx.num(Number(c.group), { useGrouping: false })}`.trim();
   const role = roleText(ctx, c.role);
   const caption = [name, role, year].filter(Boolean).join(' · ');
-  return html`<figure class="cert"${grouped ? attrs({ 'data-cats': c.group, 'data-search': `${c.name || ''} ${c.role || ''}` }) : ''}>
+  const cStyle = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  return html`<figure class="cert reveal"${cStyle}${grouped ? attrs({ 'data-cats': c.group, 'data-search': `${c.name || ''} ${c.role || ''}` }) : ''}>
     <button type="button" class="cert__btn" data-lightbox-item data-type="image" data-src="${largestImage(c.id)}" data-caption="${caption}" aria-label="${ctx.t(ui.enlarge)}: ${name}">
       ${img(ctx, c.id, { alt: `${ctx.t(T.appreciation)}: ${name}`, sizes: '(min-width: 1100px) 260px, (min-width: 640px) 45vw, 92vw' })}
     </button>
@@ -83,6 +85,7 @@ export default function certificatesPage(ctx) {
   const years = [...new Set(main.map((c) => c.group).filter((g) => g !== 'official'))].sort((a, b) => b - a);
   const items = [
     ...years.map((y) => ({ id: y, label: { ar: ctx.num(Number(y), { useGrouping: false }), en: y }, count: main.filter((c) => c.group === y).length })),
+    { id: 'memorial', label: { ar: 'السابقون إلى الجنة', en: 'In memoriam' }, count: memorial.length },
     { id: 'official', label: T.official, count: main.filter((c) => c.group === 'official').length },
   ];
   const body = html`
@@ -98,7 +101,7 @@ ${pageHero(ctx, {
     ${memorial.length ? html`<section class="memorial reveal" aria-labelledby="memorial-title" data-lightbox-group>
       <h2 id="memorial-title">${icon(ctx, 'star')} ${ctx.t(T.memorialTitle)}</h2>
       <p>${ctx.t(T.memorialText)}</p>
-      <div class="cert-grid">${memorial.map((c) => certCard(ctx, c, { grouped: false }))}</div>
+      <div class="cert-grid">${memorial.map((c, i) => certCard(ctx, c, { grouped: false, revealDelay: i * 60 }))}</div>
     </section>` : ''}
     <div class="cert-tools">
       <div class="search">
@@ -110,7 +113,7 @@ ${pageHero(ctx, {
       <p class="result-count" data-count-for="certs" aria-live="polite"></p>
     </div>
     <div class="cert-grid" data-filter-scope="certs" data-lightbox-group>
-      ${main.map((c) => certCard(ctx, c))}
+      ${main.map((c, i) => certCard(ctx, c, { revealDelay: i * 40 }))}
     </div>
     <div class="empty-state" data-empty-for="certs" hidden>${icon(ctx, 'search')}<p>${ctx.t(ui.noResults)}</p></div>
   </div>

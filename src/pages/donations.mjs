@@ -316,7 +316,7 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
       ${T.steps.map((s, i) => html`<li class="step reveal"><span class="step__num">${ctx.num(i + 1)}</span><h2>${ctx.t(s.title)}</h2><p>${ctx.t(s.text)}</p></li>`)}
     </ol>
     <div class="bank-stack">
-    ${banks.map((bank) => html`<article class="bank" id="${bank.id}">
+    ${banks.map((bank, i) => html`<article class="bank reveal" id="${bank.id}" style="--reveal-delay: ${i * 80}ms">
       <header class="bank__head">
         <div class="bank__brand">
           <span class="bank__logo">${img(ctx, bank.logo, { alt: ctx.t(bank.name) })}</span>
@@ -349,8 +349,8 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
     </article>`)}
     </div>
     <div class="notices">
-      <div class="notice">${icon(ctx, 'globe')}<p>${raw(ctx.t(T.ibanNote))}</p></div>
-      <div class="notice">${icon(ctx, 'shield-check')}<p>${raw(ctx.t(T.safety))}</p></div>
+      <div class="notice reveal">${icon(ctx, 'globe')}<p>${raw(ctx.t(T.ibanNote))}</p></div>
+      <div class="notice reveal" style="--reveal-delay: 80ms">${icon(ctx, 'shield-check')}<p>${raw(ctx.t(T.safety))}</p></div>
     </div>
   </div>
 </section>

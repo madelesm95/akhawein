@@ -13,6 +13,7 @@ const MANIFEST = path.join(root, 'src/data/images.json');
 
 const PHOTO = [480, 720, 1080, 1600];
 const CARD = [480, 720, 960];
+const POSTER = [480, 720, 1080, 1414];
 const LOGO = [240, 480];
 
 const sources = {
@@ -56,6 +57,19 @@ const sources = {
   'cause-relief': { src: 'images/causes/relief-hands.jpg', widths: CARD },
   'cause-winter': { src: 'images/causes/winter-blankets.png', widths: CARD },
   'cause-omneya': { src: 'images/omneya-girl.jpg', widths: CARD },
+
+  // Success-story posters, one per language. Kept at full poster width for the lightbox.
+  'story-cover': { src: 'images/stories/cover.jpg', widths: POSTER },
+  'story-moayad-ar': { src: 'images/stories/moayad-ar.jpg', widths: POSTER },
+  'story-moayad-en': { src: 'images/stories/moayad-en.jpg', widths: POSTER },
+  'story-saber-ar': { src: 'images/stories/saber-ar.jpg', widths: POSTER },
+  'story-saber-en': { src: 'images/stories/saber-en.jpg', widths: POSTER },
+  'story-gehan-ar': { src: 'images/stories/gehan-ar.jpg', widths: POSTER },
+  'story-gehan-en': { src: 'images/stories/gehan-en.jpg', widths: POSTER },
+  'story-tamara-ar': { src: 'images/stories/tamara-ar.jpg', widths: POSTER },
+  'story-tamara-en': { src: 'images/stories/tamara-en.jpg', widths: POSTER },
+  'story-sanaa-ar': { src: 'images/stories/sanaa-ar.jpg', widths: POSTER },
+  'story-sanaa-en': { src: 'images/stories/sanaa-en.jpg', widths: POSTER },
 
   'bank-banque-misr': { src: 'images/banque-misr-logo.png', widths: [285] },
   'caf-certificate': { src: 'images/protocols/protocol-cert-caf.jpeg', widths: [480, 886] },

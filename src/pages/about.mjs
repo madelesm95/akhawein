@@ -65,7 +65,7 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.principlesEyebrow, title: T.principlesTitle, lead: T.principlesLead, id: 'principles-title' })}
     <div class="principles">
-      ${principles.map((p) => html`<article class="principle reveal">
+      ${principles.map((p, i) => html`<article class="principle reveal" style="--reveal-delay: ${i * 90}ms">
         <div class="principle__img">${img(ctx, p.image, { alt: '', sizes: '(min-width: 1100px) 380px, (min-width: 640px) 45vw, 92vw', width: 960 })}</div>
         <div class="principle__body">
           <span class="principle__icon">${icon(ctx, p.icon)}</span>
@@ -81,7 +81,7 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.boardEyebrow, title: T.boardTitle, lead: T.boardLead, id: 'board-title' })}
     <ul class="board">
-      ${board.map((m) => html`<li class="member${m.chair ? ' member--chair' : ''} reveal">
+      ${board.map((m, i) => html`<li class="member${m.chair ? ' member--chair' : ''} reveal" style="--reveal-delay: ${i * 60}ms">
         <span class="member__avatar" aria-hidden="true">${icon(ctx, 'user')}</span>
         <div class="member__info">
           <h3 class="member__name">${ctx.t(m.name)}</h3>
@@ -102,7 +102,7 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
         <p>${ctx.t(governance.text)}</p>
       </div>
       <ul class="governance__facts">
-        ${T.facts.map((f) => html`<li><strong>${ctx.t(f.v)}</strong><span>${ctx.t(f.l)}</span></li>`)}
+        ${T.facts.map((f, i) => html`<li class="reveal" style="--reveal-delay: ${i * 70}ms"><strong>${ctx.t(f.v)}</strong><span>${ctx.t(f.l)}</span></li>`)}
       </ul>
     </div>
   </div>

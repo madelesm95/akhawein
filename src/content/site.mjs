@@ -17,7 +17,7 @@ export const site = {
     en: '24 Al-Obour Buildings, Salah Salem Road, Ground Floor, Heliopolis, Cairo',
   },
   addressShort: { ar: '٢٤ عمارات العبور – طريق صلاح سالم، القاهرة', en: '24 Al-Obour Buildings, Salah Salem Rd, Cairo' },
-  mapsUrl: 'https://maps.app.goo.gl/sVMgkZ7viMpMoRkz5',
+  mapsUrl: 'https://maps.app.goo.gl/u6rTA4cMM75Azp6MA',
   hours: {
     ar: 'يومياً من ٩ صباحاً حتى ٥ مساءً، عدا الجمعة والعطلات الرسمية',
     en: 'Daily, 9 AM – 5 PM, except Fridays and public holidays',
@@ -47,6 +47,7 @@ export const nav = [
     label: { ar: 'عن الجمعية', en: 'About' },
     children: [
       { key: 'about', label: { ar: 'من نحن', en: 'Who we are' }, desc: { ar: 'قصتنا ورؤيتنا ومجلس الإدارة', en: 'Our story, vision and board' }, icon: 'heart-handshake' },
+      { key: 'stories', label: { ar: 'قصص من الميدان', en: 'Stories from the field' }, desc: { ar: 'حالات حقيقية وملفاتها الطبية', en: 'Real cases and their medical files' }, icon: 'sparkles' },
       { key: 'protocols', label: { ar: 'الشراكات والاعتمادات', en: 'Partnerships' }, desc: { ar: 'البروتوكولات والاعتماد الدولي', en: 'Protocols and accreditation' }, icon: 'handshake' },
       { key: 'certificates', label: { ar: 'شهادات التقدير', en: 'Wall of honour' }, desc: { ar: 'سجل الشكر والتقدير', en: 'Certificates of appreciation' }, icon: 'award' },
       { key: 'branches', label: { ar: 'الفروع والمراكز', en: 'Branches' }, desc: { ar: 'في القاهرة الكبرى والشرقية والقليوبية', en: 'Greater Cairo, Sharqia and Qalyubia' }, icon: 'map-pin' },
@@ -108,6 +109,7 @@ export const footer = {
       title: { ar: 'الجمعية', en: 'Organisation' },
       links: [
         { key: 'about', label: { ar: 'من نحن', en: 'Who we are' } },
+        { key: 'stories', label: { ar: 'قصص من الميدان', en: 'Stories from the field' } },
         { key: 'about', hash: 'board', label: { ar: 'مجلس الإدارة', en: 'Board of directors' } },
         { key: 'protocols', label: { ar: 'الشراكات والاعتمادات', en: 'Partnerships' } },
         { key: 'certificates', label: { ar: 'شهادات التقدير', en: 'Wall of honour' } },

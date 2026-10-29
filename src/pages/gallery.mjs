@@ -41,13 +41,13 @@ ${pageHero(ctx, {
       <section class="media-group" data-filter-section aria-labelledby="videos-title">
         <h2 class="media-group__title" id="videos-title">${icon(ctx, 'film')}${ctx.t(T.videosTitle)}</h2>
         <div class="gallery-grid gallery-grid--video">
-          ${gallery.filter((g) => g.type === 'video').map((g) => mediaTile(ctx, g, { sizes: '(min-width: 1100px) 380px, (min-width: 640px) 45vw, 92vw' }))}
+          ${gallery.filter((g) => g.type === 'video').map((g, i) => mediaTile(ctx, g, { sizes: '(min-width: 1100px) 380px, (min-width: 640px) 45vw, 92vw', revealDelay: i * 60 }))}
         </div>
       </section>
       <section class="media-group" data-filter-section aria-labelledby="photos-title">
         <h2 class="media-group__title" id="photos-title">${icon(ctx, 'images')}${ctx.t(T.photosTitle)}</h2>
         <div class="gallery-grid">
-          ${gallery.filter((g) => g.type !== 'video').map((g) => mediaTile(ctx, g, { sizes: '(min-width: 1100px) 380px, (min-width: 640px) 45vw, 92vw' }))}
+          ${gallery.filter((g) => g.type !== 'video').map((g, i) => mediaTile(ctx, g, { sizes: '(min-width: 1100px) 380px, (min-width: 640px) 45vw, 92vw', revealDelay: i * 40 }))}
         </div>
       </section>
     </div>

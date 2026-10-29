@@ -55,7 +55,7 @@ export function img(ctx, id, { alt = '', sizes = '100vw', cls = '', eager = fals
 export const largestImage = (id) => imgUrl(id, IMAGES[id].widths[IMAGES[id].widths.length - 1]);
 
 export function sectionHead(ctx, { eyebrow, title, lead, align = 'start', action, id }) {
-  return html`<header class="section-head section-head--${align}">
+  return html`<header class="section-head section-head--${align} reveal">
     <div class="section-head__text">
       ${eyebrow ? html`<p class="eyebrow">${ctx.t(eyebrow)}</p>` : ''}
       <h2 class="section-title"${id ? attrs({ id }) : ''}>${ctx.t(title)}</h2>
@@ -104,7 +104,7 @@ export function accountDetails(ctx, account, { compact = false } = {}) {
 export function pageHero(ctx, { eyebrow, title, lead, crumbs = [], image, children }) {
   return html`<section class="page-hero${image ? ' page-hero--image' : ''}">
     <div class="container page-hero__inner">
-      <div class="page-hero__text">
+      <div class="page-hero__text reveal">
       <nav class="breadcrumb" aria-label="${ctx.t(ui.breadcrumb)}">
         <ol>
           <li><a href="${ctx.url('home')}">${ctx.t(ui.home)}</a></li>
@@ -116,7 +116,7 @@ export function pageHero(ctx, { eyebrow, title, lead, crumbs = [], image, childr
       ${lead ? html`<p class="page-lead">${ctx.t(lead)}</p>` : ''}
       ${children || ''}
       </div>
-      ${image ? html`<figure class="page-hero__figure">${img(ctx, image, { alt: '', sizes: '(min-width: 1100px) 440px, 280px', eager: true, width: 960 })}</figure>` : ''}
+      ${image ? html`<figure class="page-hero__figure reveal" style="--reveal-delay: 120ms">${img(ctx, image, { alt: '', sizes: '(min-width: 1100px) 440px, 280px', eager: true, width: 960 })}</figure>` : ''}
     </div>
   </section>`;
 }
@@ -130,7 +130,7 @@ export function filterBar(ctx, { group, items, total, label }) {
 
 export function verse(ctx, v, { cls = '' } = {}) {
   return html`<figure class="verse ${cls}">
-    <blockquote lang="ar" dir="rtl"><p>﴿ ${v.ar} ﴾</p></blockquote>
+    <blockquote lang="ar" dir="rtl"><p>﴿\u00A0${v.ar}\u00A0﴾</p></blockquote>
     ${ctx.lang === 'en' ? html`<p class="verse__translation">${v.en}</p>` : ''}
     <figcaption>${ctx.t(v.ref)}</figcaption>
   </figure>`;

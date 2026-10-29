@@ -54,7 +54,7 @@ ${pageHero(ctx, {
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.protocolsEyebrow, title: T.protocolsTitle, id: 'protocols-title' })}
     <div class="protocol-grid">
-      ${rest.map((p) => html`<article class="protocol reveal" id="${p.id}">
+      ${rest.map((p, i) => html`<article class="protocol reveal" id="${p.id}" style="--reveal-delay: ${i * 60}ms">
         <div class="protocol__head">
           <span class="protocol__logo">${p.logo ? img(ctx, p.logo, { alt: ctx.t(p.title) }) : icon(ctx, p.icon)}</span>
           <div>
@@ -74,7 +74,7 @@ ${pageHero(ctx, {
   <div class="container partners">
     <h2 class="partners__title">${ctx.t(T.partnersTitle)}</h2>
     <ul class="partners__list">
-      ${partnerLogos.map((p) => html`<li title="${p.name}">${img(ctx, p.logo, { alt: p.name, sizes: '160px' })}</li>`)}
+      ${partnerLogos.map((p, i) => html`<li class="reveal" style="--reveal-delay: ${i * 50}ms" title="${p.name}">${img(ctx, p.logo, { alt: p.name, sizes: '160px' })}</li>`)}
     </ul>
   </div>
 </section>`;

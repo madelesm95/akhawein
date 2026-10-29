@@ -8,6 +8,7 @@ import { gallery } from '../content/gallery.mjs';
 import { protocols, partnerLogos } from '../content/partners.mjs';
 import { findAccount } from '../content/accounts.mjs';
 import { intro } from '../content/about.mjs';
+import { stories } from '../content/stories.mjs';
 import certificates from '../content/certificates.json' with { type: 'json' };
 
 const T = {
@@ -32,6 +33,14 @@ const T = {
   aboutEyebrow: { ar: 'من نحن', en: 'Who we are' },
   aboutTitle: { ar: 'جمعية أهلية مصرية تعمل بجوار الدولة لخدمة الأسر الأولى بالرعاية', en: 'An Egyptian charity working alongside the state for families who need it most' },
   aboutCta: { ar: 'قصتنا ومجلس الإدارة', en: 'Our story and board' },
+  storiesEyebrow: { ar: 'قصص من الميدان', en: 'Stories from the field' },
+  storiesTitle: { ar: 'حياة تغيّرت، وليست مجرد أرقام', en: 'Lives changed, not just numbers' },
+  storiesLead: {
+    ar: 'خمس حالات موثّقة بملفاتها الطبية. نفتح الملف، ونتكفّل بالعلاج، ونتابع حتى تعود الحياة إلى مسارها.',
+    en: 'Five cases documented with their medical files. We open the file, cover the treatment and follow up until life returns to its course.',
+  },
+  storiesCta: { ar: 'اقرأ القصص الخمس', en: 'Read all five stories' },
+  storiesNote: { ar: 'مؤيد · صابر · جيهان · تمارا · سناء', en: 'Moayad · Saber · Gehan · Tamara · Sanaa' },
   causesEyebrow: { ar: 'أبواب الخير', en: 'Ways to give' },
   causesTitle: { ar: 'اختر الباب الذي تحب أن تساهم فيه', en: 'Choose where your gift goes' },
   causesLead: {
@@ -82,7 +91,7 @@ export default function home(ctx) {
   const body = html`
 <section class="hero">
   <div class="container hero__grid">
-    <div class="hero__content">
+    <div class="hero__content reveal">
       <p class="hero__kicker">${ctx.t(T.kicker)}</p>
       <h1 class="hero__title">${ctx.t(T.heroTitleA)} <span class="hero__accent">${ctx.t(T.heroTitleB)}</span></h1>
       <p class="hero__lead">${ctx.t(T.heroLead)}</p>
@@ -96,12 +105,12 @@ export default function home(ctx) {
         <li>${icon(ctx, 'shield-check')}<span>${ctx.t(site.supervisor)}</span></li>
       </ul>
     </div>
-    <div class="hero__media">
+    <div class="hero__media reveal" style="--reveal-delay: 180ms">
       <figure class="hero__photo hero__photo--main">${img(ctx, 'volunteers-walk', { alt: ctx.t(T.heroCaption), sizes: '(min-width: 1100px) 340px, 50vw', eager: true })}</figure>
       <figure class="hero__photo hero__photo--a">${img(ctx, 'meals-prep', { alt: '', sizes: '(min-width: 1100px) 280px, 40vw' })}</figure>
       <figure class="hero__photo hero__photo--b">${img(ctx, 'volunteers-group', { alt: '', sizes: '(min-width: 1100px) 280px, 40vw' })}</figure>
       <div class="hero__badge">
-        <span class="hero__badge-num">${ctx.num(years)}+</span>
+        <span class="hero__badge-num"><span data-count="${years}">${ctx.num(years)}</span>+</span>
         <span class="hero__badge-text">${ctx.t(T.years)}</span>
       </div>
     </div>
@@ -110,12 +119,12 @@ export default function home(ctx) {
 
 <section class="impact" aria-labelledby="impact-title">
   <div class="container">
-    <div class="impact__head">
+    <div class="impact__head reveal">
       <p class="eyebrow eyebrow--light">${ctx.t(T.impactEyebrow)}</p>
       <h2 class="impact__title" id="impact-title">${ctx.t(T.impactTitle)}</h2>
     </div>
     <ul class="impact__grid">
-      ${site.stats.map((s) => html`<li class="stat">
+      ${site.stats.map((s, i) => html`<li class="stat reveal" style="--reveal-delay: ${i * 90}ms">
         <span class="stat__value"><span data-count="${s.value}">${ctx.num(s.value)}</span>${s.plus ? '+' : ''}</span>
         <span class="stat__label">${ctx.t(s.label)}</span>
       </li>`)}
@@ -135,9 +144,28 @@ export default function home(ctx) {
       <h2 class="section-title">${ctx.t(T.aboutTitle)}</h2>
       <p class="lead">${ctx.t(intro)}</p>
       <ul class="pillars">
-        ${pillars.map((p) => html`<li>${icon(ctx, p.icon)}<span>${ctx.t(p.text)}</span></li>`)}
+        ${pillars.map((p, i) => html`<li class="reveal" style="--reveal-delay: ${i * 80}ms">${icon(ctx, p.icon)}<span>${ctx.t(p.text)}</span></li>`)}
       </ul>
       ${button(ctx, { href: ctx.url('about'), label: T.aboutCta, variant: 'secondary', iconEnd: 'arrow-right' })}
+    </div>
+  </div>
+</section>
+
+<section class="stories-band" aria-labelledby="stories-title">
+  <div class="container stories-band__grid">
+    <div class="stories-band__text reveal">
+      <p class="eyebrow">${ctx.t(T.storiesEyebrow)}</p>
+      <h2 class="section-title" id="stories-title">${ctx.t(T.storiesTitle)}</h2>
+      <p class="lead">${ctx.t(T.storiesLead)}</p>
+      ${button(ctx, { href: ctx.url('stories'), label: T.storiesCta, iconEnd: 'arrow-right' })}
+      <p class="stories-band__note">${ctx.t(T.storiesNote)}</p>
+    </div>
+    <div class="story-mini-row">
+      ${[stories[0], stories[3], stories[2]].map((s, i) => html`<a class="story-mini reveal" style="--reveal-delay: ${i * 90}ms" href="${ctx.url('stories')}#story-${s.id}">
+        <span class="story-mini__frame">${img(ctx, ctx.t(s.poster), { alt: ctx.lang === 'ar' ? `ملف حالة ${s.name.ar}` : `Case file: ${s.name.en}`, sizes: '(min-width: 1100px) 180px, 30vw', width: 720, eager: true })}</span>
+        <span class="story-mini__name">${ctx.t(s.name)}${icon(ctx, 'arrow-up-right')}</span>
+        <span class="story-mini__kind">${ctx.t(s.kind)}</span>
+      </a>`)}
     </div>
   </div>
 </section>
@@ -146,7 +174,7 @@ export default function home(ctx) {
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.causesEyebrow, title: T.causesTitle, lead: T.causesLead, id: 'causes-title', action: button(ctx, { href: ctx.url('causes'), label: T.allCauses, variant: 'secondary', iconEnd: 'arrow-right' }) })}
     <div class="cause-grid">
-      ${causes.slice(0, 6).map((c) => causeCard(ctx, c))}
+      ${causes.slice(0, 6).map((c, i) => causeCard(ctx, c, { revealDelay: i * 70 }))}
     </div>
   </div>
 </section>
@@ -155,7 +183,7 @@ export default function home(ctx) {
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.programsEyebrow, title: T.programsTitle, lead: T.programsLead, id: 'programs-title', action: button(ctx, { href: ctx.url('activities'), label: T.allPrograms, variant: 'secondary', iconEnd: 'arrow-right' }) })}
     <div class="program-grid program-grid--compact">
-      ${programs.slice(0, 8).map((p) => programCard(ctx, p, { withText: false }))}
+      ${programs.slice(0, 8).map((p, i) => programCard(ctx, p, { withText: false, revealDelay: i * 60 }))}
     </div>
   </div>
 </section>
@@ -164,8 +192,8 @@ export default function home(ctx) {
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.mediaEyebrow, title: T.mediaTitle, id: 'media-title', action: button(ctx, { href: ctx.url('gallery'), label: T.allMedia, variant: 'secondary', iconEnd: 'arrow-right' }) })}
     <div class="mosaic" data-lightbox-group>
-      ${mediaTile(ctx, video, { cls: 'mosaic__a', sizes: '(min-width: 1100px) 640px, 100vw' })}
-      ${featuredMedia.map((m, i) => mediaTile(ctx, m, { cls: `mosaic__${'bcdef'[i]}`, sizes: '(min-width: 1100px) 320px, 50vw' }))}
+      ${mediaTile(ctx, video, { cls: 'mosaic__a', sizes: '(min-width: 1100px) 640px, 100vw', revealDelay: 0 })}
+      ${featuredMedia.map((m, i) => mediaTile(ctx, m, { cls: `mosaic__${'bcdef'[i]}`, sizes: '(min-width: 1100px) 320px, 50vw', revealDelay: (i + 1) * 70 }))}
     </div>
   </div>
 </section>
@@ -174,10 +202,10 @@ export default function home(ctx) {
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.trustEyebrow, title: T.trustTitle, id: 'trust-title', align: 'center' })}
     <ul class="facts">
-      ${T.facts.map((f) => html`<li class="fact">${icon(ctx, f.icon)}<h3>${ctx.t(f.title)}</h3><p>${ctx.t(f.text)}</p></li>`)}
+      ${T.facts.map((f, i) => html`<li class="fact reveal" style="--reveal-delay: ${i * 80}ms">${icon(ctx, f.icon)}<h3>${ctx.t(f.title)}</h3><p>${ctx.t(f.text)}</p></li>`)}
     </ul>
     <div class="trust-row">
-      <a class="caf-card" href="${ctx.url('protocols')}">
+      <a class="caf-card reveal" style="--reveal-delay: 0ms" href="${ctx.url('protocols')}">
         <span class="caf-card__img">${img(ctx, caf.image, { alt: ctx.t(caf.title), sizes: '160px', width: 480 })}</span>
         <span class="caf-card__body">
           <span class="caf-card__kind">${ctx.t(caf.kind)}</span>
@@ -186,7 +214,7 @@ export default function home(ctx) {
           <span class="link-arrow">${ctx.t(T.partnersCta)}${icon(ctx, 'arrow-right')}</span>
         </span>
       </a>
-      <a class="honors-card" href="${ctx.url('certificates')}">
+      <a class="honors-card reveal" style="--reveal-delay: 120ms" href="${ctx.url('certificates')}">
         <span class="honors-card__icon">${icon(ctx, 'award')}</span>
         <span class="honors-card__num">${ctx.num(honorsCount)}</span>
         <span class="honors-card__text">${ctx.t(T.honorsText)}</span>
@@ -196,7 +224,7 @@ export default function home(ctx) {
     <div class="partners">
       <h3 class="partners__title">${ctx.t(T.partnersTitle)}</h3>
       <ul class="partners__list">
-        ${partnerLogos.map((p) => html`<li title="${p.name}">${img(ctx, p.logo, { alt: p.name, sizes: '160px' })}</li>`)}
+        ${partnerLogos.map((p, i) => html`<li class="reveal" style="--reveal-delay: ${i * 50}ms" title="${p.name}">${img(ctx, p.logo, { alt: p.name, sizes: '160px' })}</li>`)}
       </ul>
     </div>
   </div>

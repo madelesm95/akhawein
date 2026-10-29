@@ -1,6 +1,7 @@
 export const PAGES = {
   home: '',
   about: 'about',
+  stories: 'stories',
   activities: 'activities',
   causes: 'causes',
   donations: 'donations',

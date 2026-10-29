@@ -33,12 +33,14 @@
 @font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
 @font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/ibm-plex-sans-arabic-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/amiri-400-verse.woff2) format('woff2');unicode-range:U+20, U+623-628, U+62a-62b, U+62d, U+62f, U+631, U+633, U+637, U+639, U+642-64b, U+64e-652, U+654-655, U+670, U+6d6, U+fd3e-fd3f}</style>
-<link rel="stylesheet" href="/assets/css/site.min.css?v=2b956ee370">
-<script src="/assets/js/site.min.js?v=722f6b9d71" defer></script>
+<link rel="stylesheet" href="/assets/css/site.min.css?v=1c7226cbdc">
+<script src="/assets/js/site.min.js?v=4a7378f00e" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 
 </head>
 <body class="page-causes">
 <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true"><symbol id="i-accessibility" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1" /><path d="m18 19 1-7-6 1" /><path d="m5 8 3-3 5.5 3-2.36 3.5" /><path d="M4.24 14.5a5 5 0 0 0 6.88 6" /><path d="M13.76 17.5a5 5 0 0 0-6.88-6" /></symbol><symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2" /></symbol><symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol><symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /><circle cx="12" cy="8" r="6" /></symbol><symbol id="i-badge-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m16 9-5.5 5.5L8 12" /></symbol><symbol id="i-brand-facebook" viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol><symbol id="i-brand-instagram" viewBox="0 0 24 24" fill="currentColor"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol><symbol id="i-brand-whatsapp" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol><symbol id="i-brand-x" viewBox="0 0 24 24" fill="currentColor"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></symbol><symbol id="i-brand-youtube" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol><symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol><symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></symbol><symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></symbol><symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></symbol><symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14" /><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" /><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5" /><rect x="3" y="7" width="18" height="4" rx="1" /></symbol><symbol id="i-hand-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" /><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9" /><path d="m2 16 6 6" /><circle cx="16" cy="9" r="2.9" /><circle cx="6" cy="5" r="3" /></symbol><symbol id="i-hand-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16" /><path d="m14.45 13.39 5.05-4.694C20.196 8 21 6.85 21 5.75a2.75 2.75 0 0 0-4.797-1.837.276.276 0 0 1-.406 0A2.75 2.75 0 0 0 11 5.75c0 1.2.802 2.248 1.5 2.946L16 11.95" /><path d="m2 15 6 6" /><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a1 1 0 0 0-2.75-2.91" /></symbol><symbol id="i-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3" /><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /><path d="m21 3 1 11h-2" /><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /><path d="M3 4h8" /></symbol><symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></symbol><symbol id="i-heart-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762" /></symbol><symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></symbol><symbol id="i-landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7" /><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" /></symbol><symbol id="i-languages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" /></symbol><symbol id="i-life-buoy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m4.93 4.93 4.24 4.24" /><path d="m14.83 9.17 4.24-4.24" /><path d="m14.83 14.83 4.24 4.24" /><path d="m9.17 14.83-4.24 4.24" /><circle cx="12" cy="12" r="4" /></symbol><symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></symbol><symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></symbol><symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></symbol><symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" /></symbol><symbol id="i-paw-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2" /><circle cx="18" cy="8" r="2" /><circle cx="20" cy="16" r="2" /><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" /></symbol><symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol><symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></symbol><symbol id="i-shopping-basket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 11-1 9" /><path d="m19 11-4-7" /><path d="M2 11h20" /><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4" /><path d="M4.5 15.5h15" /><path d="m5 11 4-7" /><path d="m9 11 1 9" /></symbol><symbol id="i-snowflake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m10 20-1.25-2.5L6 18" /><path d="M10 4 8.75 6.5 6 6" /><path d="m14 20 1.25-2.5L18 18" /><path d="m14 4 1.25 2.5L18 6" /><path d="m17 21-3-6h-4" /><path d="m17 3-3 6 1.5 3" /><path d="M2 12h6.5L10 9" /><path d="m20 10-1.5 2 1.5 2" /><path d="M22 12h-6.5L14 15" /><path d="m4 10 1.5 2L4 14" /><path d="m7 21 3-6-1.5-3" /><path d="m7 3 3 6h4" /></symbol><symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></symbol><symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></symbol><symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><path d="M16 3.128a4 4 0 0 1 0 7.744" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><circle cx="9" cy="7" r="4" /></symbol><symbol id="i-utensils" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /></symbol><symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol></svg>
+<div class="scroll-progress" data-scroll-progress aria-hidden="true"><span></span></div>
 <a class="skip-link" href="#main">Skip to content</a>
 <aside class="utility-bar" aria-label="Contact and registration">
   <div class="container utility-bar__inner">
@@ -64,6 +66,9 @@
         <li><a class="menu__link" href="/en/about">
           <span class="menu__icon"><svg class="i i-heart-handshake" aria-hidden="true" focusable="false"><use href="#i-heart-handshake"></use></svg></span>
           <span><span class="menu__label">Who we are</span><span class="menu__desc">Our story, vision and board</span></span>
+        </a></li><li><a class="menu__link" href="/en/stories">
+          <span class="menu__icon"><svg class="i i-sparkles" aria-hidden="true" focusable="false"><use href="#i-sparkles"></use></svg></span>
+          <span><span class="menu__label">Stories from the field</span><span class="menu__desc">Real cases and their medical files</span></span>
         </a></li><li><a class="menu__link" href="/en/protocols">
           <span class="menu__icon"><svg class="i i-handshake" aria-hidden="true" focusable="false"><use href="#i-handshake"></use></svg></span>
           <span><span class="menu__label">Partnerships</span><span class="menu__desc">Protocols and accreditation</span></span>
@@ -92,7 +97,7 @@
   </div>
   <nav aria-label="Site menu">
     <ul class="drawer__nav">
-      <li><a href="/en">Home<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/about">Who we are<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/activities">Our work<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/causes" aria-current="page">Causes<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/gallery">Media<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/protocols">Partnerships<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/certificates">Wall of honour<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/branches">Branches<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/contact">Contact<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li>
+      <li><a href="/en">Home<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/about">Who we are<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/stories">Stories from the field<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/activities">Our work<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/causes" aria-current="page">Causes<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/gallery">Media<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/protocols">Partnerships<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/certificates">Wall of honour<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/branches">Branches<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li><li><a href="/en/contact">Contact<svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></a></li>
     </ul>
   </nav>
   <a class="btn btn--primary btn--block" href="/en/donations"><svg class="i i-heart" aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg><span>Donate now</span></a>
@@ -107,7 +112,7 @@
 
 <section class="page-hero page-hero--image">
     <div class="container page-hero__inner">
-      <div class="page-hero__text">
+      <div class="page-hero__text reveal">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
           <li><a href="/en">Home</a></li>
@@ -119,7 +124,7 @@
       <p class="page-lead">Pick the cause you would like to support and transfer directly to its official Banque Misr account.</p>
       
       </div>
-      <figure class="page-hero__figure"><img src="/assets/img/elderly-meal-720.webp" srcset="/assets/img/elderly-meal-480.webp 480w, /assets/img/elderly-meal-720.webp 720w" sizes="(min-width: 1100px) 440px, 280px" width="3456" height="4608" alt="" loading="eager" fetchpriority="high" decoding="async"></figure>
+      <figure class="page-hero__figure reveal" style="--reveal-delay: 120ms"><img src="/assets/img/elderly-meal-720.webp" srcset="/assets/img/elderly-meal-480.webp 480w, /assets/img/elderly-meal-720.webp 720w" sizes="(min-width: 1100px) 440px, 280px" width="3456" height="4608" alt="" loading="eager" fetchpriority="high" decoding="async"></figure>
     </div>
   </section>
 <section class="section">
@@ -129,7 +134,7 @@
       <p><strong>How your gift arrives</strong> Causes marked “Dedicated account” have their own account for that purpose. Others are funded from our general account; mention the cause when you send your receipt on WhatsApp and we will direct your gift to it.</p>
     </div>
     <div class="cause-grid cause-grid--page">
-      <article class="cause-card" id="cause-meals">
+      <article class="cause-card reveal" style=&quot;--reveal-delay: 0ms&quot; id="cause-meals">
     <div class="cause-card__media">
       <img src="/assets/img/meals-prep-720.webp" srcset="/assets/img/meals-prep-480.webp 480w, /assets/img/meals-prep-720.webp 720w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="1600" height="1068" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-utensils" aria-hidden="true" focusable="false"><use href="#i-utensils"></use></svg>Feeding</span>
@@ -154,9 +159,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="62">62</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 62%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-meals">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-food-parcels">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 60ms&quot; id="cause-food-parcels">
     <div class="cause-card__media">
       <img src="/assets/img/cause-food-parcel-960.webp" srcset="/assets/img/cause-food-parcel-480.webp 480w, /assets/img/cause-food-parcel-720.webp 720w, /assets/img/cause-food-parcel-960.webp 960w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="1080" height="731" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-shopping-basket" aria-hidden="true" focusable="false"><use href="#i-shopping-basket"></use></svg>Monthly parcel</span>
@@ -181,9 +194,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="48">48</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 48%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-food-parcels">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-orphans">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 120ms&quot; id="cause-orphans">
     <div class="cause-card__media">
       <img src="/assets/img/cause-orphans-960.webp" srcset="/assets/img/cause-orphans-480.webp 480w, /assets/img/cause-orphans-720.webp 720w, /assets/img/cause-orphans-960.webp 960w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="1000" height="667" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-hand-heart" aria-hidden="true" focusable="false"><use href="#i-hand-heart"></use></svg>Lasting reward</span>
@@ -208,9 +229,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="71">71</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 71%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-brides">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 180ms&quot; id="cause-brides">
     <div class="cause-card__media">
       <div class="art"><svg class="i i-gift" aria-hidden="true" focusable="false"><use href="#i-gift"></use></svg></div>
       <span class="cause-card__tag"><svg class="i i-gift" aria-hidden="true" focusable="false"><use href="#i-gift"></use></svg>A dignified start</span>
@@ -235,9 +264,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="34">34</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 34%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-brides">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-dialysis">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 240ms&quot; id="cause-dialysis">
     <div class="cause-card__media">
       <img src="/assets/img/cause-dialysis-731.webp" srcset="/assets/img/cause-dialysis-480.webp 480w, /assets/img/cause-dialysis-720.webp 720w, /assets/img/cause-dialysis-731.webp 731w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="731" height="419" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-activity" aria-hidden="true" focusable="false"><use href="#i-activity"></use></svg>Saving lives</span>
@@ -262,9 +299,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="55">55</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 55%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-dialysis">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-omneya">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 300ms&quot; id="cause-omneya">
     <div class="cause-card__media">
       <img src="/assets/img/cause-omneya-580.webp" srcset="/assets/img/cause-omneya-480.webp 480w, /assets/img/cause-omneya-580.webp 580w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="580" height="300" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-sparkles" aria-hidden="true" focusable="false"><use href="#i-sparkles"></use></svg>Hope and healing</span>
@@ -289,9 +334,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="28">28</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 28%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-mobility">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 360ms&quot; id="cause-mobility">
     <div class="cause-card__media">
       <div class="art"><svg class="i i-accessibility" aria-hidden="true" focusable="false"><use href="#i-accessibility"></use></svg></div>
       <span class="cause-card__tag"><svg class="i i-accessibility" aria-hidden="true" focusable="false"><use href="#i-accessibility"></use></svg>Independence</span>
@@ -316,9 +369,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="80">80</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 80%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-relief">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 420ms&quot; id="cause-relief">
     <div class="cause-card__media">
       <img src="/assets/img/cause-relief-600.webp" srcset="/assets/img/cause-relief-480.webp 480w, /assets/img/cause-relief-600.webp 600w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="600" height="338" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-hand-coins" aria-hidden="true" focusable="false"><use href="#i-hand-coins"></use></svg>Relief</span>
@@ -343,9 +404,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="42">42</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 42%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-winter">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 480ms&quot; id="cause-winter">
     <div class="cause-card__media">
       <img src="/assets/img/cause-winter-950.webp" srcset="/assets/img/cause-winter-480.webp 480w, /assets/img/cause-winter-720.webp 720w, /assets/img/cause-winter-950.webp 950w" sizes="(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw" width="950" height="635" alt="" loading="lazy" decoding="async">
       <span class="cause-card__tag"><svg class="i i-snowflake" aria-hidden="true" focusable="false"><use href="#i-snowflake"></use></svg>Warmth</span>
@@ -370,9 +439,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="90">90</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 90%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-udhiyah">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 540ms&quot; id="cause-udhiyah">
     <div class="cause-card__media">
       <div class="art"><svg class="i i-gift" aria-hidden="true" focusable="false"><use href="#i-gift"></use></svg></div>
       <span class="cause-card__tag"><svg class="i i-gift" aria-hidden="true" focusable="false"><use href="#i-gift"></use></svg>Sacrifice</span>
@@ -397,9 +474,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="19">19</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 19%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-udhiyah">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-gaza-relief">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 600ms&quot; id="cause-gaza-relief">
     <div class="cause-card__media">
       <div class="art"><svg class="i i-life-buoy" aria-hidden="true" focusable="false"><use href="#i-life-buoy"></use></svg></div>
       <span class="cause-card__tag"><svg class="i i-life-buoy" aria-hidden="true" focusable="false"><use href="#i-life-buoy"></use></svg>Relief</span>
@@ -424,9 +509,17 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="66">66</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 66%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
-  </article><article class="cause-card" id="cause-animal-welfare">
+  </article><article class="cause-card reveal" style=&quot;--reveal-delay: 660ms&quot; id="cause-animal-welfare">
     <div class="cause-card__media">
       <div class="art"><svg class="i i-paw-print" aria-hidden="true" focusable="false"><use href="#i-paw-print"></use></svg></div>
       <span class="cause-card__tag"><svg class="i i-paw-print" aria-hidden="true" focusable="false"><use href="#i-paw-print"></use></svg>Compassion</span>
@@ -451,16 +544,35 @@
     
   </div>
       </div>
+      
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>Funded</span>
+          <span class="cause-card__progress-pct"><span data-count="73">73</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: 73%"></span></div>
+      </div>
       <a class="link-arrow" href="/en/donations#acc-general">Give to this cause<svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
     </div>
   </article>
     </div>
+    <aside class="stories-callout reveal" aria-labelledby="causes-stories-title">
+      <div class="stories-callout__stack" aria-hidden="true">
+        <span><img src="/assets/img/story-moayad-en-480.webp" width="1414" height="2000" alt="" loading="lazy" decoding="async"></span><span><img src="/assets/img/story-saber-en-480.webp" width="1414" height="2000" alt="" loading="lazy" decoding="async"></span><span><img src="/assets/img/story-gehan-en-480.webp" width="1414" height="2000" alt="" loading="lazy" decoding="async"></span>
+      </div>
+      <div class="stories-callout__body">
+        <p class="eyebrow">Behind every cause</p>
+        <h2 class="stories-callout__title" id="causes-stories-title">Behind every cause is a story</h2>
+        <p>Five cases documented with their medical files: treatment, rehabilitation and a return to life. Read the full stories.</p>
+      </div>
+      <a class="btn btn--secondary" href="/en/stories"><span>Stories from the field</span><svg class="i i-arrow-right i-flip" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg></a>
+    </aside>
   </div>
 </section>
 <section class="section section--tight section--tint">
   <div class="container verse-banner">
     <figure class="verse ">
-    <blockquote lang="ar" dir="rtl"><p>﴿ وَيُطْعِمُونَ الطَّعَامَ عَلَىٰ حُبِّهِ مِسْكِينًا وَيَتِيمًا وَأَسِيرًا ﴾</p></blockquote>
+    <blockquote lang="ar" dir="rtl"><p>﴿ وَيُطْعِمُونَ الطَّعَامَ عَلَىٰ حُبِّهِ مِسْكِينًا وَيَتِيمًا وَأَسِيرًا ﴾</p></blockquote>
     <p class="verse__translation">And they give food, despite their love for it, to the needy, the orphan and the captive.</p>
     <figcaption>The Holy Quran, Al-Insan 76:8</figcaption>
   </figure>
@@ -480,18 +592,22 @@
         <ul class="socials">
           <li><a href="https://www.facebook.com/profile.php?id=100066869127004" target="_blank" rel="noopener" aria-label="Facebook"><svg class="i i-brand-facebook" aria-hidden="true" focusable="false"><use href="#i-brand-facebook"></use></svg></a></li><li><a href="https://www.instagram.com/akhawein6/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="i i-brand-instagram" aria-hidden="true" focusable="false"><use href="#i-brand-instagram"></use></svg></a></li><li><a href="https://x.com/AAkhawein" target="_blank" rel="noopener" aria-label="X"><svg class="i i-brand-x" aria-hidden="true" focusable="false"><use href="#i-brand-x"></use></svg></a></li><li><a href="https://www.youtube.com/@akhaweinakhawein" target="_blank" rel="noopener" aria-label="YouTube"><svg class="i i-brand-youtube" aria-hidden="true" focusable="false"><use href="#i-brand-youtube"></use></svg></a></li>
         </ul>
+        <img src="/assets/img/donation-qr.png" width="160" height="160" alt="Quick donation QR code" loading="lazy" decoding="async" style="display: block; margin: 1.5rem auto 0; border-radius: 8px;">
       </div>
       <nav class="site-footer__col" aria-label="Organisation">
         <h2 class="site-footer__title">Organisation</h2>
-        <ul><li><a href="/en/about">Who we are</a></li><li><a href="/en/about#board">Board of directors</a></li><li><a href="/en/protocols">Partnerships</a></li><li><a href="/en/certificates">Wall of honour</a></li><li><a href="/en/branches">Branches</a></li></ul>
+        <ul><li><a href="/en/about">Who we are</a></li><li><a href="/en/stories">Stories from the field</a></li><li><a href="/en/about#board">Board of directors</a></li><li><a href="/en/protocols">Partnerships</a></li><li><a href="/en/certificates">Wall of honour</a></li><li><a href="/en/branches">Branches</a></li></ul>
       </nav><nav class="site-footer__col" aria-label="Get involved">
         <h2 class="site-footer__title">Get involved</h2>
         <ul><li><a href="/en/causes">Causes</a></li><li><a href="/en/donations">Donation accounts</a></li><li><a href="/en/activities">Our work</a></li><li><a href="/en/gallery">Media</a></li><li><a href="/en/contact">Volunteer or ask for help</a></li></ul>
       </nav>
       <div class="site-footer__col">
         <h2 class="site-footer__title">Contact us</h2>
+        <div class="site-footer__map">
+          <iframe title="Map of the head office" src="https://maps.google.com/maps?q=%D8%AC%D9%85%D8%B9%D9%8A%D8%A9%20%D8%A3%D8%AE%D9%88%D9%8A%D9%86%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%D9%8A%D8%A9&t=m&z=15&output=embed&hl=en" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
         <ul class="site-footer__contact">
-          <li><svg class="i i-map-pin" aria-hidden="true" focusable="false"><use href="#i-map-pin"></use></svg><a href="https://maps.app.goo.gl/sVMgkZ7viMpMoRkz5" target="_blank" rel="noopener">24 Al-Obour Buildings, Salah Salem Rd, Cairo</a></li>
+          <li><svg class="i i-map-pin" aria-hidden="true" focusable="false"><use href="#i-map-pin"></use></svg><a href="https://maps.app.goo.gl/u6rTA4cMM75Azp6MA" target="_blank" rel="noopener">24 Al-Obour Buildings, Salah Salem Rd, Cairo</a></li>
           <li><svg class="i i-phone" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg><a href="tel:+201281769685" dir="ltr">0128 176 9685</a></li>
           <li><svg class="i i-mail" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg><a href="mailto:info@akhawein.org">info@akhawein.org</a></li>
           <li><svg class="i i-clock" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg><span>Daily, 9 AM – 5 PM, except Fridays and public holidays</span></li>
@@ -513,6 +629,9 @@
   <button type="button" class="lightbox__btn lightbox__next" data-lightbox-next aria-label="Next"><svg class="i i-chevron-right i-flip" aria-hidden="true" focusable="false"><use href="#i-chevron-right"></use></svg></button>
 </dialog>
 </footer>
+<a href="#" class="floating-btn back-to-top" aria-label="Back to top" title="Back to top">
+  <svg class="i" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 54.6 374.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" /></svg>
+</a>
 <script type="application/json" id="i18n">{"copied":"Copied to clipboard","copiedShort":"Copied","copy":"Copy","results":{"one":"{n} result","other":"{n} results"}}</script>
 </body>
 </html>

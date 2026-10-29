@@ -12,7 +12,9 @@ const THEME_BOOT = `(function(){var d=document.documentElement;d.classList.add('
 
 const waLink = (ctx) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(ctx.lang === 'ar' ? 'السلام عليكم، أود التواصل مع جمعية أخوين الخيرية' : 'Hello, I would like to get in touch with Akhawein Charity')}`;
 
-const DRAWER_ORDER = ['home', 'about', 'activities', 'causes', 'gallery', 'protocols', 'certificates', 'branches', 'contact'];
+const MAP_QUERY = encodeURIComponent('جمعية أخوين الخيرية');
+
+const DRAWER_ORDER = ['home', 'about', 'stories', 'activities', 'causes', 'gallery', 'protocols', 'certificates', 'branches', 'contact'];
 const navItems = nav.flatMap((item) => (item.children ? item.children : [item]));
 
 function isActive(ctx, item) {
@@ -116,6 +118,9 @@ function siteFooter(ctx) {
       </nav>`)}
       <div class="site-footer__col">
         <h2 class="site-footer__title">${ctx.t(footer.contactTitle)}</h2>
+        <div class="site-footer__map">
+          <iframe title="${ctx.t({ ar: 'خريطة المقر الرئيسي', en: 'Map of the head office' })}" src="https://maps.google.com/maps?q=${MAP_QUERY}&t=m&z=15&output=embed&hl=${ctx.lang}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
         <ul class="site-footer__contact">
           <li>${icon(ctx, 'map-pin')}<a href="${site.mapsUrl}" target="_blank" rel="noopener">${ctx.t(site.addressShort)}</a></li>
           <li>${icon(ctx, 'phone')}<a href="${telHref(site.phone)}" dir="ltr">${phoneDisplay(site.phone)}</a></li>
@@ -204,15 +209,20 @@ ${PRELOAD_FONTS[ctx.lang].map((f) => `<link rel="preload" href="/assets/fonts/${
 <style>${assets.fonts[ctx.lang].trim()}</style>
 <link rel="stylesheet" href="/assets/css/site.min.css?v=${assets.css}">
 <script src="/assets/js/site.min.js?v=${assets.js}" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 ${isHome ? jsonLd(ctx) : ''}
 </head>
 <body class="page-${ctx.page}">
 ${sprite}
+<div class="scroll-progress" data-scroll-progress aria-hidden="true"><span></span></div>
 ${headerHtml}
 <main id="main" tabindex="-1">
 ${body}
 </main>
 ${footerHtml}
+<a href="#" class="floating-btn back-to-top" aria-label="${ctx.t({ ar: 'العودة إلى الأعلى', en: 'Back to top' })}" title="${ctx.t({ ar: 'العودة إلى الأعلى', en: 'Back to top' })}">
+  <svg class="i" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 54.6 374.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" /></svg>
+</a>
 <script type="application/json" id="i18n">${JSON.stringify(strings)}</script>
 </body>
 </html>

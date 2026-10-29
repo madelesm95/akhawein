@@ -10,11 +10,12 @@ const T = {
   beneficiaries: { ar: 'الفئات المستفيدة', en: 'Who benefits' },
 };
 
-export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = false } = {}) {
+export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = false, revealDelay } = {}) {
   const account = findAccount(cause.account);
   const dedicated = cause.account !== 'general';
   const h = `h${headingLevel}`;
-  return html`<article class="cause-card" id="cause-${cause.id}">
+  const style = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  return html`<article class="cause-card reveal"${style} id="cause-${cause.id}">
     <div class="cause-card__media">
       ${cause.image
         ? img(ctx, cause.image, { alt: '', sizes: '(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw', width: 960 })
@@ -34,27 +35,37 @@ export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = fa
         <p class="cause-card__account-label">${icon(ctx, dedicated ? 'badge-check' : 'landmark')}${ctx.t(dedicated ? T.dedicated : T.general)} · ${ctx.t(account.bank.name)}</p>
         ${accountDetails(ctx, account, { compact: true })}
       </div>
+      ${cause.progress != null ? html`
+      <div class="cause-card__progress">
+        <div class="cause-card__progress-head">
+          <span>${ctx.t({ ar: 'نسبة التمويل', en: 'Funded' })}</span>
+          <span class="cause-card__progress-pct"><span data-count="${cause.progress}">${ctx.num(cause.progress)}</span>%</span>
+        </div>
+        <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: ${cause.progress}%"></span></div>
+      </div>` : ''}
       <a class="link-arrow" href="${ctx.url('donations', `acc-${account.id}`)}">${ctx.t(T.giveTo)}${icon(ctx, 'arrow-right')}</a>
     </div>
   </article>`;
 }
 
-export function programCard(ctx, p, { headingLevel = 3, withText = true } = {}) {
+export function programCard(ctx, p, { headingLevel = 3, withText = true, revealDelay } = {}) {
   const h = `h${headingLevel}`;
-  return html`<article class="program-card" data-cats="${p.cats.join(' ')}">
+  const style = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  return html`<article class="program-card reveal"${style} data-cats="${p.cats.join(' ')}">
     <span class="program-card__icon">${icon(ctx, p.icon)}</span>
     <${h} class="program-card__title">${ctx.t(p.title)}</${h}>
     ${withText ? html`<p class="program-card__text">${ctx.t(p.text)}</p>` : ''}
   </article>`;
 }
 
-export function mediaTile(ctx, item, { index, sizes = '(min-width: 1100px) 33vw, (min-width: 700px) 50vw, 100vw', cls = '' } = {}) {
+export function mediaTile(ctx, item, { index, sizes = '(min-width: 1100px) 33vw, (min-width: 700px) 50vw, 100vw', cls = '', revealDelay } = {}) {
   const isVideo = item.type === 'video';
   const caption = ctx.t(item.title);
   const trigger = isVideo
     ? attrs({ 'data-lightbox-item': '', 'data-type': 'video', 'data-src': item.youtube, 'data-caption': caption, 'aria-label': `${ctx.t(ui.play)}: ${caption}` })
     : attrs({ 'data-lightbox-item': '', 'data-type': 'image', 'data-src': largestImage(item.image), 'data-caption': caption, 'aria-label': `${ctx.t(ui.enlarge)}: ${caption}` });
-  return html`<figure class="media-tile ${cls}${isVideo ? ' media-tile--video' : ''}" data-cats="${item.cats.join(' ')}"${index !== undefined ? attrs({ 'data-index': index }) : ''}>
+  const mStyle = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  return html`<figure class="media-tile reveal ${cls}${isVideo ? ' media-tile--video' : ''}" data-cats="${item.cats.join(' ')}"${index !== undefined ? attrs({ 'data-index': index }) : ''}${mStyle}>
     <button type="button" class="media-tile__btn"${trigger}>
       ${img(ctx, item.image, { alt: '', sizes })}
       <span class="media-tile__badge">${icon(ctx, isVideo ? 'play' : 'zoom-in')}</span>

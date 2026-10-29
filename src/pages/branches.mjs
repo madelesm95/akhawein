@@ -21,9 +21,10 @@ const T = {
 
 export const mapsUrl = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
-export function branchCard(ctx, b, headingLevel = 3) {
+export function branchCard(ctx, b, headingLevel = 3, revealDelay) {
   const h = `h${headingLevel}`;
-  return html`<article class="branch" data-cats="${b.gov}">
+  const style = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  return html`<article class="branch reveal"${style} data-cats="${b.gov}">
     <p class="branch__area">${icon(ctx, 'map-pin')}${ctx.t(b.area)}</p>
     <${h}>${ctx.t(b.name)}</${h}>
     <ul class="branch__lines">
@@ -51,7 +52,7 @@ ${pageHero(ctx, {
     <div class="branch-groups" data-filter-scope="branches">
       ${governorates.map((g) => html`<section class="branch-group" data-filter-section aria-labelledby="gov-${g.id}">
         <h2 class="branch-group__title" id="gov-${g.id}">${ctx.t(g.label)} <span class="count">${ctx.num(branches.filter((b) => b.gov === g.id).length)}</span></h2>
-        <div class="branch-grid">${branches.filter((b) => b.gov === g.id).map((b) => branchCard(ctx, b))}</div>
+        <div class="branch-grid">${branches.filter((b) => b.gov === g.id).map((b, i) => branchCard(ctx, b, 3, i * 60))}</div>
       </section>`)}
     </div>
   </div>

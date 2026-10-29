@@ -47,7 +47,7 @@ const T = {
 };
 
 export default function contactPage(ctx) {
-  const mapQuery = encodeURIComponent('24 عمارات العبور شارع صلاح سالم القاهرة');
+  const mapQuery = encodeURIComponent('جمعية أخوين الخيرية');
   const body = html`
 ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crumbs: [{ label: T.title }], image: 'volunteers-walk' })}
 <section class="section">

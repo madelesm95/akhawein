@@ -4,6 +4,7 @@ export const causes = [
     image: 'meals-prep',
     icon: 'utensils',
     account: 'meals',
+    progress: 62,
     tag: { ar: 'إطعام طعام', en: 'Feeding' },
     title: { ar: 'إطعام وجبات ساخنة يومية', en: 'Daily hot meals' },
     summary: {
@@ -23,6 +24,7 @@ export const causes = [
     image: 'cause-food-parcel',
     icon: 'shopping-basket',
     account: 'food-parcels',
+    progress: 48,
     tag: { ar: 'شنطة رد الجميل', en: 'Monthly parcel' },
     title: { ar: 'شنطة مواد غذائية للأسر', en: 'Food parcels for families' },
     summary: {
@@ -41,6 +43,7 @@ export const causes = [
     image: 'cause-orphans',
     icon: 'hand-heart',
     account: 'general',
+    progress: 71,
     tag: { ar: 'أجر مستمر', en: 'Lasting reward' },
     title: { ar: 'كفالة الأيتام وكبار السن', en: 'Sponsor orphans and the elderly' },
     summary: {
@@ -59,6 +62,7 @@ export const causes = [
     image: null,
     icon: 'gift',
     account: 'brides',
+    progress: 34,
     tag: { ar: 'عفاف وستر', en: 'A dignified start' },
     title: { ar: 'تجهيز العرائس اليتيمات', en: 'Bridal preparation for orphan girls' },
     summary: {
@@ -76,6 +80,7 @@ export const causes = [
     image: 'cause-dialysis',
     icon: 'activity',
     account: 'dialysis',
+    progress: 55,
     tag: { ar: 'إنقاذ حياة', en: 'Saving lives' },
     title: { ar: 'جلسات الغسيل الكلوي', en: 'Dialysis sessions' },
     summary: {
@@ -93,6 +98,7 @@ export const causes = [
     image: 'cause-omneya',
     icon: 'sparkles',
     account: 'general',
+    progress: 28,
     tag: { ar: 'أمل وشفاء', en: 'Hope and healing' },
     title: { ar: 'أمنية لأطفال الأورام', en: 'Omneya: wishes for children with cancer' },
     summary: {
@@ -110,6 +116,7 @@ export const causes = [
     image: null,
     icon: 'accessibility',
     account: 'general',
+    progress: 80,
     tag: { ar: 'تمكين وقدرة', en: 'Independence' },
     title: { ar: 'أجهزة تعويضية لذوي الهمم', en: 'Mobility aids for people with disabilities' },
     summary: {
@@ -127,6 +134,7 @@ export const causes = [
     image: 'cause-relief',
     icon: 'hand-coins',
     account: 'general',
+    progress: 42,
     tag: { ar: 'فك كرب', en: 'Relief' },
     title: { ar: 'فك كرب الغارمين والحالات العاجلة', en: 'Debt relief and urgent cases' },
     summary: {
@@ -144,6 +152,7 @@ export const causes = [
     image: 'cause-winter',
     icon: 'snowflake',
     account: 'general',
+    progress: 90,
     tag: { ar: 'دفء وستر', en: 'Warmth' },
     title: { ar: 'حملة «دفا» للشتاء', en: 'The “Dafa” winter campaign' },
     summary: {
@@ -161,6 +170,7 @@ export const causes = [
     image: null,
     icon: 'gift',
     account: 'udhiyah',
+    progress: 19,
     tag: { ar: 'نسك وبر', en: 'Sacrifice' },
     title: { ar: 'صكوك الأضاحي', en: 'Udhiyah vouchers' },
     summary: {
@@ -177,6 +187,7 @@ export const causes = [
     image: null,
     icon: 'life-buoy',
     account: 'general',
+    progress: 66,
     tag: { ar: 'إغاثة ونصرة', en: 'Relief' },
     title: { ar: 'إغاثة إنسانية عاجلة لأهل غزة', en: 'Urgent relief for Gaza' },
     summary: {
@@ -194,6 +205,7 @@ export const causes = [
     image: null,
     icon: 'paw-print',
     account: 'general',
+    progress: 73,
     tag: { ar: 'رحمة ورفق', en: 'Compassion' },
     title: { ar: 'الرأفة والرفق بالحيوان', en: 'Animal welfare' },
     summary: {
