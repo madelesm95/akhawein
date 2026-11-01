@@ -15,15 +15,16 @@ export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = fa
   const dedicated = cause.account !== 'general';
   const h = `h${headingLevel}`;
   const style = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  const altText = `${ctx.t({ ar: 'تفاصيل الحالة', en: 'Case details' })}: ${ctx.t(cause.title)}`;
   return html`<article class="cause-card reveal"${style} id="cause-${cause.id}">
-    <div class="cause-card__media">
+    <div class="cause-card__media" role="button" tabindex="0" onclick="openCauseModal('${cause.id}')" onkeydown="if(event.key==='Enter'||event.key===' ')openCauseModal('${cause.id}')" title="${ctx.t({ ar: `انقر لعرض تفاصيل ${ctx.t(cause.title)}`, en: `Click to view details for ${ctx.t(cause.title)}` })}">
       ${cause.image
-        ? img(ctx, cause.image, { alt: '', sizes: '(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw', width: 960 })
+        ? img(ctx, cause.image, { alt: altText, sizes: '(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw', width: 960 })
         : html`<div class="art">${icon(ctx, cause.icon)}</div>`}
       <span class="cause-card__tag">${icon(ctx, cause.icon)}${ctx.t(cause.tag)}</span>
     </div>
     <div class="cause-card__body">
-      <${h} class="cause-card__title">${ctx.t(cause.title)}</${h}>
+      <${h} class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('${cause.id}')">${ctx.t(cause.title)}</a></${h}>
       <p class="cause-card__text">${ctx.t(cause.summary)}</p>${withBeneficiaries && cause.beneficiaries?.length
         ? html`
       <div class="cause-card__beneficiaries">
@@ -31,26 +32,56 @@ export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = fa
         <ul>${cause.beneficiaries.map((b) => html`<li>${ctx.t(b)}</li>`)}</ul>
       </div>`
         : ''}
-      <div class="cause-card__account">
-        <p class="cause-card__account-label">${icon(ctx, dedicated ? 'badge-check' : 'landmark')}${ctx.t(dedicated ? T.dedicated : T.general)} · ${ctx.t(account.bank.name)}</p>
-        ${accountDetails(ctx, account, { compact: true })}
-      </div>
       ${cause.progress != null ? html`
       <div class="cause-card__progress">
         <div class="cause-card__progress-head">
-          <span>${ctx.t({ ar: 'نسبة التمويل', en: 'Funded' })}</span>
+          <span>${ctx.t({ ar: 'نسبة الإنجاز', en: 'Progress' })}</span>
           <span class="cause-card__progress-pct"><span data-count="${cause.progress}">${ctx.num(cause.progress)}</span>%</span>
         </div>
         <div class="cause-card__progress-track"><span class="cause-card__progress-fill" style="--progress: ${cause.progress}%"></span></div>
+        ${cause.raised ? html`
+        <div class="cause-card__amounts">
+          <div class="cause-card__amount-item">
+            <span class="label">${ctx.t(cause.raisedLabel || { ar: 'تم جمع:', en: 'Raised:' })}</span>
+            <span class="value">${ctx.t(cause.raised)}</span>
+          </div>
+          <div class="cause-card__amount-item goal">
+            <span class="label">${ctx.t(cause.goalLabel || { ar: 'المستهدف:', en: 'Goal:' })}</span>
+            <span class="value">${ctx.t(cause.goal)}</span>
+          </div>
+        </div>` : ''}
       </div>` : ''}
-      <a class="link-arrow" href="${ctx.url('donations', `acc-${account.id}`)}">${ctx.t(T.giveTo)}${icon(ctx, 'arrow-right')}</a>
+      <div class="cause-card__actions">
+        <a class="btn btn--sm btn--primary" href="${ctx.url('donations', `acc-${account.id}`)}" title="${ctx.t({ ar: `حساب بنك مصر: ${account.number}`, en: `Banque Misr account: ${account.number}` })}">
+          ${icon(ctx, 'landmark')}
+          <span>${ctx.t({ ar: 'حساب بنك مصر', en: 'Banque Misr' })}</span>
+        </a>
+        <button type="button" class="btn btn--sm btn--secondary cause-card__details-btn" onclick="openCauseModal('${cause.id}')">
+          ${icon(ctx, 'info')}
+          <span>${ctx.t({ ar: 'تفاصيل الحالة', en: 'Case details' })}</span>
+        </button>
+      </div>
     </div>
   </article>`;
 }
 
-export function programCard(ctx, p, { headingLevel = 3, withText = true, revealDelay } = {}) {
+export function programCard(ctx, p, { headingLevel = 3, withText = true, withImage = false, revealDelay } = {}) {
   const h = `h${headingLevel}`;
   const style = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  if (withImage && p.image) {
+    return html`<article class="program-card program-card--media reveal"${style} data-cats="${p.cats.join(' ')}">
+      <button type="button" class="program-card__media"${attrs({ 'data-lightbox-item': '', 'data-type': 'image', 'data-src': largestImage(p.image), 'data-caption': ctx.t(p.title), 'aria-label': `${ctx.t(ui.enlarge)}: ${ctx.t(p.title)}` })}>
+        ${img(ctx, p.image, { alt: p.title, sizes: '(min-width: 1100px) 380px, (min-width: 700px) 45vw, 92vw', width: 960 })}
+        <span class="program-card__badge">${icon(ctx, p.icon)}${ctx.t(p.badge)}</span>
+        <span class="program-card__zoom">${icon(ctx, 'zoom-in')}</span>
+      </button>
+      <div class="program-card__body">
+        <${h} class="program-card__title">${ctx.t(p.title)}</${h}>
+        ${withText ? html`<p class="program-card__text">${ctx.t(p.text)}</p>` : ''}
+        ${p.stat ? html`<p class="program-card__stat"><span class="program-card__stat-label">${ctx.t(p.stat.label)}</span><span class="program-card__stat-value">${ctx.t(p.stat.value)}</span></p>` : ''}
+      </div>
+    </article>`;
+  }
   return html`<article class="program-card reveal"${style} data-cats="${p.cats.join(' ')}">
     <span class="program-card__icon">${icon(ctx, p.icon)}</span>
     <${h} class="program-card__title">${ctx.t(p.title)}</${h}>

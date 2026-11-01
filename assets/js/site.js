@@ -339,22 +339,6 @@
 
     const apply = () => {
       const q = search ? normalize(search.value) : '';
-      const memorialSection = document.querySelector('.memorial');
-      if (active === 'memorial') {
-        items.forEach((el) => { el.hidden = true; });
-        sections.forEach((s) => { s.hidden = true; });
-        if (memorialSection) memorialSection.hidden = false;
-        const mCount = memorialSection ? memorialSection.querySelectorAll('.cert').length : 0;
-        if (countEl) {
-          const forms = strings.results || {};
-          const form = forms[new Intl.PluralRules(doc.lang).select(mCount)] || forms.other || '{n}';
-          countEl.textContent = form.replace('{n}', new Intl.NumberFormat(doc.lang === 'ar' ? 'ar-EG' : 'en-US').format(mCount));
-        }
-        if (empty) empty.hidden = mCount > 0;
-        if (memorialSection) memorialSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-      if (memorialSection) memorialSection.hidden = false;
       let visible = 0;
       items.forEach((el) => {
         const inCat = active === 'all' || el.dataset.cats.split(' ').includes(active);
@@ -837,4 +821,279 @@
       verifyReturn(params.toString());
     }
   }
+
+  /* -------------------------------------------------------------------------- */
+  /* Cause Details Modal (v9uz parity)                                         */
+  /* -------------------------------------------------------------------------- */
+  let currentCauseId = null;
+  const causesDataEl = document.getElementById('causes-data');
+  const CAUSES_DATA = causesDataEl ? JSON.parse(causesDataEl.textContent) : {};
+  const CAUSE_KEYS = Object.keys(CAUSES_DATA);
+
+  window.openCauseModal = function (causeId) {
+    const cause = CAUSES_DATA[causeId];
+    if (!cause) return;
+
+    currentCauseId = causeId;
+    const overlay = document.getElementById('causeModalOverlay');
+    if (!overlay) return;
+
+    const isEn = doc.lang === 'en';
+
+    const badgeText = document.getElementById('causeModalBadgeText');
+    if (badgeText) badgeText.textContent = cause.category;
+
+    const title = document.getElementById('causeModalTitle');
+    if (title) title.textContent = cause.title;
+
+    const heroImg = document.getElementById('causeModalHeroImg');
+    if (heroImg) {
+      heroImg.src = cause.img;
+      heroImg.alt = cause.title;
+    }
+
+    const raised = document.getElementById('causeModalRaised');
+    if (raised) raised.textContent = cause.raised;
+
+    const goal = document.getElementById('causeModalGoal');
+    if (goal) goal.textContent = cause.goal;
+
+    const goalLabel = document.getElementById('causeModalGoalLabel');
+    if (goalLabel && cause.goalType) goalLabel.textContent = isEn ? 'Target goal' : cause.goalType;
+
+    const percent = document.getElementById('causeModalPercent');
+    if (percent) percent.textContent = `${cause.percent}%`;
+
+    const remaining = document.getElementById('causeModalRemaining');
+    if (remaining) remaining.textContent = cause.remaining;
+
+    const progressBar = document.getElementById('causeModalProgressBar');
+    if (progressBar) {
+      progressBar.style.width = '0%';
+      setTimeout(() => {
+        progressBar.style.width = `${Math.min(100, Math.max(0, cause.percent))}%`;
+      }, 150);
+    }
+
+    const desc = document.getElementById('causeModalDesc');
+    if (desc) {
+      const paras = cause.description.split('\n\n').filter(Boolean);
+      desc.innerHTML = paras.map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+    }
+
+    const verseCard = document.getElementById('causeModalVerse');
+    if (verseCard) {
+      if (cause.verse) {
+        verseCard.innerHTML = `<svg class="i i-quote" aria-hidden="true" style="width: 18px; height: 18px; margin-inline-end: 0.5rem; color: var(--brand, #d57b1e);"><use href="#i-quote"></use></svg> ${cause.verse}`;
+        verseCard.style.display = 'block';
+      } else {
+        verseCard.style.display = 'none';
+      }
+    }
+
+    // Shares
+    const sharesGrid = document.getElementById('causeModalSharesGrid');
+    const sharesSection = document.getElementById('causeModalSharesSection');
+    if (sharesGrid && sharesSection) {
+      if (cause.shares && cause.shares.length) {
+        const chooseText = isEn ? 'Select to donate' : 'اختر للتبرع';
+        const chooseTitle = isEn ? 'Click to donate this share' : 'انقر للتبرع بهذا السهم';
+        sharesGrid.innerHTML = cause.shares.map((s) => `
+          <div class="cause-modal-share-card" role="button" tabindex="0" onclick="selectCauseShare('${s.name.replace(/'/g, "\\'")}', '${s.amount}')" title="${chooseTitle}">
+            <div class="cause-modal-share-header">
+              <span class="cause-modal-share-title">${s.name}</span>
+              <span class="cause-modal-share-price">${s.amount}</span>
+            </div>
+            <p class="cause-modal-share-desc">${s.desc}</p>
+            <div style="font-size: 0.82rem; color: var(--brand, #d57b1e); font-weight: 700; display: flex; align-items: center; gap: 0.35rem; margin-top: 0.5rem;">
+              <svg class="i i-heart" aria-hidden="true" style="width: 14px; height: 14px;"><use href="#i-heart"></use></svg> ${chooseText}
+            </div>
+          </div>
+        `).join('');
+        sharesSection.style.display = 'block';
+      } else {
+        sharesSection.style.display = 'none';
+      }
+    }
+
+    // Beneficiaries
+    const chipsWrap = document.getElementById('causeModalChips');
+    const beneficiariesSection = document.getElementById('causeModalBeneficiariesSection');
+    if (chipsWrap && beneficiariesSection) {
+      if (cause.beneficiaries && cause.beneficiaries.length) {
+        chipsWrap.innerHTML = cause.beneficiaries.map((b) => `
+          <span class="cause-modal-chip"><svg class="i i-circle-check" aria-hidden="true" style="width: 14px; height: 14px; color: #059669;"><use href="#i-circle-check"></use></svg> ${b}</span>
+        `).join('');
+        beneficiariesSection.style.display = 'block';
+      } else {
+        beneficiariesSection.style.display = 'none';
+      }
+    }
+
+    // Bank Misr Details
+    const bankTitle = document.getElementById('causeModalBankTitle');
+    if (bankTitle) bankTitle.textContent = cause.bankTitle;
+
+    const bankBranch = document.getElementById('causeModalBankBranch');
+    if (bankBranch) bankBranch.textContent = cause.bankBranch;
+
+    const accNum = document.getElementById('causeModalAccNum');
+    if (accNum) accNum.textContent = cause.accountNumber;
+
+    const iban = document.getElementById('causeModalIban');
+    if (iban) iban.textContent = cause.iban;
+
+    // WhatsApp Link
+    const waBtn = document.getElementById('causeModalWhatsAppBtn');
+    if (waBtn) {
+      const waText = encodeURIComponent(isEn
+        ? `Hello, I would like to inquire and donate to: "${cause.title}" via Akhawein Charity.`
+        : `السلام عليكم ورحمة الله، أود الاستفسار والتبرع لمشروع: "${cause.title}" عبر جمعية أخوين الخيرية.`);
+      waBtn.href = `https://wa.me/201281769685?text=${waText}`;
+    }
+
+    // Show Modal
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    // Hide header
+    const header = document.querySelector('.site-header');
+    if (header) header.style.visibility = 'hidden';
+
+    const modalBody = document.getElementById('causeModalBody');
+    if (modalBody) modalBody.scrollTop = 0;
+
+    const copyBtn = document.getElementById('causeModalCopyBtn');
+    if (copyBtn) {
+      copyBtn.classList.remove('copied');
+      const copySpan = copyBtn.querySelector('span');
+      if (copySpan) copySpan.textContent = strings.copy;
+    }
+
+    if (history.replaceState) {
+      history.replaceState(null, null, `#case-${causeId}`);
+    }
+  };
+
+  window.closeCauseModal = function () {
+    const overlay = document.getElementById('causeModalOverlay');
+    if (overlay) {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+
+    // Show header
+    const header = document.querySelector('.site-header');
+    if (header) header.style.visibility = '';
+    currentCauseId = null;
+
+    if (window.location.hash.startsWith('#case-') && history.replaceState) {
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+  };
+
+  window.navigateCauseModal = function (direction) {
+    if (!currentCauseId) return;
+    const currentIndex = CAUSE_KEYS.indexOf(currentCauseId);
+    if (currentIndex === -1) return;
+
+    let nextIndex = currentIndex + direction;
+    if (nextIndex < 0) nextIndex = CAUSE_KEYS.length - 1;
+    if (nextIndex >= CAUSE_KEYS.length) nextIndex = 0;
+
+    openCauseModal(CAUSE_KEYS[nextIndex]);
+  };
+
+  let causeModalCopyTimeout = null;
+  window.copyCurrentCauseAccount = function () {
+    if (!currentCauseId) return;
+    const cause = CAUSES_DATA[currentCauseId];
+    if (!cause || !cause.accountNumber) return;
+
+    const copyBtn = document.getElementById('causeModalCopyBtn');
+    const accNumEl = document.getElementById('causeModalAccNum');
+
+    copyText(cause.accountNumber).then(() => {
+      if (copyBtn) {
+        copyBtn.classList.add('copied');
+        const copySpan = copyBtn.querySelector('span');
+        if (copySpan) copySpan.textContent = '✓ ' + strings.copied;
+        fireConfetti(copyBtn);
+      }
+      if (accNumEl) {
+        accNumEl.classList.remove('copied-flash');
+        void accNumEl.offsetWidth;
+        accNumEl.classList.add('copied-flash');
+      }
+      showToast(`${strings.copied}: ${cause.accountNumber}`);
+
+      if (causeModalCopyTimeout) clearTimeout(causeModalCopyTimeout);
+      causeModalCopyTimeout = setTimeout(() => {
+        if (copyBtn) {
+          copyBtn.classList.remove('copied');
+          const copySpan = copyBtn.querySelector('span');
+          if (copySpan) copySpan.textContent = strings.copy;
+        }
+        if (accNumEl) accNumEl.classList.remove('copied-flash');
+      }, 2500);
+    }).catch(() => {
+      window.prompt('', cause.accountNumber);
+    });
+  };
+
+  window.selectCauseShare = function (shareName, amount) {
+    if (!currentCauseId) return;
+    const cause = CAUSES_DATA[currentCauseId];
+    if (!cause) return;
+
+    const isEn = doc.lang === 'en';
+    const waText = encodeURIComponent(isEn
+      ? `Hello, I would like to donate to "${cause.title}" - Share: "${shareName}" value (${amount}). How can I proceed?`
+      : `السلام عليكم ورحمة الله، أود التبرع لـ "${cause.title}" - سهم: "${shareName}" بقيمة (${amount}). كيف يمكنني إتمام التبرع؟`);
+    window.open(`https://wa.me/201281769685?text=${waText}`, '_blank');
+  };
+
+  window.shareCurrentCause = function () {
+    if (!currentCauseId) return;
+    const cause = CAUSES_DATA[currentCauseId];
+    if (!cause) return;
+
+    const isEn = doc.lang === 'en';
+    const shareUrl = `${window.location.origin}${window.location.pathname}#case-${currentCauseId}`;
+    if (navigator.share) {
+      navigator.share({
+        title: `${cause.title} | ${isEn ? 'Akhawein Charity' : 'جمعية أخوين الخيرية'}`,
+        text: isEn ? `Support ${cause.title} at Akhawein Charity:` : `ساهم معنا في دعم ${cause.title} لدى جمعية أخوين الخيرية:`,
+        url: shareUrl
+      }).catch(() => {});
+    } else {
+      copyText(shareUrl).then(() => {
+        showToast(`${strings.copied}: ${shareUrl}`);
+      });
+    }
+  };
+
+  document.addEventListener('keydown', (e) => {
+    const overlay = document.getElementById('causeModalOverlay');
+    if (!overlay || !overlay.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeCauseModal();
+    } else if (e.key === 'ArrowLeft') {
+      navigateCauseModal(doc.dir === 'rtl' ? 1 : -1);
+    } else if (e.key === 'ArrowRight') {
+      navigateCauseModal(doc.dir === 'rtl' ? -1 : 1);
+    }
+  });
+
+  const hash = window.location.hash;
+  if (hash) {
+    const cleanId = hash.replace(/^#case-|^#cause-|^#/, '');
+    if (CAUSES_DATA[cleanId]) {
+      setTimeout(() => openCauseModal(cleanId), 300);
+    }
+  }
+
 })();

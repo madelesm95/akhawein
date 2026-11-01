@@ -2,7 +2,7 @@
 // and records their dimensions in src/data/images.json for the page builder.
 // Usage: npm run images   (re-run after adding or replacing a source image)
 import sharp from 'sharp';
-import { readFile, writeFile, mkdir, stat, readdir, unlink } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, stat, readdir, unlink, copyFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -47,6 +47,24 @@ const sources = {
   'orphan-dignitaries': { src: 'images/gallery/orphan-vip-dignitaries.jpg', widths: PHOTO },
   'orphan-leadership': { src: 'images/gallery/orphan-celebration-group.jpg', widths: PHOTO },
   'senior-hands': { src: 'images/close-up-senior-couple-holding-hands.jpg', widths: PHOTO },
+
+  // Fields of work (ميادين العمل) shown on the activities page.
+  'program-childcare': { src: 'images/programs/childcare.jpg', widths: CARD },
+  'program-social-aid': { src: 'images/programs/social_aid.jpg', widths: CARD },
+  'program-family': { src: 'images/programs/family_care.jpg', widths: CARD },
+  'program-culture': { src: 'images/programs/culture_science.jpg', widths: CARD },
+  'program-friendship': { src: 'images/programs/friendship_nations.jpg', widths: CARD },
+  'program-governance': { src: 'images/programs/organization_management.jpg', widths: CARD },
+  'program-rights': { src: 'images/programs/human_rights.jpg', widths: CARD },
+  'program-health': { src: 'images/programs/healthcare.jpg', widths: CARD },
+  'program-sports': { src: 'images/programs/sports.jpg', widths: CARD },
+  'program-education': { src: 'images/programs/education.jpg', widths: CARD },
+  'program-elderly': { src: 'images/programs/elderly.jpg', widths: CARD },
+  'program-youth': { src: 'images/programs/youth_protection.jpg', widths: CARD },
+  'program-environment': { src: 'images/programs/environment.jpg', widths: CARD },
+  'program-economic': { src: 'images/programs/economic_empowerment.jpg', widths: CARD },
+  'program-consumer': { src: 'images/programs/consumer_awareness.jpg', widths: CARD },
+  'program-special-needs': { src: 'images/programs/special_needs.jpg', widths: CARD },
   'video-Y7_7ypKtO1o': { src: 'images/videos/Y7_7ypKtO1o.jpg', widths: [480, 960, 1280] },
   'video-Cg4xn8M6Dvw': { src: 'images/videos/Cg4xn8M6Dvw.jpg', widths: [480, 960, 1280] },
   'video-0CEpTudfVnM': { src: 'images/videos/0CEpTudfVnM.jpg', widths: [480, 960, 1280] },
@@ -57,6 +75,12 @@ const sources = {
   'cause-relief': { src: 'images/causes/relief-hands.jpg', widths: CARD },
   'cause-winter': { src: 'images/causes/winter-blankets.png', widths: CARD },
   'cause-omneya': { src: 'images/omneya-girl.jpg', widths: CARD },
+  'cause-hot-meals': { src: 'images/causes/hot-meals.jpg', widths: CARD },
+  'cause-brides': { src: 'images/causes/brides.jpg', widths: CARD },
+  'cause-mobility': { src: 'images/causes/mobility.jpg', widths: CARD },
+  'cause-udhiyah': { src: 'images/causes/udhiyah.jpg', widths: CARD },
+  'cause-gaza-relief': { src: 'images/causes/gaza-relief.jpg', widths: CARD },
+  'cause-animal-welfare': { src: 'images/causes/animal-welfare.jpg', widths: CARD },
 
   // Success-story posters, one per language. Kept at full poster width for the lightbox.
   'story-cover': { src: 'images/stories/cover.jpg', widths: POSTER },
@@ -133,8 +157,18 @@ if (!(await newer(og, ogSrc))) {
   written++;
 }
 
+// Donation QR is the association's own photo — copied byte-for-byte (no resampling,
+// no WebP, no recolouring) so it stays exactly the image that was supplied.
+const qrOut = path.join(OUT, 'donation-qr.png');
+const qrSrc = path.join(root, 'images/donation-qr.png');
+if (!(await newer(qrOut, qrSrc))) {
+  await copyFile(qrSrc, qrOut);
+  written++;
+}
+
 await writeFile(MANIFEST, JSON.stringify(manifest, null, 1) + '\n');
 const expected = new Set(Object.entries(manifest).flatMap(([id, m]) => m.widths.map((w) => `${id}-${w}.webp`)));
+expected.add('donation-qr.png');
 let removed = 0;
 for (const file of await readdir(OUT)) {
   if (!expected.has(file)) { await unlink(path.join(OUT, file)); removed++; }

@@ -182,8 +182,8 @@ export default function home(ctx) {
 <section class="section" aria-labelledby="programs-title">
   <div class="container">
     ${sectionHead(ctx, { eyebrow: T.programsEyebrow, title: T.programsTitle, lead: T.programsLead, id: 'programs-title', action: button(ctx, { href: ctx.url('activities'), label: T.allPrograms, variant: 'secondary', iconEnd: 'arrow-right' }) })}
-    <div class="program-grid program-grid--compact">
-      ${programs.slice(0, 8).map((p, i) => programCard(ctx, p, { withText: false, revealDelay: i * 60 }))}
+    <div class="program-grid" data-lightbox-group>
+      ${programs.slice(0, 8).map((p, i) => programCard(ctx, p, { withImage: true, revealDelay: i * 60 }))}
     </div>
   </div>
 </section>

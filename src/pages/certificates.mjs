@@ -18,7 +18,7 @@ const T = {
   search: { ar: 'ابحث بالاسم…', en: 'Search by name in Arabic…' },
   searchLabel: { ar: 'ابحث عن شهادة بالاسم', en: 'Search certificates by name (names are in Arabic)' },
   filterLabel: { ar: 'تصفية حسب السنة', en: 'Filter by year' },
-  memorialTitle: { ar: 'بصمات خالدة', en: 'Lasting legacies' },
+  memorialTitle: { ar: 'السابقون إلى الجنة', en: 'In memoriam' },
   memorialText: {
     ar: 'تكريم ووفاء لمن تركوا أثراً لا يُمحى في مسيرة جمعية أخوين الخيرية، رحمهم الله جميعاً.',
     en: 'In grateful memory of those who left a lasting mark on Akhawein Charity. May God have mercy on them all.',
@@ -85,7 +85,6 @@ export default function certificatesPage(ctx) {
   const years = [...new Set(main.map((c) => c.group).filter((g) => g !== 'official'))].sort((a, b) => b - a);
   const items = [
     ...years.map((y) => ({ id: y, label: { ar: ctx.num(Number(y), { useGrouping: false }), en: y }, count: main.filter((c) => c.group === y).length })),
-    { id: 'memorial', label: { ar: 'السابقون إلى الجنة', en: 'In memoriam' }, count: memorial.length },
     { id: 'official', label: T.official, count: main.filter((c) => c.group === 'official').length },
   ];
   const body = html`

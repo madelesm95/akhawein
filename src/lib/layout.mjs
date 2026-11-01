@@ -1,3 +1,4 @@
+import causesDetails from '../data/causes-details.json' with { type: 'json' };
 import { html, raw, attrs } from './html.mjs';
 import { pagePath } from './context.mjs';
 import { icon, spriteFor, img, telHref, phoneDisplay } from './components.mjs';
@@ -97,6 +98,144 @@ function header(ctx) {
 </header>`;
 }
 
+
+function causeDetailsModal(ctx) {
+  return html`
+  <div class="cause-modal-overlay" id="causeModalOverlay" onclick="if(event.target === this) closeCauseModal()" aria-hidden="true">
+    <div class="cause-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="causeModalTitle">
+      <div class="cause-modal-header">
+        <div class="cause-modal-badges">
+          <span class="cause-modal-badge" id="causeModalBadge">${icon(ctx, 'tag')} <span id="causeModalBadgeText"></span></span>
+          <span class="cause-modal-status-badge">${icon(ctx, 'circle-check')} ${ctx.t({ ar: 'حالة معتمدة ومفتوحة للتبرع', en: 'Verified cause open for donations' })}</span>
+        </div>
+        <button type="button" class="cause-modal-close-btn" onclick="closeCauseModal()" aria-label="${ctx.t(ui.close)}" title="${ctx.t({ ar: 'إغلاق (Esc)', en: 'Close (Esc)' })}">
+          ${icon(ctx, 'x')}
+        </button>
+      </div>
+
+      <div class="cause-modal-body" id="causeModalBody">
+        <div class="cause-modal-hero">
+          <img src="" id="causeModalHeroImg" alt="" class="cause-modal-hero-img">
+          <div class="cause-modal-hero-overlay">
+            <h2 class="cause-modal-title" id="causeModalTitle"></h2>
+            <div id="causeModalCategoryPill">
+              ${icon(ctx, 'hand-heart')}
+              <span id="causeModalSubtitle">${ctx.t({ ar: 'مشروع إنساني معتمد لدى جمعية أخوين الخيرية', en: 'Accredited humanitarian project by Akhawein Charity' })}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cause-modal-metrics">
+          <div class="cause-modal-stats-grid">
+            <div class="cause-modal-stat-box">
+              <span class="stat-label">${ctx.t({ ar: 'تم جمع حتى الآن', en: 'Raised so far' })}</span>
+              <span class="stat-val" id="causeModalRaised">0 ج.م</span>
+            </div>
+            <div class="cause-modal-stat-box highlight">
+              <span class="stat-label" id="causeModalGoalLabel">${ctx.t({ ar: 'المستهدف المطلوب', en: 'Target goal' })}</span>
+              <span class="stat-val" id="causeModalGoal">0 ج.م</span>
+            </div>
+            <div class="cause-modal-stat-box">
+              <span class="stat-label">${ctx.t({ ar: 'نسبة الإنجاز', en: 'Progress rate' })}</span>
+              <span class="stat-val" id="causeModalPercent" style="color: #059669;">0%</span>
+            </div>
+            <div class="cause-modal-stat-box">
+              <span class="stat-label">${ctx.t({ ar: 'المتبقي للاكتمال', en: 'Remaining' })}</span>
+              <span class="stat-val" id="causeModalRemaining">0 ج.م</span>
+            </div>
+          </div>
+          <div class="cause-modal-progress-wrap">
+            <div class="cause-modal-progress-bar">
+              <div class="cause-modal-progress-fill" id="causeModalProgressBar" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cause-modal-section">
+          <h4 class="cause-modal-section-title">
+            ${icon(ctx, 'book-open')}
+            <span>${ctx.t({ ar: 'تفاصيل الحالة والبرنامج الإنساني', en: 'Case details & humanitarian program' })}</span>
+          </h4>
+          <div class="cause-modal-description" id="causeModalDesc"></div>
+          <div class="cause-modal-verse-card" id="causeModalVerse" style="display: none;"></div>
+        </div>
+
+        <div class="cause-modal-section" id="causeModalSharesSection">
+          <h4 class="cause-modal-section-title">
+            ${icon(ctx, 'hand-coins')}
+            <span>${ctx.t({ ar: 'أسهم وباقات المساهمة والتبرع المتاحة', en: 'Available shares & donation packages' })}</span>
+          </h4>
+          <div class="cause-modal-shares-grid" id="causeModalSharesGrid"></div>
+        </div>
+
+        <div class="cause-modal-section" id="causeModalBeneficiariesSection">
+          <h4 class="cause-modal-section-title">
+            ${icon(ctx, 'users')}
+            <span>${ctx.t({ ar: 'الفئات المستفيدة والمستهدفة', en: 'Target beneficiary groups' })}</span>
+          </h4>
+          <div class="cause-modal-chips-wrap" id="causeModalChips"></div>
+        </div>
+
+        <div class="cause-modal-bank-box">
+          <div class="cause-modal-bank-header">
+            <div class="cause-modal-bank-brand">
+              <img src="/assets/img/bank-banque-misr-285.webp" alt="${ctx.t({ ar: 'بنك مصر', en: 'Banque Misr' })}" class="cause-modal-bank-logo">
+              <div>
+                <h5 class="cause-modal-bank-title" id="causeModalBankTitle">${ctx.t({ ar: 'حساب بنك مصر الرسمي المعتمد', en: 'Official Banque Misr Account' })}</h5>
+                <span class="cause-modal-bank-branch" id="causeModalBankBranch"></span>
+              </div>
+            </div>
+            <span class="cause-modal-bank-badge">
+              ${icon(ctx, 'shield-check')} <span>${ctx.t({ ar: 'حساب معتمد', en: 'Verified account' })}</span>
+            </span>
+          </div>
+
+          <div class="cause-modal-acc-display">
+            <div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 0.2rem;">${ctx.t({ ar: 'رقم الحساب المخصص للحالة:', en: 'Account number for this cause:' })}</div>
+              <div class="cause-modal-acc-num" id="causeModalAccNum"></div>
+            </div>
+            <button type="button" class="cause-modal-acc-copy-btn" id="causeModalCopyBtn" onclick="copyCurrentCauseAccount()">
+              ${icon(ctx, 'copy')}
+              <span>${ctx.t(ui.copy)}</span>
+            </button>
+          </div>
+
+          <div class="cause-modal-iban-wrap" id="causeModalIbanWrap">
+            <span>${ctx.t({ ar: 'رقم الآيبان الدولي (IBAN):', en: 'International IBAN:' })}</span>
+            <span class="cause-modal-iban-code" id="causeModalIban"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cause-modal-footer">
+        <div class="cause-modal-nav-btns">
+          <button type="button" class="cause-modal-nav-btn" onclick="navigateCauseModal(-1)" title="${ctx.t({ ar: 'الحالة السابقة', en: 'Previous cause' })}">
+            ${icon(ctx, ctx.lang === 'ar' ? 'chevron-right' : 'chevron-left')}
+            <span>${ctx.t({ ar: 'السابقة', en: 'Previous' })}</span>
+          </button>
+          <button type="button" class="cause-modal-nav-btn" onclick="navigateCauseModal(1)" title="${ctx.t({ ar: 'الحالة التالية', en: 'Next cause' })}">
+            <span>${ctx.t({ ar: 'التالية', en: 'Next' })}</span>
+            ${icon(ctx, ctx.lang === 'ar' ? 'chevron-left' : 'chevron-right')}
+          </button>
+        </div>
+
+        <div class="cause-modal-cta-btns">
+          <button type="button" class="cause-modal-share-btn" onclick="shareCurrentCause()" title="${ctx.t({ ar: 'مشاركة رابط الحالة', en: 'Share cause link' })}">
+            ${icon(ctx, 'send')}
+            <span>${ctx.t({ ar: 'مشاركة', en: 'Share' })}</span>
+          </button>
+          <a href="#" id="causeModalWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="cause-modal-whatsapp-btn" title="${ctx.t({ ar: 'تواصل عبر واتساب للاستفسار والتبرع', en: 'Contact via WhatsApp' })}">
+            ${icon(ctx, 'brand-whatsapp')}
+            <span>${ctx.t({ ar: 'استفسار وتبرع عبر واتساب', en: 'Inquire & donate on WhatsApp' })}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script id="causes-data" type="application/json">${raw(JSON.stringify(causesDetails))}</script>`;
+}
+
 function siteFooter(ctx) {
   const year = new Date().getFullYear();
   return html`<footer class="site-footer">
@@ -111,6 +250,7 @@ function siteFooter(ctx) {
         <ul class="socials">
           ${site.socials.map((s) => html`<li><a href="${s.url}" target="_blank" rel="noopener" aria-label="${s.label}">${icon(ctx, `brand-${s.id}`)}</a></li>`)}
         </ul>
+        <img class="site-footer__qr" src="/assets/img/donation-qr.png" width="160" height="141" alt="${ctx.t({ ar: 'رمز الاستجابة السريعة للتبرع', en: 'Donation QR code' })}" loading="lazy" decoding="async">
       </div>
       ${footer.groups.map((g) => html`<nav class="site-footer__col" aria-label="${ctx.t(g.title)}">
         <h2 class="site-footer__title">${ctx.t(g.title)}</h2>
@@ -143,6 +283,7 @@ function siteFooter(ctx) {
   <button type="button" class="lightbox__btn lightbox__prev" data-lightbox-prev aria-label="${ctx.t(ui.prev)}">${icon(ctx, 'chevron-left')}</button>
   <button type="button" class="lightbox__btn lightbox__next" data-lightbox-next aria-label="${ctx.t(ui.next)}">${icon(ctx, 'chevron-right')}</button>
 </dialog>
+${causeDetailsModal(ctx)}
 </footer>`;
 }
 

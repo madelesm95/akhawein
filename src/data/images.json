@@ -270,6 +270,137 @@
    1600
   ]
  },
+ "program-childcare": {
+  "w": 1713,
+  "h": 2560,
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "program-social-aid": {
+  "w": 661,
+  "h": 464,
+  "widths": [
+   480,
+   661
+  ]
+ },
+ "program-family": {
+  "w": 1200,
+  "h": 1200,
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "program-culture": {
+  "w": 669,
+  "h": 458,
+  "widths": [
+   480,
+   669
+  ]
+ },
+ "program-friendship": {
+  "w": 618,
+  "h": 360,
+  "widths": [
+   480,
+   618
+  ]
+ },
+ "program-governance": {
+  "w": 500,
+  "h": 353,
+  "widths": [
+   480,
+   500
+  ]
+ },
+ "program-rights": {
+  "w": 1060,
+  "h": 859,
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "program-health": {
+  "w": 372,
+  "h": 209,
+  "widths": [
+   372
+  ]
+ },
+ "program-sports": {
+  "w": 1080,
+  "h": 685,
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "program-education": {
+  "w": 350,
+  "h": 245,
+  "widths": [
+   350
+  ]
+ },
+ "program-elderly": {
+  "w": 601,
+  "h": 400,
+  "widths": [
+   480,
+   601
+  ]
+ },
+ "program-youth": {
+  "w": 630,
+  "h": 300,
+  "widths": [
+   480,
+   630
+  ]
+ },
+ "program-environment": {
+  "w": 271,
+  "h": 186,
+  "widths": [
+   271
+  ]
+ },
+ "program-economic": {
+  "w": 800,
+  "h": 350,
+  "widths": [
+   480,
+   720,
+   800
+  ]
+ },
+ "program-consumer": {
+  "w": 800,
+  "h": 520,
+  "widths": [
+   480,
+   720,
+   800
+  ]
+ },
+ "program-special-needs": {
+  "w": 640,
+  "h": 960,
+  "widths": [
+   480,
+   640
+  ]
+ },
  "video-Y7_7ypKtO1o": {
   "w": 1280,
   "h": 720,
@@ -347,6 +478,54 @@
   "widths": [
    480,
    580
+  ]
+ },
+ "cause-hot-meals": {
+  "w": 580,
+  "h": 435,
+  "widths": [
+   480,
+   580
+  ]
+ },
+ "cause-brides": {
+  "w": 580,
+  "h": 435,
+  "widths": [
+   480,
+   580
+  ]
+ },
+ "cause-mobility": {
+  "w": 278,
+  "h": 182,
+  "widths": [
+   278
+  ]
+ },
+ "cause-udhiyah": {
+  "w": 701,
+  "h": 438,
+  "widths": [
+   480,
+   701
+  ]
+ },
+ "cause-gaza-relief": {
+  "w": 950,
+  "h": 635,
+  "widths": [
+   480,
+   720,
+   950
+  ]
+ },
+ "cause-animal-welfare": {
+  "w": 600,
+  "h": 338,
+  "widths": [
+   480,
+   600
   ]
  },
  "story-cover": {

@@ -29,10 +29,10 @@ export const site = {
     { id: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@akhaweinakhawein' },
   ],
   stats: [
-    { value: 10000, plus: true, label: { ar: 'أسرة مستفيدة', en: 'families supported' } },
-    { value: 4850, plus: true, label: { ar: 'حملة خيرية', en: 'charity campaigns' } },
-    { value: 3686, plus: true, label: { ar: 'طالب وطالبة', en: 'students supported' } },
-    { value: 480, plus: true, label: { ar: 'فصل تقوية مجاني', en: 'free tutoring classes' } },
+    { value: 13251, plus: true, label: { ar: 'أسرة مستفيدة', en: 'families supported' } },
+    { value: 57, plus: true, label: { ar: 'حملة خيرية', en: 'charity campaigns' } },
+    { value: 12104, plus: true, label: { ar: 'متدربين وطلاب', en: 'trainees and students' } },
+    { value: 6250, plus: true, label: { ar: 'شنط مواد غذائية', en: 'food parcels' } },
   ],
   verse: {
     ar: 'وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ',
