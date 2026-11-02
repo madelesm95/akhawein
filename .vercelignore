@@ -26,8 +26,9 @@ desktop.ini
 صور حفلة يوم اليتيم/
 images/gallery/originals_backup/
 
-# Video Files
-*.mp4
+# Video files: the films the site hosts itself live in assets/video/ and must ship,
+# so *.mp4 is deliberately NOT ignored here. Every other video in the repo sits in a
+# raw folder that is already ignored above (images/, قسم الصور/), so nothing extra deploys.
 *.mov
 *.avi
 *.mkv
