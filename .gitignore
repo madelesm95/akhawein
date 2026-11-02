@@ -13,3 +13,6 @@ google-apps-script/.clasp.json
 
 # Local backups
 *.bak
+
+# Raw phone media drops (processed into assets/video and images/videos)
+/قسم الفديوهات/

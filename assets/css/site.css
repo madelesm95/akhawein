@@ -583,6 +583,13 @@ main:focus { outline: none; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
 .gallery-grid .media-tile { aspect-ratio: 4 / 3; }
 .gallery-grid--video .media-tile { aspect-ratio: 16 / 9; }
+/* Portrait film posters (9:16) are letterboxed over a blurred copy of themselves so no
+   artwork is cropped by the landscape tile. Photos never use this. */
+.media-tile--portrait .media-tile__btn { position: relative; display: grid; place-items: center; overflow: hidden; }
+.media-tile--portrait .media-tile__backdrop { position: absolute; inset: -14%; width: 128%; height: 128%; object-fit: cover; filter: blur(22px) brightness(0.55) saturate(1.15); }
+.media-tile--portrait .media-tile__poster { position: relative; width: auto; height: 100%; max-width: 100%; object-fit: contain; }
+.media-tile--portrait:hover .media-tile__btn img { transform: none; }
+.media-tile--portrait:hover .media-tile__poster { transform: scale(1.03); }
 
 /* ---------- Trust ---------- */
 .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
@@ -787,10 +794,22 @@ main:focus { outline: none; }
 .memorial { margin-bottom: 3rem; padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: var(--radius-xl); background: var(--navy); color: var(--on-navy); }
 .memorial h2 { color: #fff; font-size: 1.4rem; margin-bottom: 0.4rem; }
 .memorial > p { color: var(--on-navy-muted); }
-.memorial .cert-grid { margin-top: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(230px, 280px)); }
+.memorial .cert-grid { margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
 .memorial .cert { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); }
 .memorial .cert__name { color: #fff; }
 .memorial .cert__role { color: var(--on-navy-muted); }
+/* Campaign film that sits beside the memorial certificates. */
+.cert--film .cert__btn { cursor: pointer; }
+.cert--film .cert__media { position: relative; display: block; overflow: hidden; border-radius: 8px; }
+.cert--film .cert__media img { width: 100%; height: 100%; aspect-ratio: 659 / 465; object-fit: cover; object-position: center 42%; }
+.cert--film .cert__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%;
+  background: var(--brand); color: var(--on-brand); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s var(--ease);
+}
+.cert--film .cert__play .i { width: 22px; height: 22px; fill: currentColor; }
+.cert--film:hover .cert__play { transform: translate(-50%, -50%) scale(1.08); }
 .empty-state { padding: 3rem 1rem; text-align: center; color: var(--muted); }
 .empty-state .i { width: 40px; height: 40px; margin: 0 auto 0.75rem; }
 
@@ -943,6 +962,8 @@ main:focus { outline: none; }
 .lightbox__stage img { max-width: min(100%, 1400px); max-height: 100%; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
 .lightbox__stage .video { width: min(100%, 1100px); aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; }
 .lightbox__stage iframe { width: 100%; height: 100%; border: 0; }
+.lightbox__stage video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.lightbox__stage .video--portrait { width: auto; height: min(100%, 86vh); max-width: 100%; aspect-ratio: 478 / 850; }
 .lightbox__caption { margin: 0; max-width: 70ch; text-align: center; color: rgba(255, 255, 255, 0.85); font-size: 0.98rem; }
 .lightbox__btn { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.08); color: #fff; transition: background-color 0.2s; }
 .lightbox__btn:hover { background: rgba(255, 255, 255, 0.18); }

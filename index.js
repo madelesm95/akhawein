@@ -163,15 +163,43 @@ const handler = async (req, res) => {
     const ext = path.extname(targetPath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
     const isHtml = ext === '.html';
-    const data = fs.readFileSync(targetPath);
-
-    res.writeHead(200, {
+    const { size } = fs.statSync(targetPath);
+    const headers = {
       'Content-Type': contentType,
+      'Accept-Ranges': 'bytes',
       'Cache-Control': isHtml || ext === '.css' || ext === '.js'
         ? 'public, max-age=0, must-revalidate'
         : 'public, max-age=86400'
-    });
-    res.end(data);
+    };
+
+    // Byte ranges keep <video> seekable locally; without them some browsers refuse to play.
+    const range = typeof req.headers.range === 'string' ? /^bytes=(\d*)-(\d*)$/.exec(req.headers.range.trim()) : null;
+    if (range && (range[1] !== '' || range[2] !== '')) {
+      let start;
+      let end;
+      if (range[1] === '') {
+        start = Math.max(0, size - Number(range[2]));
+        end = size - 1;
+      } else {
+        start = Number(range[1]);
+        end = range[2] === '' ? size - 1 : Math.min(Number(range[2]), size - 1);
+      }
+      if (!Number.isFinite(start) || !Number.isFinite(end) || start > end || start >= size) {
+        res.writeHead(416, { ...headers, 'Content-Range': `bytes */${size}` });
+        res.end();
+        return;
+      }
+      res.writeHead(206, {
+        ...headers,
+        'Content-Range': `bytes ${start}-${end}/${size}`,
+        'Content-Length': end - start + 1
+      });
+      fs.createReadStream(targetPath, { start, end }).pipe(res);
+      return;
+    }
+
+    res.writeHead(200, { ...headers, 'Content-Length': size });
+    fs.createReadStream(targetPath).pipe(res);
   } catch (err) {
     if (!res.headersSent) {
       res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });

@@ -428,6 +428,21 @@
    1280
   ]
  },
+ "video-kafan-amira": {
+  "w": 686,
+  "h": 1114,
+  "widths": [
+   480,
+   686
+  ]
+ },
+ "video-kafan-badal-ward": {
+  "w": 478,
+  "h": 850,
+  "widths": [
+   478
+  ]
+ },
  "cause-food-parcel": {
   "w": 1080,
   "h": 731,

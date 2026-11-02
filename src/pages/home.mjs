@@ -84,7 +84,9 @@ export default function home(ctx) {
   const caf = protocols.find((p) => p.id === 'caf');
   const featuredMedia = ['volunteers-walk', 'meals-prep', 'fayoum-honoring', 'orphan-tanoura', 'fayoum-graduates']
     .map((id) => gallery.find((g) => g.image === id));
-  const video = gallery.find((g) => g.type === 'video');
+  // The home mosaic features a field film (YouTube), so campaign films added to the
+  // media centre stay on the gallery page instead of taking over the homepage.
+  const video = gallery.find((g) => g.type === 'video' && !g.file) || gallery.find((g) => g.type === 'video');
   const receiptText = ctx.lang === 'ar' ? 'السلام عليكم، أرسل لكم إيصال تحويل تبرع لجمعية أخوين الخيرية' : 'Hello, I am sending the receipt for my donation to Akhawein Charity';
   const honorsCount = certificates.filter((c) => c.group !== 'memorial').length;
 

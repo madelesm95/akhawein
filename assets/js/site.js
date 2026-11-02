@@ -398,6 +398,19 @@
         frame.allowFullscreen = true;
         wrap.appendChild(frame);
         stage.appendChild(wrap);
+      } else if (item.dataset.type === 'file') {
+        const wrap = document.createElement('div');
+        wrap.className = item.dataset.orientation === 'portrait' ? 'video video--portrait' : 'video';
+        const player = document.createElement('video');
+        player.src = item.dataset.src;
+        player.controls = true;
+        player.autoplay = true;
+        player.playsInline = true;
+        player.preload = 'metadata';
+        player.setAttribute('playsinline', '');
+        player.title = item.dataset.caption || '';
+        wrap.appendChild(player);
+        stage.appendChild(wrap);
       } else {
         const image = document.createElement('img');
         image.src = item.dataset.src;

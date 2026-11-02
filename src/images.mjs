@@ -68,6 +68,9 @@ const sources = {
   'video-Y7_7ypKtO1o': { src: 'images/videos/Y7_7ypKtO1o.jpg', widths: [480, 960, 1280] },
   'video-Cg4xn8M6Dvw': { src: 'images/videos/Cg4xn8M6Dvw.jpg', widths: [480, 960, 1280] },
   'video-0CEpTudfVnM': { src: 'images/videos/0CEpTudfVnM.jpg', widths: [480, 960, 1280] },
+  // Portrait campaign films hosted on the site itself (assets/video/), not on YouTube.
+  'video-kafan-amira': { src: 'images/videos/kafan-amira.jpg', widths: [480, 686] },
+  'video-kafan-badal-ward': { src: 'images/videos/kafan-badal-ward.jpg', widths: [478] },
 
   'cause-food-parcel': { src: 'images/causes/food-parcel.jpg', widths: CARD },
   'cause-orphans': { src: 'images/causes/orphans-elderly.jpg', widths: CARD },

@@ -1,5 +1,5 @@
 import { html, attrs } from './html.mjs';
-import { icon, img, accountDetails, largestImage } from './components.mjs';
+import { icon, img, accountDetails, largestImage, IMAGES } from './components.mjs';
 import { findAccount } from '../content/accounts.mjs';
 import { ui } from '../content/site.mjs';
 
@@ -91,14 +91,33 @@ export function programCard(ctx, p, { headingLevel = 3, withText = true, withIma
 
 export function mediaTile(ctx, item, { index, sizes = '(min-width: 1100px) 33vw, (min-width: 700px) 50vw, 100vw', cls = '', revealDelay } = {}) {
   const isVideo = item.type === 'video';
+  // `file` items are MP4s we host ourselves; `youtube` items are embedded by video id.
+  const isFile = Boolean(item.file);
+  const meta = IMAGES[item.image];
+  // Only film posters get the letterboxed treatment; field photos keep their cropped tiles.
+  const portrait = Boolean(isVideo && meta && meta.h > meta.w);
   const caption = ctx.t(item.title);
   const trigger = isVideo
-    ? attrs({ 'data-lightbox-item': '', 'data-type': 'video', 'data-src': item.youtube, 'data-caption': caption, 'aria-label': `${ctx.t(ui.play)}: ${caption}` })
+    ? attrs({
+      'data-lightbox-item': '',
+      'data-type': isFile ? 'file' : 'video',
+      'data-src': isFile ? item.file : item.youtube,
+      'data-caption': caption,
+      'data-orientation': portrait ? 'portrait' : null,
+      'aria-label': `${ctx.t(ui.play)}: ${caption}`,
+    })
     : attrs({ 'data-lightbox-item': '', 'data-type': 'image', 'data-src': largestImage(item.image), 'data-caption': caption, 'aria-label': `${ctx.t(ui.enlarge)}: ${caption}` });
   const mStyle = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
-  return html`<figure class="media-tile reveal ${cls}${isVideo ? ' media-tile--video' : ''}" data-cats="${item.cats.join(' ')}"${index !== undefined ? attrs({ 'data-index': index }) : ''}${mStyle}>
+  const classes = ['media-tile', 'reveal', cls, isVideo ? 'media-tile--video' : '', portrait ? 'media-tile--portrait' : '']
+    .filter(Boolean).join(' ');
+  // Portrait posters are letterboxed over a blurred copy of themselves so the artwork
+  // is never cropped by the landscape tile.
+  const poster = portrait
+    ? html`${img(ctx, item.image, { alt: '', sizes, cls: 'media-tile__backdrop' })}${img(ctx, item.image, { alt: '', sizes, cls: 'media-tile__poster' })}`
+    : img(ctx, item.image, { alt: '', sizes });
+  return html`<figure class="${classes}" data-cats="${item.cats.join(' ')}"${index !== undefined ? attrs({ 'data-index': index }) : ''}${mStyle}>
     <button type="button" class="media-tile__btn"${trigger}>
-      ${img(ctx, item.image, { alt: '', sizes })}
+      ${poster}
       <span class="media-tile__badge">${icon(ctx, isVideo ? 'play' : 'zoom-in')}</span>
     </button>
     <figcaption class="media-tile__caption">

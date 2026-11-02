@@ -5,6 +5,7 @@ export const galleryCategories = [
   { id: 'ismailia', label: { ar: 'قوافل الإسماعيلية', en: 'Ismailia convoys' } },
   { id: 'fayoum', label: { ar: 'تأهيل الفيوم', en: 'Fayoum training' } },
   { id: 'volunteers', label: { ar: 'المتطوعون', en: 'Volunteers' } },
+  { id: 'kafan', label: { ar: 'الكفن الشرعي', en: 'Shroud project' } },
   { id: 'videos', label: { ar: 'فيديو', en: 'Videos' } },
 ];
 
@@ -14,6 +15,9 @@ const apr24 = { ar: 'أبريل ٢٠٢٤', en: 'Apr 2024' };
 const may24 = { ar: 'مايو ٢٠٢٤', en: 'May 2024' };
 
 export const gallery = [
+  { type: 'video', file: '/assets/video/kafan-amira.mp4', image: 'video-kafan-amira', cats: ['kafan', 'videos'], title: { ar: '١٠٠٠ كفن صدقة على روح المرحومة أميرة سامي', en: '1,000 shrouds given for the soul of the late Amira Sami' } },
+  { type: 'video', file: '/assets/video/kafan-badal-ward.mp4', image: 'video-kafan-badal-ward', cats: ['kafan', 'videos'], title: { ar: 'كفن بدل ورد: مشروع الكفن الشرعي من أخوين', en: 'A shroud instead of flowers: Akhawein’s shroud project' } },
+
   { type: 'video', youtube: 'Y7_7ypKtO1o', image: 'video-Y7_7ypKtO1o', cats: ['orphans', 'videos'], title: { ar: 'حفلة يوم اليتيم: رسم البسمة على وجوه الأطفال', en: 'Orphans’ Day: putting smiles on children’s faces' } },
   { type: 'video', youtube: 'Cg4xn8M6Dvw', image: 'video-Cg4xn8M6Dvw', cats: ['orphans', 'videos'], title: { ar: 'رحلة الأقصر التثقيفية لأبناء الجمعية', en: 'An educational trip to Luxor' } },
   { type: 'video', youtube: '0CEpTudfVnM', image: 'video-0CEpTudfVnM', cats: ['orphans', 'videos'], title: { ar: 'يوم ترفيهي في البحر الأحمر للأيتام والشباب', en: 'A day out at the Red Sea for orphans and youth' } },

@@ -28,6 +28,14 @@ const T = {
   yearLabel: { ar: 'عام', en: '' },
 };
 
+// The campaign film made in memory of Amira Sami, shown inside the memorial section.
+const MEMORIAL_FILM = {
+  video: '/assets/video/kafan-amira.mp4',
+  poster: 'video-kafan-amira',
+  title: { ar: '١٠٠٠ كفن صدقة على روح المرحومة أميرة سامي', en: '1,000 shrouds given for the soul of the late Amira Sami' },
+  note: { ar: 'صدقة من أعضاء مجلس الإدارة', en: 'A gift from the board of directors' },
+};
+
 const ROLES = {
   'عضو مجلس ادارة': 'Board member',
   'نائب رئيس مجلس الادارة': 'Vice Chair',
@@ -78,6 +86,31 @@ function certCard(ctx, c, { grouped = true, revealDelay } = {}) {
   </figure>`;
 }
 
+// A film card that sits alongside the memorial certificates and opens in the lightbox.
+function memorialFilmCard(ctx, { revealDelay } = {}) {
+  const caption = ctx.t(MEMORIAL_FILM.title);
+  const cStyle = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
+  return html`<figure class="cert cert--film reveal"${cStyle}>
+    <button type="button" class="cert__btn"${attrs({
+      'data-lightbox-item': '',
+      'data-type': 'file',
+      'data-src': MEMORIAL_FILM.video,
+      'data-orientation': 'portrait',
+      'data-caption': caption,
+      'aria-label': `${ctx.t(ui.play)}: ${caption}`,
+    })}>
+      <span class="cert__media">
+        ${img(ctx, MEMORIAL_FILM.poster, { alt: '', sizes: '(min-width: 1100px) 260px, (min-width: 640px) 45vw, 92vw' })}
+        <span class="cert__play">${icon(ctx, 'play')}</span>
+      </span>
+    </button>
+    <figcaption>
+      <span class="cert__name"><bdi lang="ar">${caption}</bdi></span>
+      <span class="cert__role">${ctx.t(MEMORIAL_FILM.note)}</span>
+    </figcaption>
+  </figure>`;
+}
+
 export default function certificatesPage(ctx) {
   const memorial = certificates.filter((c) => c.group === 'memorial');
   const main = certificates.filter((c) => c.group !== 'memorial')
@@ -100,7 +133,7 @@ ${pageHero(ctx, {
     ${memorial.length ? html`<section class="memorial reveal" aria-labelledby="memorial-title" data-lightbox-group>
       <h2 id="memorial-title">${icon(ctx, 'star')} ${ctx.t(T.memorialTitle)}</h2>
       <p>${ctx.t(T.memorialText)}</p>
-      <div class="cert-grid">${memorial.map((c, i) => certCard(ctx, c, { grouped: false, revealDelay: i * 60 }))}</div>
+      <div class="cert-grid">${memorialFilmCard(ctx, { revealDelay: 0 })}${memorial.map((c, i) => certCard(ctx, c, { grouped: false, revealDelay: (i + 1) * 60 }))}</div>
     </section>` : ''}
     <div class="cert-tools">
       <div class="search">
