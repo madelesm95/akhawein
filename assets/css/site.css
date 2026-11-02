@@ -427,12 +427,14 @@ main:focus { outline: none; }
 .cause-card__account-label .i { width: 15px; height: 15px; color: var(--brand-text); }
 .cause-card .link-arrow { margin-top: 0.25rem; }
 
-/* Cause funding progress */
+/* Cause funding progress — deliberately identical to .cause-modal-progress-* below,
+   so a cause looks the same on its card and in the details modal. */
 .cause-card__progress { margin-top: 0.85rem; }
 .cause-card__progress-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.45rem; font-size: 0.78rem; font-weight: 600; color: var(--muted); }
 .cause-card__progress-pct { color: var(--brand-text); font-variant-numeric: tabular-nums; font-weight: 700; }
-.cause-card__progress-track { height: 8px; border-radius: 999px; background: var(--line-2); overflow: hidden; }
-.cause-card__progress-fill { display: block; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, var(--brand), var(--brand-hover)); box-shadow: 0 0 12px color-mix(in srgb, var(--brand) 40%, transparent); transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+.cause-card__progress-track { height: 12px; background: var(--line-2); border-radius: 9999px; overflow: hidden; position: relative; }
+.cause-card__progress-fill { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #d57b1e, #fcb429); border-radius: 9999px; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+.cause-card__progress-fill::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); animation: shimmer 2s infinite; }
 .cause-card.is-visible .cause-card__progress-fill { width: var(--progress, 0%); }
 
 .art {
