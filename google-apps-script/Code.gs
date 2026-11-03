@@ -1,9 +1,18 @@
 /**
- * Akhawein Charity — Google Sheets gateway for online donations.
+ * Akhawein Charity — Google Sheets gateway for online donations and
+ * the site visitor counter.
  *
  * This script is the ONLY component that can write to the donations sheet.
  * Vercel functions call it with a shared secret; the sheet itself is never
- * shared publicly.
+ * shared publicly. It also owns the visitor counter stored in Script
+ * Properties (no sheet tab required).
+ *
+ * Visitor counter:
+ *   - Seeded from VISITOR_SEED below (a deliberately large base number).
+ *   - `visit`        increments the counter by 1 and returns the new value.
+ *   - `visitorCount` returns the current value without incrementing.
+ *   - The counter lives in Script Properties (key VISITOR_COUNT) and uses
+ *     the same script lock as donation writes, so counts cannot be lost.
  *
  * Setup (5 minutes):
  *   1. Create a Google Sheet named "Akhawein Donations".
@@ -16,10 +25,18 @@
  *   5. In Vercel add:
  *        SHEETS_WEBHOOK_URL     = the /exec URL
  *        SHEETS_WEBHOOK_SECRET  = the secret from step 3
+ *
+ * Upgrading: after pasting a new version of this file, open
+ * Deploy → Manage deployments → edit (pencil) → Version: New version → Deploy.
+ * The /exec URL stays the same, so Vercel needs no changes.
  */
 
 const SHEET_NAME = 'Donations';
 const SECRET_PROPERTY = 'SHEETS_WEBHOOK_SECRET';
+// Base number shown before any real visits are recorded. Change this one
+// constant to adjust where the counter starts from.
+const VISITOR_SEED = 128500;
+const VISITOR_COUNT_PROPERTY = 'VISITOR_COUNT';
 
 const HEADERS = [
   'reference', 'created_at', 'updated_at', 'status', 'amount_egp', 'currency',
@@ -48,6 +65,10 @@ function doPost(e) {
         return out_(upsert_(body.record || {}));
       case 'get':
         return out_(get_(String(body.reference || '')));
+      case 'visit':
+        return out_(visit_());
+      case 'visitorCount':
+        return out_(visitorCount_());
       case 'health':
         return out_({ ok: true, sheet: SHEET_NAME, rows: rowCount_() });
       default:
@@ -65,7 +86,7 @@ function doGet(e) {
   if (!expected || !constantTimeEqual_(token, expected)) {
     return out_({ ok: false, error: 'unauthorized' });
   }
-  return out_({ ok: true, service: 'akhawein-donations', sheet: SHEET_NAME, rows: rowCount_() });
+  return out_({ ok: true, service: 'akhawein-donations', sheet: SHEET_NAME, rows: rowCount_(), visitors: visitorCount_().count });
 }
 
 /* ------------------------------------------------------------------ */
@@ -138,6 +159,33 @@ function get_(reference) {
     }
   }
   return { ok: false, error: 'not-found' };
+}
+
+/* ------------------------------------------------------------------ */
+/* Visitor counter                                                      */
+/* ------------------------------------------------------------------ */
+
+function visit_() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(5000)) return { ok: false, error: 'busy' };
+
+  try {
+    const props = PropertiesService.getScriptProperties();
+    let count = Number(props.getProperty(VISITOR_COUNT_PROPERTY));
+    if (!Number.isFinite(count) || count < VISITOR_SEED) count = VISITOR_SEED;
+    count += 1;
+    props.setProperty(VISITOR_COUNT_PROPERTY, String(count));
+    return { ok: true, count: count };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function visitorCount_() {
+  const props = PropertiesService.getScriptProperties();
+  let count = Number(props.getProperty(VISITOR_COUNT_PROPERTY));
+  if (!Number.isFinite(count) || count < VISITOR_SEED) count = VISITOR_SEED;
+  return { ok: true, count: count };
 }
 
 /* ------------------------------------------------------------------ */

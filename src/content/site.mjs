@@ -129,4 +129,5 @@ export const footer = {
   ],
   contactTitle: { ar: 'تواصل معنا', en: 'Contact us' },
   rights: { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },
+  visitors: { ar: 'عدد زوار الموقع', en: 'Website visitors' },
 };

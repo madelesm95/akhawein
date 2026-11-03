@@ -269,6 +269,11 @@ function siteFooter(ctx) {
         </ul>
       </div>
     </div>
+    <div class="visitor-counter" data-visitor-counter hidden>
+      ${icon(ctx, 'eye')}
+      <span class="visitor-counter__label">${ctx.t(footer.visitors)}</span>
+      <span class="visitor-counter__num" data-visitor-count dir="ltr">0</span>
+    </div>
     <div class="site-footer__legal">
       <p>© ${ctx.num(year, { useGrouping: false })} ${ctx.t(site.name)}. ${ctx.t(footer.rights)}.</p>
       <p>${ctx.t(site.registration)} · ${ctx.t(site.publicBenefit)}</p>

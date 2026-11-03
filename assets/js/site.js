@@ -29,6 +29,35 @@
     try { localStorage.setItem('lang', a.dataset.langSwitch); } catch { /* storage unavailable */ }
   }));
 
+  /* Visitor counter (footer) — increments once per session, then read-only */
+  const visitorWidget = $('[data-visitor-counter]');
+  if (visitorWidget) {
+    const numEl = $('[data-visitor-count]', visitorWidget);
+    const formatCount = new Intl.NumberFormat(doc.lang === 'ar' ? 'ar-EG' : 'en-US');
+    let alreadyCounted = false;
+    try { alreadyCounted = sessionStorage.getItem('akh_counted') === '1'; } catch { /* storage unavailable */ }
+    fetch('/api/visitors', { method: alreadyCounted ? 'GET' : 'POST', headers: { Accept: 'application/json' } })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!data || data.ok !== true || typeof data.count !== 'number' || !Number.isFinite(data.count)) return;
+        if (!alreadyCounted) { try { sessionStorage.setItem('akh_counted', '1'); } catch { /* storage unavailable */ } }
+        const target = Math.max(0, Math.floor(data.count));
+        visitorWidget.hidden = false;
+        if (!numEl || reduceMotion) { if (numEl) numEl.textContent = formatCount.format(target); return; }
+        const from = Math.max(0, target - 120);
+        const duration = 1500;
+        const started = performance.now();
+        const step = (now) => {
+          const p = Math.min(1, (now - started) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          numEl.textContent = formatCount.format(Math.round(from + (target - from) * eased));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      })
+      .catch(() => { /* counter unavailable — stays hidden */ });
+  }
+
   /* Sticky header shadow */
   const header = $('[data-header]');
   if (header) {
