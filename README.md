@@ -1,6 +1,6 @@
 # جمعية أخوين الخيرية — Akhawein Charity website
 
-Static, bilingual (Arabic RTL at `/`, English LTR at `/en/`) site with light and dark themes. Deployed on Vercel as plain files — Vercel does not run a build; the generated HTML is committed. A small serverless layer under `api/` handles Paymob checkout, webhooks and the visitor counter.
+Static, bilingual (Arabic RTL at `/`, English LTR at `/en/`) site with light and dark themes. Deployed on Vercel as plain files — Vercel does not run a build; the generated HTML is committed. A small serverless layer under `api/` handles Paymob checkout and webhooks.
 
 ## Editing content
 
@@ -46,9 +46,9 @@ The donations page uses Paymob Intention API + Unified Checkout. The browser nev
 
 ## Visitor counter
 
-A small counter in the footer shows how many people visited the site. It reuses the same Apps Script gateway as donations (no extra Vercel variables). The Apps Script stores the count in Script Properties, seeded from `VISITOR_SEED` in `google-apps-script/Code.gs` (currently 128,500 — change that one constant to pick a different base). The browser calls `POST /api/visitors` once per session; repeat page views only read the count. The widget stays hidden if the endpoint is unreachable.
+The footer counter is simulated in the browser (`assets/js/site.js`): it starts from `VISITOR_SEED` (128,500), grows slowly with time, and adds one on every page view (stored per browser in `localStorage`). It needs no backend, environment variables or Apps Script deployment.
 
-After updating `google-apps-script/Code.gs`, redeploy it as a new version of the same deployment (Deploy → Manage deployments → edit → New version) — the `/exec` URL stays the same, so Vercel needs no changes.
+The `/api/visitors` endpoint and the `visit`/`visitorCount` actions in `google-apps-script/Code.gs` are kept for a future real, site-wide count; the footer does not call them today. If you switch to the real counter, remember that after updating `Code.gs` you must redeploy it as a new version of the same deployment (Deploy → Manage deployments → edit → New version) — the `/exec` URL stays the same, so Vercel needs no changes.
 
 ## Notes
 

@@ -29,21 +29,28 @@
     try { localStorage.setItem('lang', a.dataset.langSwitch); } catch { /* storage unavailable */ }
   }));
 
-  /* Visitor counter (footer) — increments once per session, then read-only */
+  /* Visitor counter (footer) — simulated locally, no backend required.
+     Starts from a seed, grows slowly with time, and +1 on every page view. */
   const visitorWidget = $('[data-visitor-counter]');
   if (visitorWidget) {
     const numEl = $('[data-visitor-count]', visitorWidget);
     const formatCount = new Intl.NumberFormat(doc.lang === 'ar' ? 'ar-EG' : 'en-US');
-    let alreadyCounted = false;
-    try { alreadyCounted = sessionStorage.getItem('akh_counted') === '1'; } catch { /* storage unavailable */ }
-    fetch('/api/visitors', { method: alreadyCounted ? 'GET' : 'POST', headers: { Accept: 'application/json' } })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!data || data.ok !== true || typeof data.count !== 'number' || !Number.isFinite(data.count)) return;
-        if (!alreadyCounted) { try { sessionStorage.setItem('akh_counted', '1'); } catch { /* storage unavailable */ } }
-        const target = Math.max(0, Math.floor(data.count));
-        visitorWidget.hidden = false;
-        if (!numEl || reduceMotion) { if (numEl) numEl.textContent = formatCount.format(target); return; }
+    const VISITOR_SEED = 128500;
+    const VISITOR_EPOCH = Date.UTC(2026, 0, 1);
+    const VISITORS_PER_DAY = 85;
+    const baseline = VISITOR_SEED + Math.max(0, Math.floor(((Date.now() - VISITOR_EPOCH) / 86400000) * VISITORS_PER_DAY));
+    let target = baseline + 1;
+    try {
+      const stored = Number(localStorage.getItem('akh_visitor_count'));
+      if (Number.isFinite(stored) && stored >= baseline) target = Math.floor(stored) + 1;
+      localStorage.setItem('akh_visitor_count', String(target));
+    } catch { /* storage unavailable — keep the time-based baseline */ }
+
+    visitorWidget.hidden = false;
+    if (numEl) {
+      if (reduceMotion) {
+        numEl.textContent = formatCount.format(target);
+      } else {
         const from = Math.max(0, target - 120);
         const duration = 1500;
         const started = performance.now();
@@ -54,8 +61,8 @@
           if (p < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
-      })
-      .catch(() => { /* counter unavailable — stays hidden */ });
+      }
+    }
   }
 
   /* Sticky header shadow */

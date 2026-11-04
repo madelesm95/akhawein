@@ -7,9 +7,9 @@
  *   POST /api/visitors  → { ok: true, count }           (increment by 1)
  *
  * The counter itself lives in the Apps Script gateway (see
- * google-apps-script/Code.gs, seeded from VISITOR_SEED). The browser
- * calls POST once per session (sessionStorage guard in assets/js/site.js);
- * repeat page views within the same session only read the value.
+ * google-apps-script/Code.gs, seeded from VISITOR_SEED). The current footer
+ * widget uses a local simulated counter (assets/js/site.js) instead; this
+ * endpoint is kept for an optional real, site-wide count.
  */
 
 const { json, fail, clientIp, isSameOrigin, rateLimit } = require('../lib/http');
