@@ -6,14 +6,14 @@ import { ui } from '../content/site.mjs';
 const T = {
   title: { ar: 'الفروع والمراكز', en: 'Branches' },
   description: {
-    ar: 'عناوين وأرقام فروع ومراكز تدريب جمعية أخوين الخيرية في القاهرة الكبرى والشرقية والقليوبية.',
-    en: 'Addresses and phone numbers of Akhawein Charity’s branches and training centres in Greater Cairo, Sharqia and Qalyubia.',
+    ar: 'عناوين وأرقام فروع ومراكز تدريب جمعية أخوين الخيرية في القاهرة الكبرى والشرقية والقليوبية والفيوم.',
+    en: 'Addresses and phone numbers of Akhawein Charity’s branches and training centres in Greater Cairo, Sharqia, Qalyubia and Fayoum.',
   },
   eyebrow: { ar: 'شبكة الفروع', en: 'Our network' },
   heroTitle: { ar: 'الفروع ومراكز التدريب', en: 'Branches and training centres' },
   heroLead: {
-    ar: 'فروع ومراكز الجمعية في القاهرة الكبرى والشرقية والقليوبية، لتقديم الدعم والخدمات التعليمية والتنموية قريباً منك.',
-    en: 'Our branches and training centres in Greater Cairo, Sharqia and Qalyubia bring support, training and development services closer to you.',
+    ar: 'فروع ومراكز الجمعية في القاهرة الكبرى والشرقية والقليوبية والفيوم، لتقديم الدعم والخدمات التعليمية والتنموية قريباً منك.',
+    en: 'Our branches and training centres in Greater Cairo, Sharqia, Qalyubia and Fayoum bring support, training and development services closer to you.',
   },
   filterLabel: { ar: 'تصفية حسب المحافظة', en: 'Filter by governorate' },
   manager: { ar: 'الإدارة', en: 'Managed by' },
@@ -44,7 +44,7 @@ export default function branchesPage(ctx) {
   const body = html`
 ${pageHero(ctx, {
     eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crumbs: [{ label: T.title }], image: 'volunteers-team',
-    children: html`<div class="page-hero__stats"><span class="pill">${icon(ctx, 'building-2')}${ctx.num(branches.length)} ${ctx.t({ ar: 'فروع ومراكز', en: 'branches' })}</span><span class="pill">${icon(ctx, 'map-pin')}${ctx.t({ ar: 'القاهرة الكبرى والشرقية والقليوبية', en: 'Greater Cairo, Sharqia and Qalyubia' })}</span></div>`,
+    children: html`<div class="page-hero__stats"><span class="pill">${icon(ctx, 'building-2')}${ctx.num(branches.length)} ${ctx.t({ ar: 'فروع ومراكز', en: 'branches' })}</span><span class="pill">${icon(ctx, 'map-pin')}${ctx.t({ ar: 'القاهرة الكبرى والشرقية والقليوبية والفيوم', en: 'Greater Cairo, Sharqia, Qalyubia and Fayoum' })}</span></div>`,
   })}
 <section class="section">
   <div class="container">

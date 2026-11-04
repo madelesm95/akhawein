@@ -65,12 +65,25 @@
     }
   }
 
+  /* Unified rAF-throttled scroll updates — one pass per frame, no layout thrash */
+  const scrollUpdates = [];
+  let scrollRaf = 0;
+  const flushScroll = () => { scrollRaf = 0; for (const fn of scrollUpdates) fn(); };
+  const queueScroll = () => {
+    // If rAF is throttled (background/minimised window), update synchronously so
+    // the progress bar, header and back-to-top never get stale.
+    if (document.hidden) { flushScroll(); return; }
+    if (!scrollRaf) scrollRaf = requestAnimationFrame(flushScroll);
+  };
+  window.addEventListener('scroll', queueScroll, { passive: true });
+  window.addEventListener('resize', queueScroll, { passive: true });
+
   /* Sticky header shadow */
   const header = $('[data-header]');
   if (header) {
     const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-    requestAnimationFrame(onScroll);
-    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    scrollUpdates.push(onScroll);
   }
 
   /* Back to top button with scroll-progress ring */
@@ -83,8 +96,7 @@
       backToTop.classList.toggle('visible', window.scrollY > 320);
     };
     updateBackToTop();
-    window.addEventListener('scroll', updateBackToTop, { passive: true });
-    window.addEventListener('resize', updateBackToTop);
+    scrollUpdates.push(updateBackToTop);
     backToTop.addEventListener('click', (e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -272,7 +284,7 @@
         if (entry.target.dataset.count && !reduceMotion) animateCount(entry.target);
         io.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
     $$('.reveal, [data-count]').forEach((el) => io.observe(el));
     // Safety net: ensure content is never left invisible if IO is delayed/throttled.
     setTimeout(() => {
@@ -305,25 +317,24 @@
     });
   }
 
-  /* Site-wide reading progress */
+  /* Site-wide reading progress — transform-based, composited on the GPU */
   const progressBar = $('[data-scroll-progress] span');
   if (progressBar) {
     let progressMax = 0;
     const paintProgress = () => {
-      const doc = document.documentElement;
-      const y = window.scrollY || doc.scrollTop || 0;
-      const pct = progressMax > 8 ? Math.min(100, Math.max(0, (y / progressMax) * 100)) : 0;
-      progressBar.style.width = `${pct}%`;
+      const docEl = document.documentElement;
+      const y = window.scrollY || docEl.scrollTop || 0;
+      const pct = progressMax > 8 ? Math.min(1, Math.max(0, y / progressMax)) : 0;
+      progressBar.style.transform = `scaleX(${pct})`;
     };
     const measureProgress = () => {
       progressMax = document.documentElement.scrollHeight - window.innerHeight;
       paintProgress();
     };
     measureProgress();
-    window.addEventListener('scroll', paintProgress, { passive: true });
-    window.addEventListener('resize', measureProgress);
     window.addEventListener('load', measureProgress);
     if ('ResizeObserver' in window) new ResizeObserver(measureProgress).observe(document.body);
+    scrollUpdates.push(paintProgress);
   }
 
   const caseLinks = $$('[data-case-link]');

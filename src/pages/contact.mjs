@@ -40,8 +40,8 @@ const T = {
   fallbackLink: { ar: 'إرسال عبر واتساب', en: 'Send on WhatsApp' },
   note: { ar: 'نستخدم بياناتك للرد على رسالتك فقط.', en: 'We only use your details to reply to your message.' },
   subject: { ar: 'رسالة من موقع جمعية أخوين', en: 'Message from the Akhawein website' },
-  branchesTitle: { ar: 'لدينا ٧ فروع ومراكز', en: 'We have 7 branches' },
-  branchesText: { ar: 'في القاهرة الكبرى والشرقية والقليوبية. اعثر على أقرب فرع إليك.', en: 'Across Greater Cairo, Sharqia and Qalyubia. Find the one nearest you.' },
+  branchesTitle: { ar: 'لدينا ٨ فروع ومراكز', en: 'We have 8 branches' },
+  branchesText: { ar: 'في القاهرة الكبرى والشرقية والقليوبية والفيوم. اعثر على أقرب فرع إليك.', en: 'Across Greater Cairo, Sharqia, Qalyubia and Fayoum. Find the one nearest you.' },
   branchesBtn: { ar: 'عناوين الفروع', en: 'Find a branch' },
   mapTitle: { ar: 'خريطة المقر الرئيسي', en: 'Map of the head office' },
 };

@@ -50,7 +50,7 @@ export const nav = [
       { key: 'stories', label: { ar: 'قصص من الميدان', en: 'Stories from the field' }, desc: { ar: 'حالات حقيقية وملفاتها الطبية', en: 'Real cases and their medical files' }, icon: 'sparkles' },
       { key: 'protocols', label: { ar: 'الشراكات والاعتمادات', en: 'Partnerships' }, desc: { ar: 'البروتوكولات والاعتماد الدولي', en: 'Protocols and accreditation' }, icon: 'handshake' },
       { key: 'certificates', label: { ar: 'شهادات التقدير', en: 'Wall of honour' }, desc: { ar: 'سجل الشكر والتقدير', en: 'Certificates of appreciation' }, icon: 'award' },
-      { key: 'branches', label: { ar: 'الفروع والمراكز', en: 'Branches' }, desc: { ar: 'في القاهرة الكبرى والشرقية والقليوبية', en: 'Greater Cairo, Sharqia and Qalyubia' }, icon: 'map-pin' },
+      { key: 'branches', label: { ar: 'الفروع والمراكز', en: 'Branches' }, desc: { ar: 'في القاهرة الكبرى والشرقية والقليوبية والفيوم', en: 'Greater Cairo, Sharqia, Qalyubia and Fayoum' }, icon: 'map-pin' },
     ],
   },
   { key: 'activities', label: { ar: 'ميادين العمل', en: 'Our work' } },

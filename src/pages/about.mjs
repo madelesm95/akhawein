@@ -33,7 +33,7 @@ const T = {
   facts: [
     { v: { ar: '٢٠٠٩', en: '2009' }, l: { ar: 'سنة التأسيس والإشهار', en: 'Founded and registered' } },
     { v: { ar: '١٦٠ / ٢٠١٣', en: '160 / 2013' }, l: { ar: 'قرار النفع العام', en: 'Public-benefit decree' } },
-    { v: { ar: '٧', en: '7' }, l: { ar: 'فروع ومراكز في القاهرة الكبرى والشرقية والقليوبية', en: 'Branches in Greater Cairo, Sharqia and Qalyubia' } },
+    { v: { ar: '٨', en: '8' }, l: { ar: 'فروع ومراكز في القاهرة الكبرى والشرقية والقليوبية والفيوم', en: 'Branches in Greater Cairo, Sharqia, Qalyubia and Fayoum' } },
   ],
   ctaTitle: { ar: 'شاركونا مسيرة العطاء', en: 'Join us on this journey' },
   ctaText: { ar: 'مساهمتك تصنع فارقاً حقيقياً في حياة آلاف الأسر والأيتام في مصر.', en: 'Your support makes a real difference to thousands of families and orphans in Egypt.' },
