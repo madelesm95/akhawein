@@ -29,11 +29,11 @@ export function branchCard(ctx, b, headingLevel = 3, revealDelay) {
     <${h}>${ctx.t(b.name)}</${h}>
     <ul class="branch__lines">
       <li>${icon(ctx, 'navigation')}<span>${ctx.t(b.address)}</span></li>
-      <li>${icon(ctx, 'phone')}<span>${b.phones.map((p, i) => html`${i ? ' · ' : ''}<a href="${telHref(p)}" dir="ltr">${phoneDisplay(p)}</a>`)}</span></li>
+      ${b.phones?.length ? html`<li>${icon(ctx, 'phone')}<span>${b.phones.map((p, i) => html`${i ? ' · ' : ''}<a href="${telHref(p)}" dir="ltr">${phoneDisplay(p)}</a>`)}</span></li>` : ''}
       ${b.manager ? html`<li>${icon(ctx, 'user')}<span>${ctx.t(T.manager)}: ${ctx.t(b.manager)}</span></li>` : ''}
     </ul>
     <div class="branch__actions">
-      <a class="btn btn--secondary btn--sm" href="${telHref(b.phones[0])}">${icon(ctx, 'phone')}<span>${ctx.t(ui.call)}</span></a>
+      ${b.phones?.length ? html`<a class="btn btn--secondary btn--sm" href="${telHref(b.phones[0])}">${icon(ctx, 'phone')}<span>${ctx.t(ui.call)}</span></a>` : ''}
       <a class="btn btn--ghost btn--sm" href="${mapsUrl(b.mapQuery)}" target="_blank" rel="noopener">${icon(ctx, 'map-pin')}<span>${ctx.t(ui.directions)}</span></a>
     </div>
   </article>`;

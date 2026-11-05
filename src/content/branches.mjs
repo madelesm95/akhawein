@@ -2,6 +2,7 @@ export const governorates = [
   { id: 'cairo', label: { ar: 'القاهرة الكبرى', en: 'Greater Cairo' } },
   { id: 'sharqia', label: { ar: 'الشرقية', en: 'Sharqia' } },
   { id: 'qalyubia', label: { ar: 'القليوبية', en: 'Qalyubia' } },
+  { id: 'fayoum', label: { ar: 'الفيوم', en: 'Fayoum' } },
 ];
 
 export const branches = [
@@ -56,6 +57,13 @@ export const branches = [
     mapQuery: 'مول الحريري شارع الدروس فاقوس الشرقية',
     phones: ['01281769685'],
     manager: { ar: 'أ/ محمد معروف', en: 'Mr Mohamed Maarouf' },
+  },
+  {
+    id: 'fayoum', gov: 'fayoum',
+    name: { ar: 'مركز أخوين للتكوين المهني — الفيوم', en: 'Akhawein Vocational Training Centre — Fayoum' },
+    area: { ar: 'الفيوم', en: 'Fayoum' },
+    address: { ar: 'الفيوم — مصر', en: 'Fayoum, Egypt' },
+    mapQuery: '29.5225478,30.8870303',
   },
   {
     id: 'elite', gov: 'qalyubia',
