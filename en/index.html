@@ -21,7 +21,15 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://www.akhawein.org/assets/og-image.jpg">
 <meta property="og:url" content="https://www.akhawein.org/en">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Akhawein Charity — Together, we build hope">
+<meta property="og:locale:alternate" content="ar_EG">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Akhawein Charity | Together, we build hope">
+<meta name="twitter:description" content="Akhawein Charity is a registered Egyptian non-profit (No. 7702 of 2009) with public-benefit status, sponsoring orphans and supporting families in need with health and education programmes.">
+<meta name="twitter:image" content="https://www.akhawein.org/assets/og-image.jpg">
+<link rel="manifest" href="/assets/site.webmanifest">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/ibm-plex-sans-400-600-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -33,8 +41,8 @@
 @font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC7, U+10EC9-10EEE, U+10EF0-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
 @font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/ibm-plex-sans-arabic-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/amiri-400-verse.woff2) format('woff2');unicode-range:U+20, U+623-628, U+62a-62b, U+62d, U+62f, U+631, U+633, U+637, U+639, U+642-64b, U+64e-652, U+654-655, U+670, U+6d6, U+fd3e-fd3f}</style>
-<link rel="stylesheet" href="/assets/css/site.min.css?v=562fde2fcf">
-<script src="/assets/js/site.min.js?v=a96c7b4f82" defer></script>
+<link rel="stylesheet" href="/assets/css/site.min.css?v=27d4644c07">
+<script src="/assets/js/site.min.js?v=6cb8467b86" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NGO","name":"جمعية أخوين الخيرية","alternateName":"Akhawein Charity","url":"https://www.akhawein.org","logo":"https://www.akhawein.org/assets/icon-192.png","foundingDate":"2009","email":"info@akhawein.org","telephone":"+201281769685","address":{"@type":"PostalAddress","streetAddress":"24 Al-Obour Buildings, Salah Salem Road, Ground Floor, Heliopolis, Cairo","addressLocality":"Cairo","addressCountry":"EG"},"sameAs":["https://www.facebook.com/profile.php?id=100066869127004","https://www.instagram.com/akhawein6/","https://x.com/AAkhawein","https://www.youtube.com/@akhaweinakhawein"]}</script>
 </head>
@@ -112,7 +120,7 @@
 
 <section class="hero">
   <div class="container hero__grid">
-    <div class="hero__content reveal">
+    <div class="hero__content">
       <p class="hero__kicker">A hand that gives · a hand that builds · a hand that prays</p>
       <h1 class="hero__title">Together, we build <span class="hero__accent">hope</span></h1>
       <p class="hero__lead">Hand in hand, we improve the living, education and health conditions of families in need, sponsor orphans and care for the elderly across Egypt.</p>
@@ -229,7 +237,7 @@
       <span class="cause-card__tag"><svg class="i i-utensils" aria-hidden="true" focusable="false"><use href="#i-utensils"></use></svg>Feeding</span>
     </div>
     <div class="cause-card__body">
-      <h3 class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('meals')">Daily hot meals</a></h3>
+      <h3 class="cause-card__title"><a href="/en/causes#case-meals" onclick="openCauseModal('meals'); return false;">Daily hot meals</a></h3>
       <p class="cause-card__text">Our charity kitchens prepare fresh, balanced meals for families in need, day labourers and the elderly across Egypt.</p>
       
       <div class="cause-card__progress">
@@ -267,7 +275,7 @@
       <span class="cause-card__tag"><svg class="i i-shopping-basket" aria-hidden="true" focusable="false"><use href="#i-shopping-basket"></use></svg>Monthly parcel</span>
     </div>
     <div class="cause-card__body">
-      <h3 class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('food-parcels')">Food parcels for families</a></h3>
+      <h3 class="cause-card__title"><a href="/en/causes#case-food-parcels" onclick="openCauseModal('food-parcels'); return false;">Food parcels for families</a></h3>
       <p class="cause-card__text">Complete grocery parcels of essential staples, delivered monthly to families in villages and hamlets.</p>
       
       <div class="cause-card__progress">
@@ -305,7 +313,7 @@
       <span class="cause-card__tag"><svg class="i i-hand-heart" aria-hidden="true" focusable="false"><use href="#i-hand-heart"></use></svg>Lasting reward</span>
     </div>
     <div class="cause-card__body">
-      <h3 class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('orphans')">Sponsor orphans and the elderly</a></h3>
+      <h3 class="cause-card__title"><a href="/en/causes#case-orphans" onclick="openCauseModal('orphans'); return false;">Sponsor orphans and the elderly</a></h3>
       <p class="cause-card__text">Shelter, monthly sponsorship, food, and full medical and psychological care for orphans and the elderly.</p>
       
       <div class="cause-card__progress">
@@ -343,7 +351,7 @@
       <span class="cause-card__tag"><svg class="i i-gift" aria-hidden="true" focusable="false"><use href="#i-gift"></use></svg>A dignified start</span>
     </div>
     <div class="cause-card__body">
-      <h3 class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('brides')">Bridal preparation for orphan girls</a></h3>
+      <h3 class="cause-card__title"><a href="/en/causes#case-brides" onclick="openCauseModal('brides'); return false;">Bridal preparation for orphan girls</a></h3>
       <p class="cause-card__text">We help orphan girls begin married life with dignity by providing household appliances and essentials.</p>
       
       <div class="cause-card__progress">
@@ -381,7 +389,7 @@
       <span class="cause-card__tag"><svg class="i i-activity" aria-hidden="true" focusable="false"><use href="#i-activity"></use></svg>Saving lives</span>
     </div>
     <div class="cause-card__body">
-      <h3 class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('dialysis')">Dialysis sessions</a></h3>
+      <h3 class="cause-card__title"><a href="/en/causes#case-dialysis" onclick="openCauseModal('dialysis'); return false;">Dialysis sessions</a></h3>
       <p class="cause-card__text">We cover dialysis sessions, filters and medication for kidney patients who cannot afford treatment.</p>
       
       <div class="cause-card__progress">
@@ -419,7 +427,7 @@
       <span class="cause-card__tag"><svg class="i i-sparkles" aria-hidden="true" focusable="false"><use href="#i-sparkles"></use></svg>Hope and healing</span>
     </div>
     <div class="cause-card__body">
-      <h3 class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('omneya')">Omneya: wishes for children with cancer</a></h3>
+      <h3 class="cause-card__title"><a href="/en/causes#case-omneya" onclick="openCauseModal('omneya'); return false;">Omneya: wishes for children with cancer</a></h3>
       <p class="cause-card__text">Our “What do you wish for?” initiative grants the wishes of children fighting cancer during treatment.</p>
       
       <div class="cause-card__progress">
@@ -894,6 +902,10 @@
 <a href="#" class="floating-btn back-to-top" aria-label="Back to top" title="Back to top">
   <svg class="i" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 54.6 374.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" /></svg>
 </a>
+<div class="donate-bar" data-donate-bar aria-label="Quick donate">
+  <a class="btn btn--primary donate-bar__btn" href="/en/donations"><svg class="i i-heart" aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg><span>Donate</span></a>
+  <a class="donate-bar__call" href="tel:+201281769685" aria-label="Call the charity" title="Call the charity"><svg class="i i-phone" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg></a>
+</div>
 <script type="application/json" id="i18n">{"copied":"Copied to clipboard","copiedShort":"Copied","copy":"Copy","results":{"one":"{n} result","other":"{n} results"}}</script>
 </body>
 </html>
