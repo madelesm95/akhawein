@@ -1,4 +1,4 @@
-/* Akhawein Charity â€” design system. Light and dark themes via [data-theme] on <html>. */
+/* Akhawein Charity — design system. Light and dark themes via [data-theme] on <html>. */
 
 :root {
   --font-head: 'Alexandria', 'IBM Plex Sans Arabic', system-ui, sans-serif;
@@ -439,7 +439,7 @@ main:focus { outline: none; }
 .cause-card__account-label .i { width: 15px; height: 15px; color: var(--brand-text); }
 .cause-card .link-arrow { margin-top: 0.25rem; }
 
-/* Cause funding progress â€” deliberately identical to .cause-modal-progress-* below,
+/* Cause funding progress — deliberately identical to .cause-modal-progress-* below,
    so a cause looks the same on its card and in the details modal. */
 .cause-card__progress { margin-top: 0.85rem; }
 .cause-card__progress-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.45rem; font-size: 0.78rem; font-weight: 600; color: var(--muted); }
@@ -1003,7 +1003,7 @@ main:focus { outline: none; }
   .scroll-progress { display: none; }
 }
 
-/* Hero entrance choreography â€” staggered rise on load (reduced-motion safe via the global rule above) */
+/* Hero entrance choreography — staggered rise on load (reduced-motion safe via the global rule above) */
 .js .hero__kicker,
 .js .hero__title,
 .js .hero__lead,
@@ -1017,7 +1017,7 @@ main:focus { outline: none; }
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: none; }
 }
-/* Gentle float for the hero badge â€” the single perpetual accent, GPU-friendly */
+/* Gentle float for the hero badge — the single perpetual accent, GPU-friendly */
 @media (prefers-reduced-motion: no-preference) {
   .hero__badge { animation: badge-float 5s ease-in-out 1.2s infinite; }
   @keyframes badge-float {
@@ -1325,7 +1325,7 @@ main:focus { outline: none; }
 /* The payment page already offers WhatsApp in its help panel; keep the form clear. */
 body.page-donations .wa-fab { display: none; }
 
-/* Reading progress (site-wide) â€” transform-based, GPU-composited */
+/* Reading progress (site-wide) — transform-based, GPU-composited */
 .scroll-progress { position: fixed; top: 0; inset-inline: 0; z-index: 70; height: 3px; pointer-events: none; }
 .scroll-progress span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--brand), #f7b955); box-shadow: 0 0 10px color-mix(in srgb, var(--brand) 55%, transparent); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.08s linear; will-change: transform; }
 
@@ -1663,7 +1663,7 @@ body.page-donations .wa-fab { display: none; }
 
 
 /* ==========================================================================
-   Interactive Cause Details Modal (Ù†Ø§ÙØ°Ø© ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø­Ø§Ù„Ø© Ø§Ù„Ù…Ù†Ø¨Ø«Ù‚Ø© Ø§Ù„ÙØ®Ù…Ø©)
+   Interactive Cause Details Modal (نافذة تفاصيل الحالة المنبثقة الفخمة)
    ========================================================================== */
 .cause-modal-overlay {
   position: fixed;
@@ -2309,3 +2309,81 @@ body.page-donations .wa-fab { display: none; }
 [dir='rtl'] .hero::after { inset: -10% -10% auto auto; }
 .hero__grid { z-index: 1; }
 
+/* ---------- Sticky quick-donate bar (mobile / tablet) ---------- */
+.donate-bar {
+  position: fixed; z-index: 45;
+  inset-inline: 0.75rem; bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  display: none;
+  grid-template-columns: minmax(0, 1fr) auto; gap: 0.6rem; align-items: center;
+  padding: 0.6rem;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border: 1px solid var(--line); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  opacity: 0; transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.donate-bar__btn { min-height: 52px; font-size: 1.05rem; }
+.donate-bar__call {
+  display: inline-grid; place-items: center;
+  width: 52px; height: 52px; border-radius: var(--radius);
+  background: var(--navy); color: #fff;
+  transition: transform 0.2s var(--ease), background-color 0.2s;
+}
+.donate-bar__call:hover { transform: scale(1.05); background: var(--navy-2); }
+.donate-bar__call .i { width: 24px; height: 24px; }
+@media (max-width: 1100px) {
+  .donate-bar { display: grid; }
+  .donate-bar.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .wa-fab { bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px)); }
+  .back-to-top { bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+}
+body.page-donations .donate-bar { display: none; }
+@media print { .donate-bar { display: none !important; } }
+
+/* ---------- Donate quick steps strip ---------- */
+.donate-strip-wrap { margin-top: -2.5rem; position: relative; z-index: 2; }
+@media (max-width: 1100px) { .donate-strip-wrap { margin-top: -2rem; } }
+.donate-strip {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem;
+  margin-top: 1.75rem; padding: 0.85rem 1.1rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
+}
+.donate-strip__title { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0; font-size: 0.92rem; font-weight: 700; color: var(--brand-text); }
+.donate-strip__title .i { width: 18px; height: 18px; }
+.donate-strip ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; }
+.donate-strip li { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--ink-2); }
+.donate-strip li .i { width: 17px; height: 17px; color: var(--brand-text); }
+.donate-strip li + li::before {
+  content: ''; display: inline-block; width: 14px; height: 14px; margin-inline-end: 0.75rem;
+  border-top: 2px solid var(--line-2); border-inline-end: 2px solid var(--line-2);
+  transform: rotate(-45deg); opacity: 0.8;
+}
+[dir='rtl'] .donate-strip li + li::before { transform: rotate(135deg); }
+
+/* ---------- FAQ accordion ---------- */
+.faq-list { display: grid; gap: 0.75rem; max-width: 880px; }
+.faq-item {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); box-shadow: var(--shadow-sm);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.faq-item[open] { border-color: var(--line-2); box-shadow: var(--shadow-md); }
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.05rem 1.25rem; cursor: pointer; list-style: none;
+  font-family: var(--font-head); font-weight: 700; font-size: 1.02rem; color: var(--ink);
+  border-radius: var(--radius);
+  transition: color 0.2s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--brand-text); }
+.faq-item summary .i { width: 20px; height: 20px; color: var(--muted); transition: transform 0.3s var(--ease); flex-shrink: 0; }
+.faq-item[open] summary .i { transform: rotate(180deg); color: var(--brand-text); }
+.faq-item__body { padding: 0 1.25rem 1.1rem; border-top: 1px dashed var(--line); padding-top: 0.9rem; color: var(--ink-2); line-height: 1.8; }
+.faq-item__body p { margin: 0; }

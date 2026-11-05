@@ -106,6 +106,64 @@ const T = {
   receiptTitle: { ar: 'بعد التحويل أو الإيداع', en: 'After you transfer' },
   receiptText: { ar: 'أرسل لنا صورة إيصال التحويل على واتساب، لنسجّل تبرعك ونرسل لك الإيصال الرسمي.', en: 'Send us a photo of your transfer receipt on WhatsApp so we can record your gift and send you an official receipt.' },
   receiptBtn: { ar: 'إرسال الإيصال على واتساب', en: 'Send receipt on WhatsApp' },
+
+  stripTitle: { ar: 'تبرعك في ٣ خطوات', en: 'Give in 3 steps' },
+  strip: [
+    { icon: 'hand-heart', text: { ar: 'اختر الباب والمبلغ', en: 'Choose a cause & amount' } },
+    { icon: 'user', text: { ar: 'بياناتك في ثوانٍ', en: 'Your details in seconds' } },
+    { icon: 'shield-check', text: { ar: 'دفع آمن عبر Paymob', en: 'Secure Paymob checkout' } },
+  ],
+
+  faqEyebrow: { ar: 'كل ما تريد معرفته', en: 'Everything you need to know' },
+  faqTitle: { ar: 'أسئلة شائعة عن التبرع', en: 'Donation FAQs' },
+  faqLead: {
+    ar: 'إجابات سريعة عن أكثر الأسئلة التي تصلنا من المتبرعين — لو محتاج تفاصيل أكتر، كلّمنا على واتساب.',
+    en: 'Quick answers to the questions donors ask most — for more detail, message us on WhatsApp.',
+  },
+  faqs: [
+    {
+      q: { ar: 'أين تذهب تبرعاتي؟', en: 'Where does my donation go?' },
+      a: {
+        ar: 'تُوجَّه تبرعاتك إلى الباب الذي تختاره. الحساب العام يُصرف منه على الأسر الأولى بالرعاية وبرامج الجمعية، وهناك حسابات مخصصة لأبواب بعينها مثل الإطعام والشنط الغذائية وتجهيز العرائس والغسيل الكلوي وصك الأضحية.',
+        en: 'Donations go to the cause you choose. The general account funds first-priority families and the charity’s programmes, and dedicated accounts serve specific causes such as meals, food parcels, bridal preparation, dialysis and udhiyah.',
+      },
+    },
+    {
+      q: { ar: 'هل الدفع أونلاين آمن؟', en: 'Is online payment safe?' },
+      a: {
+        ar: 'نعم. يتم الدفع على صفحة Paymob الآمنة بتقنية 3-D Secure، ولا تمر بيانات بطاقتك على خوادم الجمعية إطلاقاً، وكل عملية دفع تُتحقق منها بتوقيع رقمي مشفّر قبل تسجيل الإيصال.',
+        en: 'Yes. Payment happens on Paymob’s secure page with 3-D Secure. Your card details never touch the charity’s servers, and every payment is verified with a signed webhook before the receipt is recorded.',
+      },
+    },
+    {
+      q: { ar: 'كيف أحصل على إيصال رسمي؟', en: 'How do I get an official receipt?' },
+      a: {
+        ar: 'الدفع أونلاين: يُسجَّل لكل تبرع رقم مرجعي، وإن أدخلت بريدك سنرسل لك إيصالاً عليه. التحويل البنكي: أرسل صورة الإيصال على واتساب الجمعية وسنرسل لك إيصالاً رسمياً.',
+        en: 'Online: every gift gets a reference number, and we email your receipt if you enter your address. Bank transfer: send a photo of the receipt on WhatsApp and we will send back your official receipt.',
+      },
+    },
+    {
+      q: { ar: 'هل يمكنني التبرع من خارج مصر؟', en: 'Can I donate from outside Egypt?' },
+      a: {
+        ar: 'نعم — استخدم رقم الآيبان (IBAN) المعروض مع كل حساب. وممكن أيضاً التحويل من أي تطبيق بنكي داخل مصر، أو الدفع أونلاين بالبطاقة.',
+        en: 'Yes — use the IBAN shown with each account. Inside Egypt you can also transfer from any banking app, or pay online by card.',
+      },
+    },
+    {
+      q: { ar: 'هل يمكنني تخصيص تبرعي لباب معين؟', en: 'Can I earmark my donation for a specific cause?' },
+      a: {
+        ar: 'نعم — اختر الباب في نموذج التبرع أونلاين، أو حوّل إلى الحساب المخصص للباب المطلوب من القائمة بالأسفل، وسيُوجَّه تبرعك بالكامل لهذا الباب.',
+        en: 'Yes — pick the cause in the online form, or transfer to the dedicated account for that cause listed below; your gift will be directed entirely to it.',
+      },
+    },
+    {
+      q: { ar: 'حدثت مشكلة في الدفع — ماذا أفعل؟', en: 'Something went wrong with the payment — what now?' },
+      a: {
+        ar: 'احتفظ بالرقم المرجعي (إن ظهر) وتواصل معنا عبر واتساب أو الهاتف أو البريد وسنساعدك في متابعة حالة الدفع أو استكماله.',
+        en: 'Keep the reference number (if shown) and contact us via WhatsApp, phone or email — we will help you track or complete the payment.',
+      },
+    },
+  ],
 };
 
 const accountIcon = { general: 'heart-handshake', aftercare: 'house-heart', meals: 'utensils', 'food-parcels': 'shopping-basket', udhiyah: 'gift', dialysis: 'activity', brides: 'sparkles' };
@@ -160,8 +218,26 @@ export default function donations(ctx) {
   const defaultCause = donationConfig.causes.find((c) => c.default) || donationConfig.causes[0];
   const waHelp = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(helpMsg)}`;
 
+    const faqLd = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: T.faqs.map((f) => ({
+        '@type': 'Question',
+        name: ctx.t(f.q),
+        acceptedAnswer: { '@type': 'Answer', text: ctx.t(f.a) },
+      })),
+    };
+
   const body = html`
 ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crumbs: [{ label: T.title }], image: 'meal-box' })}
+<div class="container donate-strip-wrap">
+  <div class="donate-strip">
+    <p class="donate-strip__title">${icon(ctx, 'heart-handshake')}<span>${ctx.t(T.stripTitle)}</span></p>
+    <ol aria-label="${ctx.t(T.stripTitle)}">
+      ${T.strip.map((s) => html`<li>${icon(ctx, s.icon)}<span>${ctx.t(s.text)}</span></li>`)}
+    </ol>
+  </div>
+</div>
 
 <section class="section section--tight donate-section" id="donate-online" aria-labelledby="donate-online-title">
   <div class="container">
@@ -352,6 +428,25 @@ ${pageHero(ctx, { eyebrow: T.eyebrow, title: T.heroTitle, lead: T.heroLead, crum
       <div class="notice reveal">${icon(ctx, 'globe')}<p>${raw(ctx.t(T.ibanNote))}</p></div>
       <div class="notice reveal" style="--reveal-delay: 80ms">${icon(ctx, 'shield-check')}<p>${raw(ctx.t(T.safety))}</p></div>
     </div>
+  </div>
+</section>
+
+<section class="section section--tight" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">${ctx.t(T.faqEyebrow)}</p>
+        <h2 class="section-title" id="faq-title">${ctx.t(T.faqTitle)}</h2>
+        <p class="lead">${ctx.t(T.faqLead)}</p>
+      </div>
+    </div>
+    <div class="faq-list">
+      ${T.faqs.map((f) => html`<details class="faq-item reveal">
+        <summary>${ctx.t(f.q)}${icon(ctx, 'chevron-down')}</summary>
+        <div class="faq-item__body"><p>${ctx.t(f.a)}</p></div>
+      </details>`)}
+    </div>
+    ${raw(`<script type="application/ld+json">${JSON.stringify(faqLd)}</script>`)}
   </div>
 </section>
 

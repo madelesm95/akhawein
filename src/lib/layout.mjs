@@ -390,6 +390,10 @@ ${footerHtml}
 <a href="#" class="floating-btn back-to-top" aria-label="${ctx.t({ ar: 'العودة إلى الأعلى', en: 'Back to top' })}" title="${ctx.t({ ar: 'العودة إلى الأعلى', en: 'Back to top' })}">
   <svg class="i" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 54.6 374.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" /></svg>
 </a>
+<div class="donate-bar" data-donate-bar aria-label="${ctx.t({ ar: 'تبرع سريع', en: 'Quick donate' })}">
+  <a class="btn btn--primary donate-bar__btn" href="${ctx.url('donations')}">${icon(ctx, 'heart')}<span>${ctx.t(ui.donate)}</span></a>
+  <a class="donate-bar__call" href="${telHref(site.phone)}" aria-label="${ctx.t({ ar: 'اتصل بالجمعية', en: 'Call the charity' })}" title="${ctx.t({ ar: 'اتصل بالجمعية', en: 'Call the charity' })}">${icon(ctx, 'phone')}</a>
+</div>
 <script type="application/json" id="i18n">${JSON.stringify(strings)}</script>
 </body>
 </html>

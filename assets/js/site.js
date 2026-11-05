@@ -103,6 +103,19 @@
     });
   }
 
+  /* Sticky quick-donate bar — visible after scrolling past the hero (mobile/tablet only; CSS gates desktop) */
+  const donateBar = $('[data-donate-bar]');
+  if (donateBar) {
+    const syncDonateBar = () => {
+      const y = window.scrollY || 0;
+      const shouldShow = y > 420;
+      const isShown = donateBar.classList.contains('is-visible');
+      if (shouldShow !== isShown) donateBar.classList.toggle('is-visible', shouldShow);
+    };
+    syncDonateBar();
+    scrollUpdates.push(syncDonateBar);
+  }
+
   /* Magnetic buttons — rAF-throttled, skipped for keyboard/touch/reduced motion */
   if (!reduceMotion && !window.matchMedia('(pointer: coarse)').matches) {
     $$('.btn--primary, .btn--secondary, .floating-btn, .wa-fab, .back-to-top, .menu-toggle, .copy-btn').forEach((btn) => {
