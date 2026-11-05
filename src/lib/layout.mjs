@@ -292,6 +292,19 @@ ${causeDetailsModal(ctx)}
 </footer>`;
 }
 
+function breadcrumbLd(ctx, canonical, title) {
+  const homeName = ctx.t(navItems.find((i) => i.key === 'home')?.label || { ar: 'الرئيسية', en: 'Home' });
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: homeName, item: site.origin + pagePath(ctx.lang, 'home') },
+      { '@type': 'ListItem', position: 2, name: ctx.t(title), item: canonical },
+    ],
+  };
+  return raw(`<script type="application/ld+json">${JSON.stringify(data)}</script>`);
+}
+
 function jsonLd(ctx) {
   const data = {
     '@context': 'https://schema.org',
@@ -348,7 +361,15 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ''}${canonical ? `<link
 <meta property="og:description" content="${html`${desc}`}">
 <meta property="og:locale" content="${ctx.lang === 'ar' ? 'ar_EG' : 'en_US'}">
 <meta property="og:image" content="${site.origin}/assets/og-image.jpg">
-${canonical ? `<meta property="og:url" content="${canonical}">\n` : ''}<meta name="twitter:card" content="summary_large_image">
+${canonical ? `<meta property="og:url" content="${canonical}">\n` : ''}<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${ctx.t({ ar: 'شعار جمعية أخوين الخيرية — معاً نصنع الأمل', en: 'Akhawein Charity — Together, we build hope' })}">
+<meta property="og:locale:alternate" content="${ctx.lang === 'ar' ? 'en_US' : 'ar_EG'}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${html`${fullTitle}`}">
+<meta name="twitter:description" content="${html`${desc}`}">
+<meta name="twitter:image" content="${site.origin}/assets/og-image.jpg">
+<link rel="manifest" href="/assets/site.webmanifest">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 ${PRELOAD_FONTS[ctx.lang].map((f) => `<link rel="preload" href="/assets/fonts/${f}" as="font" type="font/woff2" crossorigin>`).join('\n')}
@@ -356,7 +377,7 @@ ${PRELOAD_FONTS[ctx.lang].map((f) => `<link rel="preload" href="/assets/fonts/${
 <link rel="stylesheet" href="/assets/css/site.min.css?v=${assets.css}">
 <script src="/assets/js/site.min.js?v=${assets.js}" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
-${isHome ? jsonLd(ctx) : ''}
+${isHome ? jsonLd(ctx) : (canonical ? breadcrumbLd(ctx, canonical, title) : '')}
 </head>
 <body class="page-${ctx.page}">
 ${sprite}
