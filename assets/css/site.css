@@ -1,4 +1,4 @@
-/* Akhawein Charity — design system. Light and dark themes via [data-theme] on <html>. */
+/* Akhawein Charity â€” design system. Light and dark themes via [data-theme] on <html>. */
 
 :root {
   --font-head: 'Alexandria', 'IBM Plex Sans Arabic', system-ui, sans-serif;
@@ -158,17 +158,29 @@ main:focus { outline: none; }
 /* ---------- Buttons ---------- */
 .btn {
   --h: 48px;
+  position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
   min-height: var(--h); padding: 0 1.4rem;
   border: 1.5px solid transparent; border-radius: 999px;
   font-weight: 600; font-size: 1rem; line-height: 1.2; white-space: nowrap;
+  overflow: hidden;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
 }
+.btn:active { transform: scale(0.97); }
 .btn .i { width: 1.15em; height: 1.15em; }
 .btn--sm { --h: 42px; padding: 0 1.1rem; font-size: 0.95rem; }
 .btn--lg { --h: 56px; padding: 0 1.8rem; font-size: 1.05rem; }
 .btn--block { width: 100%; }
 .btn--primary { background: var(--brand); color: var(--on-brand); box-shadow: 0 8px 20px -10px rgba(232, 149, 47, 0.75); }
+.btn--primary::after {
+  content: ''; position: absolute; top: -60%; inset-inline-start: 0;
+  width: 40%; height: 220%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
+  transform: skewX(-18deg) translateX(-160%);
+  pointer-events: none;
+}
+.btn--primary:hover::after, .btn--primary:focus-visible::after { animation: btn-sheen 0.85s ease forwards; }
+@keyframes btn-sheen { to { transform: skewX(-18deg) translateX(340%); } }
 .btn--primary:hover { background: var(--brand-hover); transform: translateY(-1px); box-shadow: 0 12px 26px -12px rgba(232, 149, 47, 0.9); }
 .btn--secondary { background: var(--surface); border-color: var(--line-2); color: var(--ink); }
 .btn--secondary:hover { border-color: var(--brand); color: var(--brand-text); }
@@ -427,7 +439,7 @@ main:focus { outline: none; }
 .cause-card__account-label .i { width: 15px; height: 15px; color: var(--brand-text); }
 .cause-card .link-arrow { margin-top: 0.25rem; }
 
-/* Cause funding progress — deliberately identical to .cause-modal-progress-* below,
+/* Cause funding progress â€” deliberately identical to .cause-modal-progress-* below,
    so a cause looks the same on its card and in the details modal. */
 .cause-card__progress { margin-top: 0.85rem; }
 .cause-card__progress-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.45rem; font-size: 0.78rem; font-weight: 600; color: var(--muted); }
@@ -820,8 +832,10 @@ main:focus { outline: none; }
 .branch-group__title { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; font-size: 1.35rem; }
 .branch-group__title .count { display: grid; place-items: center; min-width: 30px; height: 30px; padding: 0 0.5rem; border-radius: 999px; background: var(--brand-soft); color: var(--brand-text); font-family: var(--font-body); font-size: 0.9rem; font-weight: 700; }
 .branch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
-.branch { display: flex; flex-direction: column; gap: 0.9rem; padding: 1.5rem; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); transition: border-color 0.25s, box-shadow 0.25s; }
+.branch { display: flex; flex-direction: column; gap: 0.9rem; padding: 1.5rem; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
 .branch:hover { border-color: var(--line-2); box-shadow: var(--shadow-md); }
+.branch__map { margin: -1.5rem -1.5rem 0; aspect-ratio: 16 / 9; max-height: 220px; border-bottom: 1px solid var(--line); background: var(--tint); }
+.branch__map iframe { display: block; width: 100%; height: 100%; border: 0; background: transparent; }
 .branch__area { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--brand-text); font-size: 0.85rem; font-weight: 600; }
 .branch__area .i { width: 16px; height: 16px; }
 .branch h3 { font-size: 1.2rem; }
@@ -866,7 +880,7 @@ main:focus { outline: none; }
 .map-embed, .site-footer__map { overflow: hidden; border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(255, 255, 255, 0.06); aspect-ratio: 16 / 9; }
 .site-footer__map { margin-bottom: 1.4rem; }
 .map-embed iframe, .site-footer__map iframe { width: 100%; height: 100%; border: 0; display: block; background: #0b1526; }
-[data-theme='dark'] .map-embed iframe, [data-theme='dark'] .site-footer__map iframe { filter: invert(0.9) hue-rotate(180deg) saturate(0.6) brightness(0.95); }
+[data-theme='dark'] .map-embed iframe, [data-theme='dark'] .site-footer__map iframe, [data-theme='dark'] .branch__map iframe { filter: invert(0.9) hue-rotate(180deg) saturate(0.6) brightness(0.95); }
 
 /* ---------- 404 ---------- */
 .not-found { padding-block: clamp(4rem, 12vw, 8rem); text-align: center; }
@@ -987,6 +1001,29 @@ main:focus { outline: none; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .js .reveal { opacity: 1; transform: none; }
   .scroll-progress { display: none; }
+}
+
+/* Hero entrance choreography â€” staggered rise on load (reduced-motion safe via the global rule above) */
+.js .hero__kicker,
+.js .hero__title,
+.js .hero__lead,
+.js .hero__actions,
+.js .hero__trust { animation: hero-rise 0.75s var(--ease) backwards; }
+.js .hero__title { animation-delay: 70ms; }
+.js .hero__lead { animation-delay: 150ms; }
+.js .hero__actions { animation-delay: 230ms; }
+.js .hero__trust { animation-delay: 310ms; }
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+/* Gentle float for the hero badge â€” the single perpetual accent, GPU-friendly */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__badge { animation: badge-float 5s ease-in-out 1.2s infinite; }
+  @keyframes badge-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
 }
 
 /* ---------- Responsive ---------- */
@@ -1288,7 +1325,7 @@ main:focus { outline: none; }
 /* The payment page already offers WhatsApp in its help panel; keep the form clear. */
 body.page-donations .wa-fab { display: none; }
 
-/* Reading progress (site-wide) — transform-based, GPU-composited */
+/* Reading progress (site-wide) â€” transform-based, GPU-composited */
 .scroll-progress { position: fixed; top: 0; inset-inline: 0; z-index: 70; height: 3px; pointer-events: none; }
 .scroll-progress span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--brand), #f7b955); box-shadow: 0 0 10px color-mix(in srgb, var(--brand) 55%, transparent); transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.08s linear; will-change: transform; }
 
@@ -1626,7 +1663,7 @@ body.page-donations .wa-fab { display: none; }
 
 
 /* ==========================================================================
-   Interactive Cause Details Modal (نافذة تفاصيل الحالة المنبثقة الفخمة)
+   Interactive Cause Details Modal (Ù†Ø§ÙØ°Ø© ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø­Ø§Ù„Ø© Ø§Ù„Ù…Ù†Ø¨Ø«Ù‚Ø© Ø§Ù„ÙØ®Ù…Ø©)
    ========================================================================== */
 .cause-modal-overlay {
   position: fixed;
@@ -2259,4 +2296,16 @@ body.page-donations .wa-fab { display: none; }
   }
 }
 
+
+
+/* ---------- Home hero pattern (matches subpage heroes) ---------- */
+.hero::after {
+  content: ''; position: absolute; inset: -10% auto auto -10%;
+  width: min(44vw, 560px); aspect-ratio: 1;
+  background-image: var(--pattern); opacity: 0.35; pointer-events: none; z-index: -0;
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
+  mask-image: radial-gradient(closest-side, #000, transparent);
+}
+[dir='rtl'] .hero::after { inset: -10% -10% auto auto; }
+.hero__grid { z-index: 1; }
 

@@ -78,7 +78,7 @@
   window.addEventListener('scroll', queueScroll, { passive: true });
   window.addEventListener('resize', queueScroll, { passive: true });
 
-  /* Sticky header shadow */
+  /* Sticky header shadow — header always stays visible while scrolling */
   const header = $('[data-header]');
   if (header) {
     const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
@@ -103,21 +103,28 @@
     });
   }
 
-  /* Magnetic buttons (v9uz parity) */
+  /* Magnetic buttons — rAF-throttled, skipped for keyboard/touch/reduced motion */
   if (!reduceMotion && !window.matchMedia('(pointer: coarse)').matches) {
     $$('.btn--primary, .btn--secondary, .floating-btn, .wa-fab, .back-to-top, .menu-toggle, .copy-btn').forEach((btn) => {
+      let raf = 0, tx = 0, ty = 0;
       btn.addEventListener('mousemove', (e) => {
         const r = btn.getBoundingClientRect();
-        const x = e.clientX - r.left - r.width / 2;
-        const y = e.clientY - r.top - r.height / 2;
-        btn.style.transform = `translate(${(x * 0.22).toFixed(1)}px, ${(y * 0.22).toFixed(1)}px)`;
+        tx = (e.clientX - r.left - r.width / 2) * 0.22;
+        ty = (e.clientY - r.top - r.height / 2) * 0.22;
+        if (!raf) raf = requestAnimationFrame(() => {
+          raf = 0;
+          btn.style.transform = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px)`;
+        });
       });
-      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      btn.addEventListener('mouseleave', () => {
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        btn.style.transform = '';
+      });
     });
   }
 
-  /* Ripple effect on buttons (v9uz parity) */
-  $$('.btn, [data-filter]').forEach((target) => {
+  /* Ripple effect — skipped entirely for reduced-motion users */
+  if (!reduceMotion) $$('.btn, [data-filter]').forEach((target) => {
     target.style.position = target.style.position || 'relative';
     target.style.overflow = 'hidden';
     target.addEventListener('click', function (e) {
@@ -136,24 +143,31 @@
     });
   });
 
-  /* Hero parallax (v9uz parity) */
+  /* Hero parallax — rAF runs only while the hero is on screen and the pointer is settling */
   if (!reduceMotion && !window.matchMedia('(pointer: coarse)').matches) {
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero__content');
     if (hero && heroContent) {
-      let mx = 0, my = 0, cx = 0, cy = 0;
-      hero.addEventListener('mousemove', (e) => {
-        const r = hero.getBoundingClientRect();
-        mx = ((e.clientX - r.left) / r.width - 0.5) * 20;
-        my = ((e.clientY - r.top) / r.height - 0.5) * 15;
-      });
-      const tick = () => {
+      let mx = 0, my = 0, cx = 0, cy = 0, raf = 0, heroVisible = true;
+      const settle = () => {
+        raf = 0;
         cx += (mx - cx) * 0.08;
         cy += (my - cy) * 0.08;
         heroContent.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`;
-        requestAnimationFrame(tick);
+        if (Math.abs(mx - cx) > 0.1 || Math.abs(my - cy) > 0.1) raf = requestAnimationFrame(settle);
       };
-      requestAnimationFrame(tick);
+      const kick = () => { if (heroVisible && !raf) raf = requestAnimationFrame(settle); };
+      const retarget = (e) => {
+        const r = hero.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width - 0.5) * 20;
+        my = ((e.clientY - r.top) / r.height - 0.5) * 15;
+        kick();
+      };
+      hero.addEventListener('mousemove', retarget, { passive: true });
+      hero.addEventListener('mouseleave', () => { mx = 0; my = 0; kick(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; if (heroVisible) kick(); }).observe(hero);
+      }
     }
   }
 
@@ -296,22 +310,27 @@
     $$('.reveal').forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* 3D tilt on hover for cards (professional, subtle) */
-  if (!reduceMotion) {
+  /* 3D tilt on hover for cards — desktop pointers only, rAF-throttled */
+  if (!reduceMotion && !window.matchMedia('(pointer: coarse)').matches) {
     const tiltSelectors = '.cause-card, .program-card, .branch, .cert, .story-mini, .stat, .fact, .principle, .member, .story-step, .caf-card, .honors-card, .legal-card, .governance, .page-hero__figure, .hero__photo, .story__media';
     const tiltCards = $$(tiltSelectors);
-    const maxTilt = 7;
+    const maxTilt = 5;
     tiltCards.forEach((card) => {
+      let raf = 0, rx = 0, ry = 0;
       card.style.transition = 'transform 0.14s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease)';
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width;
         const y = (e.clientY - r.top) / r.height;
-        const ry = (x - 0.5) * (maxTilt * 2);
-        const rx = (0.5 - y) * (maxTilt * 2);
-        card.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-4px)`;
+        ry = (x - 0.5) * (maxTilt * 2);
+        rx = (0.5 - y) * (maxTilt * 2);
+        if (!raf) raf = requestAnimationFrame(() => {
+          raf = 0;
+          card.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-4px)`;
+        });
       }, { passive: true });
       card.addEventListener('mouseleave', () => {
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
         card.style.transform = '';
       });
     });

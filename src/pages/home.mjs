@@ -93,7 +93,7 @@ export default function home(ctx) {
   const body = html`
 <section class="hero">
   <div class="container hero__grid">
-    <div class="hero__content reveal">
+    <div class="hero__content">
       <p class="hero__kicker">${ctx.t(T.kicker)}</p>
       <h1 class="hero__title">${ctx.t(T.heroTitleA)} <span class="hero__accent">${ctx.t(T.heroTitleB)}</span></h1>
       <p class="hero__lead">${ctx.t(T.heroLead)}</p>
