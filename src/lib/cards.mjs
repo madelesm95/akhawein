@@ -24,7 +24,7 @@ export function causeCard(ctx, cause, { headingLevel = 3, withBeneficiaries = fa
       <span class="cause-card__tag">${icon(ctx, cause.icon)}${ctx.t(cause.tag)}</span>
     </div>
     <div class="cause-card__body">
-      <${h} class="cause-card__title"><a href="javascript:void(0)" onclick="openCauseModal('${cause.id}')">${ctx.t(cause.title)}</a></${h}>
+      <${h} class="cause-card__title"><a href="${ctx.url('causes', `case-${cause.id}`)}" onclick="openCauseModal('${cause.id}'); return false;">${ctx.t(cause.title)}</a></${h}>
       <p class="cause-card__text">${ctx.t(cause.summary)}</p>${withBeneficiaries && cause.beneficiaries?.length
         ? html`
       <div class="cause-card__beneficiaries">
