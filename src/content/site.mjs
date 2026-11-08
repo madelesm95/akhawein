@@ -126,6 +126,15 @@ export const footer = {
         { key: 'contact', label: { ar: 'تطوع أو اطلب مساعدة', en: 'Volunteer or ask for help' } },
       ],
     },
+    {
+      title: { ar: 'السياسات', en: 'Policies' },
+      links: [
+        { key: 'privacy', label: { ar: 'سياسة الخصوصية', en: 'Privacy Policy' } },
+        { key: 'refund', label: { ar: 'سياسة الاسترداد والإلغاء', en: 'Refund & Cancellation' } },
+        { key: 'delivery', label: { ar: 'سياسة التوصيل والشحن', en: 'Delivery & Shipping' } },
+        { key: 'contact', label: { ar: 'تواصل معنا', en: 'Contact' } },
+      ],
+    },
   ],
   contactTitle: { ar: 'تواصل معنا', en: 'Contact us' },
   rights: { ar: 'جميع الحقوق محفوظة', en: 'All rights reserved' },

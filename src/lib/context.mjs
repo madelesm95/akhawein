@@ -10,6 +10,9 @@ export const PAGES = {
   certificates: 'certificates',
   branches: 'branches',
   contact: 'contact',
+  privacy: 'privacy',
+  refund: 'refund',
+  delivery: 'delivery',
 };
 
 export function pagePath(lang, key, hash = '') {

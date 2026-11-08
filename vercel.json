@@ -337,6 +337,18 @@
       "destination": "/contact.html"
     },
     {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/refund",
+      "destination": "/refund.html"
+    },
+    {
+      "source": "/delivery",
+      "destination": "/delivery.html"
+    },
+    {
       "source": "/الرئيسية",
       "destination": "/index.html"
     },

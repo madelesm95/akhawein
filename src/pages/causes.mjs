@@ -14,8 +14,8 @@ const T = {
   eyebrow: { ar: 'أبواب الخير مفتوحة', en: 'Ways to give' },
   heroTitle: { ar: 'حالات ومشاريع التبرع', en: 'Choose a cause to support' },
   heroLead: {
-    ar: 'اختر الحالة أو المشروع الذي تحب أن تدعمه، وحوّل مباشرة إلى حسابه البنكي الرسمي لدى بنك مصر.',
-    en: 'Pick the cause you would like to support and transfer directly to its official Banque Misr account.',
+    ar: 'اختر الحالة أو المشروع الذي تحب أن تدعمه، وحوّل مباشرة إلى حسابه البنكي الرسمي لدى بنك مصر. جميع الأسهم والأسعار بالجنيه المصري (EGP).',
+    en: 'Pick the cause you would like to support and transfer directly to its official Banque Misr account. All shares and amounts are in Egyptian Pounds (EGP).',
   },
   howTitle: { ar: 'كيف يصل تبرعك؟', en: 'How your gift arrives' },
   howText: {

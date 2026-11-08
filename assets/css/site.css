@@ -728,6 +728,39 @@ main:focus { outline: none; }
 .governance__facts strong { font-family: var(--font-head); font-size: 1.5rem; color: var(--brand-text); min-width: 5.5rem; }
 .governance__facts span { color: var(--ink-2); font-size: 0.95rem; line-height: 1.5; }
 
+/* ---------- Policy pages ---------- */
+.policy-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(2rem, 4vw, 3rem); align-items: start; }
+.policy-content { max-width: 860px; padding: clamp(1.6rem, 3.5vw, 2.6rem); border-radius: var(--radius-xl); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-md); }
+.policy-updated { display: inline-flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.45rem 0.95rem; margin: 0 0 1.5rem; border-radius: 999px; background: var(--brand-soft); color: var(--brand-text); font-size: 0.85rem; font-weight: 600; }
+.policy-section { padding: 1.4rem 0; border-bottom: 1px dashed var(--line-2); }
+.policy-section:last-of-type { border-bottom: 0; }
+.policy-section h2 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin: 0 0 0.8rem; line-height: 1.45; }
+.policy-section p { margin: 0 0 0.85rem; color: var(--ink-2); line-height: 1.85; }
+.policy-section p:last-child { margin-bottom: 0; }
+.policy-list { display: grid; gap: 0.6rem; margin: 0.4rem 0 0.9rem; padding: 0; list-style: none; }
+.policy-list li { position: relative; padding-inline-start: 1.6rem; color: var(--ink-2); line-height: 1.8; }
+.policy-list li::before { content: ''; position: absolute; inset-inline-start: 0.35rem; top: 0.85em; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+.policy-list a { color: var(--brand-text); font-weight: 600; }
+.policy-list a:hover { text-decoration: underline; }
+.policy-contact { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: var(--radius-lg); background: var(--tint); border: 1px solid var(--line); }
+.policy-contact h2 { font-size: 1.2rem; margin: 0 0 0.75rem; }
+.policy-contact p { margin: 0.6rem 0 0; color: var(--ink-2); line-height: 1.8; }
+.policy-contact .policy-list { margin: 0; }
+.policy-aside { position: sticky; top: 110px; display: grid; gap: 1rem; }
+.policy-card { padding: 1.4rem 1.5rem; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.policy-card h2 { font-size: 1.05rem; margin: 0 0 0.8rem; }
+.policy-card ul { display: grid; gap: 0.55rem; }
+.policy-card a { color: var(--ink-2); font-weight: 500; line-height: 1.6; }
+.policy-card a:hover { color: var(--brand-text); }
+.policy-card p { margin: 0 0 0.45rem; color: var(--muted); line-height: 1.7; }
+.policy-card p a { color: var(--brand-text); font-weight: 600; }
+.policy-card .btn { margin-top: 0.7rem; }
+@media (max-width: 900px) {
+  .policy-layout { grid-template-columns: 1fr; }
+  .policy-aside { position: static; }
+  .policy-content { max-width: none; }
+}
+
 /* ---------- Donations page ---------- */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: step; }
 .step { position: relative; padding: 1.6rem; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
@@ -894,7 +927,7 @@ main:focus { outline: none; }
 /* ---------- Footer ---------- */
 .site-footer { position: relative; padding-top: clamp(3.5rem, 7vw, 5rem); background: var(--navy-deep); color: var(--on-navy-muted); font-size: 0.97rem; overflow: hidden; isolation: isolate; }
 .site-footer::before { content: ''; position: absolute; inset: 0; background-image: var(--pattern); opacity: 0.05; z-index: -1; }
-.site-footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: clamp(2rem, 4vw, 3rem); padding-bottom: 3rem; }
+.site-footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.3fr; gap: clamp(2rem, 4vw, 3rem); padding-bottom: 3rem; }
 .brand--footer .brand__name { color: #fff; }
 .brand--footer .brand__meta { color: var(--on-navy-muted); }
 .brand--footer .brand__logo { height: 52px; padding: 4px 6px; border-radius: 12px; background: #fff; }

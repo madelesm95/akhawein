@@ -15,8 +15,8 @@ const T = {
   eyebrow: { ar: 'عطاء يدوم وأجر لا ينقطع', en: 'Giving that lasts' },
   heroTitle: { ar: 'تبرّع الآن — بسهولة وأمان', en: 'Donate now — simply and securely' },
   heroLead: {
-    ar: 'اختر الباب والمبلغ، وأتمّ تبرعك في أقل من دقيقة بالبطاقة أو المحفظة الإلكترونية أو فوري، أو حوّل عبر حسابات الجمعية المعتمدة لدى بنك مصر.',
-    en: 'Choose a cause and an amount and complete your gift in under a minute by card, mobile wallet or Fawry — or transfer to our approved Banque Misr accounts.',
+    ar: 'اختر الباب والمبلغ، وأتمّ تبرعك في أقل من دقيقة بالبطاقة أو المحفظة الإلكترونية أو فوري، أو حوّل عبر حسابات الجمعية المعتمدة لدى بنك مصر. جميع الأسعار والمبالغ بالجنيه المصري (EGP).',
+    en: 'Choose a cause and an amount and complete your gift in under a minute by card, mobile wallet or Fawry — or transfer to our approved Banque Misr accounts. All prices and amounts are in Egyptian Pounds (EGP).',
   },
 
   onlineEyebrow: { ar: 'تبرع إلكتروني آمن', en: 'Secure online giving' },

@@ -25,6 +25,9 @@ export function branchCard(ctx, b, headingLevel = 3, revealDelay) {
   const h = `h${headingLevel}`;
   const style = revealDelay != null ? ` style="--reveal-delay: ${revealDelay}ms"` : '';
   return html`<article class="branch reveal"${style} data-cats="${b.gov}">
+    <div class="branch__map">
+      <iframe title="${ctx.t(b.name)} — ${ctx.t({ ar: 'خريطة الموقع', en: 'location map' })}" src="https://maps.google.com/maps?q=${encodeURIComponent(b.mapQuery)}&t=m&z=16&output=embed&hl=${ctx.lang}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
     <p class="branch__area">${icon(ctx, 'map-pin')}${ctx.t(b.area)}</p>
     <${h}>${ctx.t(b.name)}</${h}>
     <ul class="branch__lines">
