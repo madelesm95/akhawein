@@ -35,7 +35,7 @@
   if (visitorWidget) {
     const numEl = $('[data-visitor-count]', visitorWidget);
     const formatCount = new Intl.NumberFormat(doc.lang === 'ar' ? 'ar-EG' : 'en-US');
-    const VISITOR_SEED = 128500;
+    const VISITOR_SEED = 1002500;
     const VISITOR_EPOCH = Date.UTC(2026, 0, 1);
     const VISITORS_PER_DAY = 85;
     const baseline = VISITOR_SEED + Math.max(0, Math.floor(((Date.now() - VISITOR_EPOCH) / 86400000) * VISITORS_PER_DAY));

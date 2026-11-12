@@ -24,7 +24,7 @@ const {
 // missing or not yet redeployed, serve a clearly-flagged simulated count so
 // the footer widget can be previewed. The number resets on every restart;
 // it is not a real count and is never shown in production.
-const DEV_SEED = 128500;
+const DEV_SEED = 1002500;
 let devVisitors = DEV_SEED;
 const devFallback = !process.env.VERCEL && process.env.NODE_ENV !== 'production';
 

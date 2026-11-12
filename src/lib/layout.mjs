@@ -270,7 +270,7 @@ function siteFooter(ctx) {
       </div>
     </div>
     <div class="visitor-counter" data-visitor-counter hidden>
-      ${icon(ctx, 'eye')}
+      <span class="visitor-counter__icon" aria-hidden="true">${icon(ctx, 'eye')}</span>
       <span class="visitor-counter__label">${ctx.t(footer.visitors)}</span>
       <span class="visitor-counter__num" data-visitor-count dir="ltr">0</span>
     </div>

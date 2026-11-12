@@ -35,7 +35,7 @@ const SHEET_NAME = 'Donations';
 const SECRET_PROPERTY = 'SHEETS_WEBHOOK_SECRET';
 // Base number shown before any real visits are recorded. Change this one
 // constant to adjust where the counter starts from.
-const VISITOR_SEED = 128500;
+const VISITOR_SEED = 1002500;
 const VISITOR_COUNT_PROPERTY = 'VISITOR_COUNT';
 
 const HEADERS = [

@@ -46,7 +46,7 @@ The donations page uses Paymob Intention API + Unified Checkout. The browser nev
 
 ## Visitor counter
 
-The footer counter is simulated in the browser (`assets/js/site.js`): it starts from `VISITOR_SEED` (128,500), grows slowly with time, and adds one on every page view (stored per browser in `localStorage`). It needs no backend, environment variables or Apps Script deployment.
+The footer counter is simulated in the browser (`assets/js/site.js`): it starts from `VISITOR_SEED` (1,002,500), grows slowly with time, and adds one on every page view (stored per browser in `localStorage`). It needs no backend, environment variables or Apps Script deployment.
 
 The `/api/visitors` endpoint and the `visit`/`visitorCount` actions in `google-apps-script/Code.gs` are kept for a future real, site-wide count; the footer does not call them today. If you switch to the real counter, remember that after updating `Code.gs` you must redeploy it as a new version of the same deployment (Deploy → Manage deployments → edit → New version) — the `/exec` URL stays the same, so Vercel needs no changes.
 
