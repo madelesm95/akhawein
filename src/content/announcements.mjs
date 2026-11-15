@@ -33,8 +33,21 @@ export const announcements = {
   // The /admin panel can insert these rows into an empty sheet in one click.
   fallback: [
     {
-      id: 'ann-gaza-relief',
+      id: 'ann-afghani-protocol',
       active: true,
+      priority: 100,
+      tag: { ar: 'بروتوكول تعاون', en: 'Partnership' },
+      text: {
+        ar: 'تم اليوم توقيع بروتوكول تعاون بين جمعية اخوين الخيرية وجمعية جمال الدين الافغاني',
+        en: 'A cooperation protocol was signed today between Akhawein Charity and Jamal Al-Din Al-Afghani Association',
+      },
+      url: '/protocols',
+      linkLabel: { ar: 'التفاصيل', en: 'Details' },
+      tone: 'gold',
+    },
+    {
+      id: 'ann-gaza-relief',
+      active: false,
       priority: 100,
       tag: { ar: 'إغاثة', en: 'Relief' },
       text: {
@@ -47,7 +60,7 @@ export const announcements = {
     },
     {
       id: 'ann-relief',
-      active: true,
+      active: false,
       priority: 95,
       tag: { ar: 'فك كرب', en: 'Relief' },
       text: {
@@ -60,7 +73,7 @@ export const announcements = {
     },
     {
       id: 'ann-orphans',
-      active: true,
+      active: false,
       priority: 90,
       tag: { ar: 'كفالة', en: 'Sponsorship' },
       text: {
@@ -73,7 +86,7 @@ export const announcements = {
     },
     {
       id: 'ann-meals',
-      active: true,
+      active: false,
       priority: 85,
       tag: { ar: 'إطعام', en: 'Hot meals' },
       text: {
@@ -86,7 +99,7 @@ export const announcements = {
     },
     {
       id: 'ann-dialysis',
-      active: true,
+      active: false,
       priority: 80,
       tag: { ar: 'صحة', en: 'Health' },
       text: {
@@ -99,7 +112,7 @@ export const announcements = {
     },
     {
       id: 'ann-brides',
-      active: true,
+      active: false,
       priority: 75,
       tag: { ar: 'عفاف وستر', en: 'Brides' },
       text: {
@@ -112,7 +125,7 @@ export const announcements = {
     },
     {
       id: 'ann-winter',
-      active: true,
+      active: false,
       priority: 70,
       tag: { ar: 'شتاء', en: 'Winter' },
       text: {
@@ -125,7 +138,7 @@ export const announcements = {
     },
     {
       id: 'ann-mobility',
-      active: true,
+      active: false,
       priority: 65,
       tag: { ar: 'ذوو الهمم', en: 'Mobility' },
       text: {
@@ -138,7 +151,7 @@ export const announcements = {
     },
     {
       id: 'ann-story-moayad',
-      active: true,
+      active: false,
       priority: 60,
       tag: { ar: 'قصة أمل', en: 'Story' },
       text: {
@@ -151,7 +164,7 @@ export const announcements = {
     },
     {
       id: 'ann-omneya',
-      active: true,
+      active: false,
       priority: 55,
       tag: { ar: 'أمنية', en: 'Wish' },
       text: {
@@ -164,7 +177,7 @@ export const announcements = {
     },
     {
       id: 'ann-food-parcels',
-      active: true,
+      active: false,
       priority: 50,
       tag: { ar: 'كرتونة الخير', en: 'Food parcel' },
       text: {
@@ -177,7 +190,7 @@ export const announcements = {
     },
     {
       id: 'ann-story-saber',
-      active: true,
+      active: false,
       priority: 45,
       tag: { ar: 'قصة نجاح', en: 'Story' },
       text: {

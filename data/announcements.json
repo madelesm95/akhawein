@@ -1,5 +1,21 @@
 [
   {
+    "id": "ann-afghani-protocol",
+    "active": "TRUE",
+    "start": "",
+    "end": "",
+    "priority": "100",
+    "tag_ar": "بروتوكول تعاون",
+    "tag_en": "Partnership",
+    "text_ar": "تم اليوم توقيع بروتوكول تعاون بين جمعية اخوين الخيرية وجمعية جمال الدين الافغاني",
+    "text_en": "A cooperation protocol was signed today between Akhawein Charity and Jamal Al-Din Al-Afghani Association",
+    "url": "/protocols",
+    "link_ar": "التفاصيل",
+    "link_en": "Details",
+    "tone": "gold",
+    "updated_at": "2026-11-15T21:03:04.843Z"
+  },
+  {
     "id": "ann-gaza-relief",
     "active": "FALSE",
     "start": "",
@@ -17,7 +33,7 @@
   },
   {
     "id": "ann-relief",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "95",
@@ -29,11 +45,11 @@
     "link_ar": "فرّج كربة",
     "link_en": "Relieve distress",
     "tone": "red",
-    "updated_at": "2026-11-15T18:02:18.250Z"
+    "updated_at": "2026-11-15T21:02:34.578Z"
   },
   {
     "id": "ann-orphans",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "90",
@@ -45,11 +61,11 @@
     "link_ar": "اكفل يتيمًا",
     "link_en": "Sponsor a child",
     "tone": "gold",
-    "updated_at": "2026-11-15T18:02:39.417Z"
+    "updated_at": "2026-11-15T21:02:36.886Z"
   },
   {
     "id": "ann-meals",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "85",
@@ -61,11 +77,11 @@
     "link_ar": "ساهم بالإطعام",
     "link_en": "Donate meals",
     "tone": "green",
-    "updated_at": "2026-11-15T18:02:51.008Z"
+    "updated_at": "2026-11-15T21:02:39.866Z"
   },
   {
     "id": "ann-dialysis",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "80",
@@ -77,11 +93,11 @@
     "link_ar": "ساهم",
     "link_en": "Contribute",
     "tone": "green",
-    "updated_at": "2026-11-15T18:03:08.433Z"
+    "updated_at": "2026-11-15T21:02:42.629Z"
   },
   {
     "id": "ann-brides",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "75",
@@ -93,11 +109,11 @@
     "link_ar": "جهّز عروسة",
     "link_en": "Support a bride",
     "tone": "gold",
-    "updated_at": "2026-11-15T18:03:15.983Z"
+    "updated_at": "2026-11-15T21:02:45.198Z"
   },
   {
     "id": "ann-winter",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "70",
@@ -109,11 +125,11 @@
     "link_ar": "تبرّع",
     "link_en": "Donate",
     "tone": "navy",
-    "updated_at": "2026-11-15T18:03:24.096Z"
+    "updated_at": "2026-11-15T21:02:47.542Z"
   },
   {
     "id": "ann-mobility",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "65",
@@ -125,11 +141,11 @@
     "link_ar": "وفّر جهازاً",
     "link_en": "Provide an aid",
     "tone": "navy",
-    "updated_at": "2026-11-15T18:03:54.678Z"
+    "updated_at": "2026-11-15T21:02:49.728Z"
   },
   {
     "id": "ann-story-moayad",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "60",
@@ -141,11 +157,11 @@
     "link_ar": "اقرأ القصة",
     "link_en": "Read story",
     "tone": "gold",
-    "updated_at": "2026-11-15T18:04:02.239Z"
+    "updated_at": "2026-11-15T21:02:53.579Z"
   },
   {
     "id": "ann-omneya",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "55",
@@ -157,11 +173,11 @@
     "link_ar": "حقّق أمنية",
     "link_en": "Grant a wish",
     "tone": "red",
-    "updated_at": "2026-11-15T18:04:17.454Z"
+    "updated_at": "2026-11-15T21:02:56.304Z"
   },
   {
     "id": "ann-food-parcels",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "50",
@@ -173,11 +189,11 @@
     "link_ar": "تبرّع بشنطة",
     "link_en": "Donate parcel",
     "tone": "green",
-    "updated_at": "2026-11-15T18:04:41.648Z"
+    "updated_at": "2026-11-15T21:03:00.111Z"
   },
   {
     "id": "ann-story-saber",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "45",
@@ -189,6 +205,6 @@
     "link_ar": "اقرأ القصة",
     "link_en": "Read story",
     "tone": "navy",
-    "updated_at": "2026-11-15T18:04:59.492Z"
+    "updated_at": "2026-11-15T21:03:02.299Z"
   }
 ]
