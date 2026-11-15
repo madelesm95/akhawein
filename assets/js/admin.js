@@ -25,6 +25,24 @@
   const seedButton = $('[data-admin-seed]');
   const seedNode = $('[data-admin-seed-data]');
 
+  // Enhanced Toolbar & Filter Controls
+  const bulkEnableButton = $('[data-admin-bulk-enable]');
+  const bulkDisableButton = $('[data-admin-bulk-disable]');
+  const searchInput = $('[data-admin-search]');
+  const searchClear = $('[data-admin-search-clear]');
+  const filterPills = Array.from(root.querySelectorAll('[data-filter]'));
+  const countAll = $('[data-count-all]');
+  const countLive = $('[data-count-live]');
+  const countOff = $('[data-count-off]');
+
+  // Live Preview Elements
+  const previewTag = $('[data-preview-tag]');
+  const previewText = $('[data-preview-text]');
+  const previewLink = $('[data-preview-link]');
+
+  // Quick Destination Chips
+  const quickChips = Array.from(root.querySelectorAll('[data-quick-url]'));
+
   const seedItems = (() => {
     if (!seedNode) return [];
     try {
@@ -37,6 +55,10 @@
 
   let token = '';
   try { token = sessionStorage.getItem(TOKEN_KEY) || ''; } catch { token = ''; }
+
+  let allItems = [];
+  let currentFilter = 'all';
+  let searchQuery = '';
 
   function storeToken(value) {
     token = value || '';
@@ -139,11 +161,42 @@
     form.elements.id.value = '';
   }
 
-  function openForm(item) {
+  function updateLivePreview() {
+    if (!previewText) return;
+    const fields = form.elements;
+    const tag = String(fields.tag_ar.value || fields.tag_en.value || '').trim();
+    const text = String(fields.text_ar.value || fields.text_en.value || '').trim();
+    const tone = TONES.includes(String(fields.tone.value)) ? String(fields.tone.value) : 'gold';
+    const url = String(fields.url.value || '').trim();
+    const linkLabel = String(fields.link_ar.value || fields.link_en.value || 'التفاصيل').trim();
+
+    if (previewTag) {
+      previewTag.textContent = tag || 'إعلان';
+      previewTag.dataset.tone = tone;
+    }
+    if (previewText) {
+      previewText.textContent = text || 'اكتب نص الإعلان لترى المعاينة هنا...';
+    }
+    if (previewLink) {
+      if (url) {
+        previewLink.hidden = false;
+        previewLink.textContent = `${linkLabel} ›`;
+      } else {
+        previewLink.hidden = true;
+      }
+    }
+  }
+
+  function openForm(item, isClone = false) {
     const data = item || {};
     const fields = form.elements;
-    formTitle.textContent = item ? 'تعديل الإعلان' : 'إعلان جديد';
-    fields.id.value = data.id || '';
+    if (isClone) {
+      formTitle.textContent = 'نسخ إعلان جديد';
+      fields.id.value = '';
+    } else {
+      formTitle.textContent = item && item.id ? 'تعديل الإعلان' : 'إعلان جديد';
+      fields.id.value = data.id || '';
+    }
     fields.text_ar.value = data.text_ar || '';
     fields.text_en.value = data.text_en || '';
     fields.tag_ar.value = data.tag_ar || '';
@@ -156,6 +209,8 @@
     fields.link_ar.value = data.link_ar || '';
     fields.link_en.value = data.link_en || '';
     fields.active.checked = item ? isActive(data.active) : true;
+
+    updateLivePreview();
     form.hidden = false;
     form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     fields.text_ar.focus({ preventScroll: true });
@@ -163,7 +218,8 @@
 
   function renderItem(item, today) {
     const li = document.createElement('li');
-    li.className = 'admin-item';
+    const active = isActive(item.active);
+    li.className = `admin-item${active ? '' : ' admin-item--off'}`;
     li.dataset.id = item.id || '';
 
     const main = document.createElement('div');
@@ -208,22 +264,138 @@
     const actions = document.createElement('div');
     actions.className = 'admin-item__actions';
 
+    // Interactive One-Click Toggle Switch
+    const switchWrap = document.createElement('div');
+    switchWrap.className = 'admin-item__switch-wrap';
+
+    const switchLabel = document.createElement('label');
+    switchLabel.className = 'admin-switch';
+    switchLabel.title = active ? 'إيقاف الإعلان فورياً' : 'تفعيل الإعلان فورياً';
+
+    const switchInput = document.createElement('input');
+    switchInput.type = 'checkbox';
+    switchInput.className = 'admin-switch__input';
+    switchInput.checked = active;
+
+    const switchTrack = document.createElement('span');
+    switchTrack.className = 'admin-switch__track';
+    const switchThumb = document.createElement('span');
+    switchThumb.className = 'admin-switch__thumb';
+    switchTrack.appendChild(switchThumb);
+
+    const switchText = document.createElement('span');
+    switchText.className = 'admin-switch__label';
+    switchText.textContent = active ? 'نشط' : 'موقوف';
+
+    switchLabel.append(switchInput, switchTrack, switchText);
+    switchWrap.appendChild(switchLabel);
+
+    switchInput.addEventListener('change', async () => {
+      const nextActive = switchInput.checked;
+      switchLabel.classList.add('is-loading');
+      switchInput.disabled = true;
+      setStatus(panelStatus, 'جارٍ تحديث حالة الإعلان…');
+
+      const updated = { ...item, active: nextActive ? 'TRUE' : 'FALSE' };
+      const { ok, data } = await api('/api/announcements', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'save', item: updated }),
+      });
+
+      switchLabel.classList.remove('is-loading');
+      switchInput.disabled = false;
+
+      if (!ok) {
+        switchInput.checked = !nextActive;
+        setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر تحديث الحالة.', 'error');
+        return;
+      }
+
+      item.active = nextActive ? 'TRUE' : 'FALSE';
+      switchText.textContent = nextActive ? 'نشط' : 'موقوف';
+      switchLabel.title = nextActive ? 'إيقاف الإعلان فورياً' : 'تفعيل الإعلان فورياً';
+      li.classList.toggle('admin-item--off', !nextActive);
+
+      const newState = stateOf(item, todayISO());
+      stateEl.className = `admin-state admin-state--${newState.cls}`;
+      stateEl.textContent = newState.label;
+
+      notifyTickerUpdate();
+      updateFilterCounts();
+      setStatus(panelStatus, nextActive ? 'تم تفعيل الإعلان فورياً.' : 'تم إيقاف الإعلان فورياً.', 'ok');
+    });
+
     const edit = actionButton('تعديل', 'pencil', 'btn btn--secondary btn--sm');
     edit.addEventListener('click', () => openForm(item));
+
+    const copy = actionButton('نسخ', 'copy', 'btn btn--ghost btn--sm');
+    copy.title = 'نسخ هذا الإعلان لإنشاء إعلان جديد منه';
+    copy.addEventListener('click', () => openForm(item, true));
 
     const remove = actionButton('حذف', 'trash-2', 'btn btn--ghost btn--sm admin-item__delete');
     remove.addEventListener('click', () => deleteItem(item));
 
-    actions.append(edit, remove);
+    actions.append(switchWrap, edit, copy, remove);
     li.append(main, actions);
     return li;
   }
 
-  function renderList(items) {
+  function updateFilterCounts() {
     const today = todayISO();
+    let liveCount = 0;
+    let offCount = 0;
+    allItems.forEach((item) => {
+      const s = stateOf(item, today);
+      if (s.cls === 'live') liveCount += 1;
+      else if (s.cls === 'off') offCount += 1;
+    });
+
+    if (countAll) countAll.textContent = String(allItems.length);
+    if (countLive) countLive.textContent = String(liveCount);
+    if (countOff) countOff.textContent = String(offCount);
+  }
+
+  function filterAndRender() {
+    const today = todayISO();
+    updateFilterCounts();
+
+    let items = allItems.slice();
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      items = items.filter((item) => {
+        const textAr = String(item.text_ar || '').toLowerCase();
+        const textEn = String(item.text_en || '').toLowerCase();
+        const tagAr = String(item.tag_ar || '').toLowerCase();
+        const tagEn = String(item.tag_en || '').toLowerCase();
+        const url = String(item.url || '').toLowerCase();
+        return textAr.includes(q) || textEn.includes(q) || tagAr.includes(q) || tagEn.includes(q) || url.includes(q);
+      });
+    }
+
+    if (currentFilter === 'live') {
+      items = items.filter((item) => stateOf(item, today).cls === 'live');
+    } else if (currentFilter === 'off') {
+      items = items.filter((item) => !isActive(item.active));
+    }
+
+    // Sort by priority descending (highest first)
+    items.sort((a, b) => (Number(b.priority) || 0) - (Number(a.priority) || 0));
+
     list.replaceChildren();
     items.forEach((item) => list.appendChild(renderItem(item, today)));
-    empty.hidden = items.length > 0;
+
+    if (allItems.length === 0) {
+      empty.hidden = false;
+      const p = empty.querySelector('p');
+      if (p) p.textContent = 'لا توجد إعلانات بعد. ابدأ بـ «إعلان جديد» أو أضف الإعلانات الجاهزة المبنية على محتوى الموقع.';
+    } else if (items.length === 0) {
+      empty.hidden = false;
+      const p = empty.querySelector('p');
+      if (p) p.textContent = 'لا توجد إعلانات مطابقة لخيارات البحث والفلترة.';
+    } else {
+      empty.hidden = true;
+    }
   }
 
   function notifyTickerUpdate() {
@@ -243,9 +415,9 @@
       showLogin('انتهت الجلسة. سجّل الدخول من جديد.');
       return;
     }
-    const items = Array.isArray(data.items) ? data.items : [];
-    renderList(items);
-    setStatus(panelStatus, items.length ? `عدد الإعلانات: ${items.length}` : '');
+    allItems = Array.isArray(data.items) ? data.items : [];
+    filterAndRender();
+    setStatus(panelStatus, allItems.length ? `عدد الإعلانات: ${allItems.length}` : '');
     notifyTickerUpdate();
   }
 
@@ -262,8 +434,47 @@
       return;
     }
     await loadList();
-    setStatus(panelStatus, 'تم الحذف.', 'ok');
+    setStatus(panelStatus, 'تم الحذف بنجاح.', 'ok');
     notifyTickerUpdate();
+  }
+
+  async function toggleAll(enable) {
+    const targets = allItems.filter((item) => (enable ? !isActive(item.active) : isActive(item.active)));
+    if (!targets.length) {
+      setStatus(panelStatus, enable ? 'جميع الإعلانات مفعّلة بالفعل.' : 'جميع الإعلانات موقوفة بالفعل.', 'ok');
+      return;
+    }
+
+    const confirmMsg = enable
+      ? `هل تريد تفعيل جميع الإعلانات الموقوفة (${targets.length} إعلان)؟`
+      : `هل تريد إيقاف جميع الإعلانات النشطة (${targets.length} إعلان)؟`;
+
+    if (!window.confirm(confirmMsg)) return;
+
+    if (bulkEnableButton) bulkEnableButton.disabled = true;
+    if (bulkDisableButton) bulkDisableButton.disabled = true;
+
+    setStatus(panelStatus, enable ? `جارٍ تفعيل ${targets.length} إعلانات…` : `جارٍ إيقاف ${targets.length} إعلانات…`);
+
+    let done = 0;
+    for (const item of targets) {
+      const updated = { ...item, active: enable ? 'TRUE' : 'FALSE' };
+      const { ok } = await api('/api/announcements', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'save', item: updated }),
+      });
+      if (ok) {
+        item.active = enable ? 'TRUE' : 'FALSE';
+        done += 1;
+      }
+    }
+
+    if (bulkEnableButton) bulkEnableButton.disabled = false;
+    if (bulkDisableButton) bulkDisableButton.disabled = false;
+
+    filterAndRender();
+    notifyTickerUpdate();
+    setStatus(panelStatus, enable ? `تم تفعيل ${done} إعلانات بنجاح.` : `تم إيقاف ${done} إعلانات بنجاح.`, 'ok');
   }
 
   async function init() {
@@ -313,6 +524,63 @@
   });
 
   newButton.addEventListener('click', () => openForm(null));
+
+  if (bulkEnableButton) {
+    bulkEnableButton.addEventListener('click', () => toggleAll(true));
+  }
+
+  if (bulkDisableButton) {
+    bulkDisableButton.addEventListener('click', () => toggleAll(false));
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value.trim();
+      if (searchClear) searchClear.hidden = !searchQuery;
+      filterAndRender();
+    });
+  }
+
+  if (searchClear) {
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.hidden = true;
+      filterAndRender();
+      searchInput.focus();
+    });
+  }
+
+  filterPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach((p) => {
+        p.classList.remove('is-active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      pill.classList.add('is-active');
+      pill.setAttribute('aria-selected', 'true');
+      currentFilter = pill.dataset.filter || 'all';
+      filterAndRender();
+    });
+  });
+
+  quickChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const url = chip.dataset.quickUrl;
+      const label = chip.dataset.quickLabel;
+      if (url) form.elements.url.value = url;
+      if (label && !form.elements.link_ar.value.trim()) {
+        form.elements.link_ar.value = label;
+      }
+      updateLivePreview();
+      form.elements.url.focus();
+    });
+  });
+
+  ['input', 'change'].forEach((evt) => {
+    form.addEventListener(evt, updateLivePreview);
+  });
+
   if (seedButton) {
     seedButton.addEventListener('click', async () => {
       if (!seedItems.length) return;
@@ -336,6 +604,7 @@
       notifyTickerUpdate();
     });
   }
+
   refreshButton.addEventListener('click', () => loadList());
   cancelButton.addEventListener('click', () => closeForm());
   logoutButton.addEventListener('click', () => {
@@ -397,7 +666,7 @@
 
     closeForm();
     await loadList();
-    setStatus(panelStatus, 'تم الحفظ.', 'ok');
+    setStatus(panelStatus, 'تم الحفظ بنجاح.', 'ok');
     notifyTickerUpdate();
   });
 

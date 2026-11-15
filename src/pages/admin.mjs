@@ -22,7 +22,7 @@ const seedItems = announcements.fallback.map((item) => ({
 // It renders empty shells; assets/js/admin.js fills the list and the form.
 export default function adminPage(ctx, { assets } = {}) {
   // Icons used by client-rendered rows must exist in the shared sprite.
-  ['pencil', 'trash-2'].forEach((name) => ctx.usedIcons.add(name));
+  ['pencil', 'trash-2', 'copy', 'check', 'search', 'eye', 'circle-check', 'plus', 'refresh-cw', 'log-out', 'sparkles', 'x'].forEach((name) => ctx.usedIcons.add(name));
 
   const body = html`
 <section class="section admin-page" data-admin>
@@ -47,9 +47,33 @@ export default function adminPage(ctx, { assets } = {}) {
     <div class="admin-panel" data-admin-panel hidden>
       <div class="admin-toolbar">
         <button class="btn btn--primary btn--sm" type="button" data-admin-new>${icon(ctx, 'plus')}<span>إعلان جديد</span></button>
-        <button class="btn btn--secondary btn--sm" type="button" data-admin-refresh>${icon(ctx, 'refresh-cw')}<span>تحديث القائمة</span></button>
-        <button class="btn btn--ghost btn--sm" type="button" data-admin-logout>${icon(ctx, 'log-out')}<span>خروج</span></button>
+        <button class="btn btn--secondary btn--sm" type="button" data-admin-bulk-enable title="تفعيل جميع الإعلانات دفعة واحدة">${icon(ctx, 'check')}<span>تفعيل الكل</span></button>
+        <button class="btn btn--ghost btn--sm admin-toolbar__btn-off" type="button" data-admin-bulk-disable title="إيقاف جميع الإعلانات دفعة واحدة">${icon(ctx, 'x')}<span>إيقاف الكل</span></button>
+        <button class="btn btn--ghost btn--sm" type="button" data-admin-refresh title="تحديث القائمة">${icon(ctx, 'refresh-cw')}<span>تحديث</span></button>
+        <button class="btn btn--ghost btn--sm" type="button" data-admin-logout title="تسجيل الخروج">${icon(ctx, 'log-out')}<span>خروج</span></button>
         <p class="admin-status" data-admin-status-panel role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="admin-filter-bar" data-admin-filter-bar>
+        <div class="admin-search">
+          <span class="admin-search__icon" aria-hidden="true">${icon(ctx, 'search')}</span>
+          <input id="admin-search-input" type="search" placeholder="ابحث في الإعلانات بالنص أو الوسم أو الرابط..." data-admin-search autocomplete="off">
+          <button type="button" class="admin-search__clear" data-admin-search-clear aria-label="مسح البحث" hidden>${icon(ctx, 'x')}</button>
+        </div>
+        <div class="admin-filter-pills" role="tablist" aria-label="تصفية الإعلانات">
+          <button type="button" class="admin-pill is-active" data-filter="all" role="tab" aria-selected="true">
+            <span>الكل</span>
+            <span class="admin-pill__count" data-count-all>0</span>
+          </button>
+          <button type="button" class="admin-pill" data-filter="live" role="tab" aria-selected="false">
+            <span>النشطة</span>
+            <span class="admin-pill__count" data-count-live>0</span>
+          </button>
+          <button type="button" class="admin-pill" data-filter="off" role="tab" aria-selected="false">
+            <span>الموقوفة</span>
+            <span class="admin-pill__count" data-count-off>0</span>
+          </button>
+        </div>
       </div>
 
       <form class="admin-form" data-admin-form hidden novalidate>
@@ -58,6 +82,21 @@ export default function adminPage(ctx, { assets } = {}) {
           <h2 data-admin-form-title>إعلان جديد</h2>
           <p class="admin-hint">النص العربي مطلوب. لو النص الإنجليزي فارغ، يظهر العربي في الصفحة الإنجليزية.</p>
         </div>
+
+        <div class="admin-preview-box">
+          <div class="admin-preview-box__head">
+            <span class="admin-preview-box__title">${icon(ctx, 'eye')}<span>معاينة حية لشريط الموقع</span></span>
+            <span class="admin-preview-box__hint">تتحدث فورياً مع الكتابة</span>
+          </div>
+          <div class="admin-preview-bar">
+            <div class="admin-preview-ticker" data-preview-bar>
+              <span class="admin-preview-tag" data-preview-tag>إعلان</span>
+              <span class="admin-preview-text" data-preview-text>اكتب نص الإعلان لترى المعاينة هنا...</span>
+              <span class="admin-preview-link" data-preview-link hidden></span>
+            </div>
+          </div>
+        </div>
+
         <div class="form-grid">
           <div class="field field--full">
             <label for="admin-text-ar">النص بالعربية <span class="req" aria-hidden="true">*</span></label>
@@ -99,6 +138,17 @@ export default function adminPage(ctx, { assets } = {}) {
           <div class="field field--full">
             <label for="admin-url">الرابط (اختياري)</label>
             <input id="admin-url" name="url" maxlength="500" dir="ltr" placeholder="/activities أو https://...">
+            <div class="admin-quick-links">
+              <span class="admin-quick-links__label">وجهات سريعة:</span>
+              <div class="admin-quick-links__chips">
+                <button type="button" class="admin-chip" data-quick-url="/causes" data-quick-label="عرض الحالات">حالات التبرع</button>
+                <button type="button" class="admin-chip" data-quick-url="/donations" data-quick-label="تبرع الآن">التبرع العام</button>
+                <button type="button" class="admin-chip" data-quick-url="/activities" data-quick-label="تعرف على أنشطتنا">أنشطتنا</button>
+                <button type="button" class="admin-chip" data-quick-url="/stories" data-quick-label="قصص الأثر">قصص الأثر</button>
+                <button type="button" class="admin-chip" data-quick-url="/branches" data-quick-label="فروعنا">فروعنا</button>
+                <button type="button" class="admin-chip" data-quick-url="/contact" data-quick-label="تواصل معنا">تواصل معنا</button>
+              </div>
+            </div>
           </div>
           <div class="field">
             <label for="admin-link-ar">نص الرابط بالعربية</label>
@@ -108,9 +158,17 @@ export default function adminPage(ctx, { assets } = {}) {
             <label for="admin-link-en">نص الرابط بالإنجليزية</label>
             <input id="admin-link-en" name="link_en" maxlength="40" dir="ltr" placeholder="Details">
           </div>
-          <div class="admin-check">
-            <input id="admin-active" name="active" type="checkbox" checked>
-            <label for="admin-active">ظاهر في الشريط</label>
+          <div class="field field--full admin-form__switch-field">
+            <label class="admin-switch admin-switch--inline">
+              <input id="admin-active" name="active" type="checkbox" checked class="admin-switch__input">
+              <span class="admin-switch__track">
+                <span class="admin-switch__thumb"></span>
+              </span>
+              <span class="admin-switch__label">
+                <strong>ظاهر في شريط الإعلانات</strong>
+                <small>عند إيقافه لن يظهر للزوار في الشريط العلوي</small>
+              </span>
+            </label>
           </div>
         </div>
         <div class="admin-form__actions">

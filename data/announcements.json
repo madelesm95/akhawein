@@ -1,7 +1,7 @@
 [
   {
     "id": "ann-gaza-relief",
-    "active": "TRUE",
+    "active": "FALSE",
     "start": "",
     "end": "",
     "priority": "100",
@@ -13,7 +13,7 @@
     "link_ar": "تبرّع الآن",
     "link_en": "Donate now",
     "tone": "red",
-    "updated_at": "2026-11-15T17:53:46.694Z"
+    "updated_at": "2026-11-15T19:25:38.093Z"
   },
   {
     "id": "ann-relief",
