@@ -644,26 +644,6 @@
     });
   }
 
-  /* Site-wide reading progress — transform-based, composited on the GPU */
-  const progressBar = $('[data-scroll-progress] span');
-  if (progressBar) {
-    let progressMax = 0;
-    const paintProgress = () => {
-      const docEl = document.documentElement;
-      const y = window.scrollY || docEl.scrollTop || 0;
-      const pct = progressMax > 8 ? Math.min(1, Math.max(0, y / progressMax)) : 0;
-      progressBar.style.transform = `scaleX(${pct})`;
-    };
-    const measureProgress = () => {
-      progressMax = document.documentElement.scrollHeight - window.innerHeight;
-      paintProgress();
-    };
-    measureProgress();
-    window.addEventListener('load', measureProgress);
-    if ('ResizeObserver' in window) new ResizeObserver(measureProgress).observe(document.body);
-    scrollUpdates.push(paintProgress);
-  }
-
   const caseLinks = $$('[data-case-link]');
   if (caseLinks.length && 'IntersectionObserver' in window) {
     const byId = new Map(caseLinks.map((a) => [a.getAttribute('href').slice(1), a]));

@@ -465,7 +465,6 @@ ${isHome ? jsonLd(ctx) : (canonical ? breadcrumbLd(ctx, canonical, title) : '')}
 </head>
 <body class="page-${ctx.page}">
 ${sprite}
-<div class="scroll-progress" data-scroll-progress aria-hidden="true"><span></span></div>
 ${headerHtml}
 <main id="main" tabindex="-1">
 ${body}
