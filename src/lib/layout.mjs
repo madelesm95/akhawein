@@ -1,8 +1,9 @@
 import causesDetails from '../data/causes-details.json' with { type: 'json' };
 import { html, raw, attrs } from './html.mjs';
-import { pagePath } from './context.mjs';
+import { pagePath, PAGES } from './context.mjs';
 import { icon, spriteFor, img, telHref, phoneDisplay } from './components.mjs';
 import { site, nav, ui, footer } from '../content/site.mjs';
+import { announcements } from '../content/announcements.mjs';
 
 const PRELOAD_FONTS = {
   ar: ['ibm-plex-sans-arabic-400-arabic.woff2', 'alexandria-500-700-arabic.woff2'],
@@ -17,6 +18,80 @@ const MAP_QUERY = encodeURIComponent('جمعية أخوين الخيرية');
 
 const DRAWER_ORDER = ['home', 'about', 'stories', 'activities', 'causes', 'gallery', 'protocols', 'certificates', 'branches', 'contact'];
 const navItems = nav.flatMap((item) => (item.children ? item.children : [item]));
+
+const ANNOUNCEMENT_TONES = new Set(['gold', 'green', 'red', 'navy']);
+const ANNOUNCEMENT_PAGE_MAP = Object.fromEntries(
+  Object.entries(PAGES)
+    .filter(([key]) => key !== 'admin')
+    .map(([key, slug]) => [slug ? `/${slug}` : '/', pagePath('en', key)]),
+);
+
+function announcementUrl(value, lang) {
+  const url = String(value || '').trim();
+  if (!url) return '';
+  if (/^(https?:\/\/|mailto:|tel:|#)/i.test(url)) return url;
+  if (url.startsWith('//')) return `https:${url}`;
+  if (!url.startsWith('/')) return '';
+  if (lang !== 'en') return url;
+  const [pathPart, hash = ''] = url.split('#');
+  const key = pathPart.replace(/\/$/, '') || '/';
+  const mapped = ANNOUNCEMENT_PAGE_MAP[key];
+  return mapped ? `${mapped}${hash ? `#${hash}` : ''}` : url;
+}
+
+function activeFallbackAnnouncements(now = new Date()) {
+  return announcements.fallback
+    .filter((item) => item.active !== false)
+    .filter((item) => {
+      const start = item.start ? new Date(`${item.start}T00:00:00`) : null;
+      const end = item.end ? new Date(`${item.end}T23:59:59`) : null;
+      return (!start || Number.isNaN(start.getTime()) || start <= now)
+        && (!end || Number.isNaN(end.getTime()) || end >= now);
+    })
+    .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+    .slice(0, announcements.maxItems);
+}
+
+function announcementItem(ctx, item) {
+  const tag = item.tag ? ctx.t(item.tag) : '';
+  const tone = ANNOUNCEMENT_TONES.has(item.tone) ? item.tone : 'gold';
+  const href = announcementUrl(item.url, ctx.lang);
+  const external = /^https?:\/\//i.test(href);
+  const linkLabel = ctx.t(item.linkLabel || ui.announcementMore);
+  return html`<li class="announcement-bar__item" data-announcement-item>
+    ${tag ? html`<span class="announcement-bar__tag announcement-bar__tag--${tone}">${tag}</span>` : ''}
+    <span class="announcement-bar__text">${ctx.t(item.text)}</span>
+    ${href ? html`<a class="announcement-bar__link" href="${href}"${external ? raw(' target="_blank" rel="noopener"') : ''}>${linkLabel}${icon(ctx, 'chevron-right')}</a>` : ''}
+    <span class="announcement-bar__sep" aria-hidden="true">✦</span>
+  </li>`;
+}
+
+function announcementBar(ctx) {
+  if (!announcements.enabled) return '';
+  const items = activeFallbackAnnouncements();
+  if (!items.length) return '';
+  const label = ctx.t(ui.announcements);
+  return html`<aside class="announcement-bar" aria-label="${label}" data-announcement-bar${attrs({
+    'data-src': announcements.source || null,
+    'data-refresh': announcements.refreshMinutes,
+    'data-max': announcements.maxItems,
+    'data-page-map': JSON.stringify(ANNOUNCEMENT_PAGE_MAP),
+  })}>
+  <div class="container announcement-bar__inner">
+    <p class="announcement-bar__label">${icon(ctx, 'megaphone')}<span>${label}</span></p>
+    <div class="announcement-bar__stage" tabindex="0" role="region" aria-label="${label}">
+      <div class="announcement-bar__track" data-announcement-track>
+        <ul class="announcement-bar__list" data-announcement-list>
+          ${items.map((item) => announcementItem(ctx, item))}
+        </ul>
+        <ul class="announcement-bar__list announcement-bar__list--clone" aria-hidden="true" data-announcement-list-clone>
+          ${items.map((item) => announcementItem(ctx, item))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>`;
+}
 
 function isActive(ctx, item) {
   if (item.key) return item.key === ctx.page;
@@ -62,6 +137,8 @@ function header(ctx) {
     </ul>
   </div>
 </aside>
+<div class="sticky-top-wrap">
+${announcementBar(ctx)}
 <header class="site-header" data-header>
   <div class="container site-header__inner">
     <a class="brand" href="${ctx.url('home')}">
@@ -95,7 +172,8 @@ function header(ctx) {
     <li><a href="mailto:${site.email}">${icon(ctx, 'mail')}<span>${site.email}</span></a></li>
   </ul>
 </dialog>
-</header>`;
+</header>
+</div>`;
 }
 
 
@@ -109,7 +187,7 @@ function causeDetailsModal(ctx) {
           <span class="cause-modal-status-badge">${icon(ctx, 'circle-check')} ${ctx.t({ ar: 'حالة معتمدة ومفتوحة للتبرع', en: 'Verified cause open for donations' })}</span>
         </div>
         <button type="button" class="cause-modal-close-btn" onclick="closeCauseModal()" aria-label="${ctx.t(ui.close)}" title="${ctx.t({ ar: 'إغلاق (Esc)', en: 'Close (Esc)' })}">
-          ${icon(ctx, 'x')}
+          <svg class="i i-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
 
@@ -279,6 +357,7 @@ function siteFooter(ctx) {
       <p>${ctx.t(site.registration)} · ${ctx.t(site.publicBenefit)}</p>
     </div>
   </div>
+</footer>
 <a class="wa-fab" href="${waLink(ctx)}" target="_blank" rel="noopener" aria-label="${ctx.t(ui.chatWhatsapp)}" title="${ctx.t(ui.chatWhatsapp)}">${icon(ctx, 'brand-whatsapp')}</a>
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 <dialog class="lightbox" data-lightbox aria-label="${ctx.t(ui.enlarge)}">
@@ -289,7 +368,7 @@ function siteFooter(ctx) {
   <button type="button" class="lightbox__btn lightbox__next" data-lightbox-next aria-label="${ctx.t(ui.next)}">${icon(ctx, 'chevron-right')}</button>
 </dialog>
 ${causeDetailsModal(ctx)}
-</footer>`;
+`;
 }
 
 function breadcrumbLd(ctx, canonical, title) {
@@ -330,12 +409,17 @@ function jsonLd(ctx) {
 export function documentShell(ctx, { title, description, body, assets, isHome = false, noindex = false }) {
   const fullTitle = isHome ? `${ctx.t(site.name)} | ${ctx.t(site.tagline)}` : `${ctx.t(title)} | ${ctx.t(site.name)}`;
   const desc = ctx.t(description);
-  const canonical = ctx.page === '404' ? null : site.origin + pagePath(ctx.lang, ctx.page);
+  const canonical = ctx.page === '404' || ctx.page === 'admin' ? null : site.origin + pagePath(ctx.lang, ctx.page);
   const strings = {
     copied: ctx.t(ui.copiedToast),
     copiedShort: ctx.t(ui.copied),
     copy: ctx.t(ui.copy),
     results: ui.results[ctx.lang],
+    announcementMore: ctx.t(ui.announcementMore),
+    announcementCount: ctx.t(ui.announcementCount),
+    announcementPrev: ctx.t(ui.announcementPrev),
+    announcementNext: ctx.t(ui.announcementNext),
+    announcementClose: ctx.t(ui.announcementClose),
   };
   const headerHtml = header(ctx);
   const footerHtml = siteFooter(ctx);

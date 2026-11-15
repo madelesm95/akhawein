@@ -14,7 +14,7 @@ const T = {
     ar: 'نحترم خصوصيتك في جمعية أخوين الخيرية. توضّح هذه الصفحة البيانات التي نجمعها عند تواصلك معنا أو تبرعك، وكيف نستخدمها، ومن ياطّلع عليها.',
     en: 'Your privacy matters to us at Akhawein Charity. This page explains what data we collect when you contact or donate to us, how we use it, and who may see it.',
   },
-  updated: { ar: 'آخر تحديث: ٨ نوفمبر ٢٠٢٦', en: 'Last updated: 8 November 2026' },
+  updated: { ar: 'آخر تحديث: ١٥ نوفمبر ٢٠٢٦', en: 'Last updated: 15 November 2026' },
   whoTitle: { ar: 'من نحن؟ ومسؤول البيانات', en: 'Who we are and who is responsible for your data' },
   contactTitle: { ar: 'تواصل معنا بشأن الخصوصية', en: 'Contact us about your privacy' },
   relatedTitle: { ar: 'سياسات أخرى', en: 'Other policies' },
@@ -118,6 +118,10 @@ const T = {
           en: 'Google Sheets via an Apps Script gateway — internal reconciliation ledger: to record pending donations before checkout and paid, failed or refunded statuses. This is the charity’s internal ledger only.',
         },
         {
+          ar: 'Google Sheets عبر بوابة Apps Script — شريط الإعلانات: يقرأها خادم الموقع ليعرض الإعلانات المنشورة فقط. متصفح الزائر لا يتصل بـ Google، ولا تُستخدم هذه البيانات لأي تتبع أو تحليل.',
+          en: 'Google Sheets via an Apps Script gateway — announcement ticker: read by our server so it can show published announcements only. The visitor’s browser does not contact Google, and this data is never used for tracking or analytics.',
+        },
+        {
           ar: 'بنك مصر — عند التبرع بالتحويل البنكي: لاستقبال الحوالة وتسجيلها في الحساب الرسمي المعلن على موقعنا.',
           en: 'Banque Misr — for bank-transfer donations: to receive and record the transfer in the official account published on our website.',
         },
@@ -131,8 +135,8 @@ const T = {
       h: { ar: '٦. ملفات تعريف الارتباط والتخزين المحلي', en: '6. Cookies and local storage' },
       p: [
         {
-          ar: 'لا نستخدم ملفات تعريف ارتباط إعلانية أو أدوات تتبّع أو تحليلات خارجية. نستخدم التخزين المحلي فقط لحفظ تفضيلك للوضع الليلي واللغة وعداد الزيارات المحلي — وتظل هذه البيانات على جهازك ولا تُرسل إلى أي جهة.',
-          en: 'We do not use advertising cookies, tracking tools or external analytics. Local storage is used only to remember your dark-mode and language choices and the local visitor counter — this data stays on your device and is never sent anywhere.',
+          ar: 'لا نستخدم ملفات تعريف ارتباط إعلانية أو أدوات تتبّع أو تحليلات خارجية. نستخدم التخزين المحلي فقط لحفظ تفضيلك للوضع الليلي واللغة وعداد الزيارات المحلي وإخفاء شريط الإعلانات عند اختيارك — وتظل هذه البيانات على جهازك ولا تُرسل إلى أي جهة. أما لوحة تحكم الإعلانات المخصصة لفريق الجمعية فتحفظ رمز جلسة مؤقتًا في تخزين الجلسة داخل المتصفح، وينتهي بانتهاء الجلسة أو بعد ثماني ساعات.',
+          en: 'We do not use advertising cookies, tracking tools or external analytics. Local storage is used only to remember your dark-mode and language choices, the local visitor counter and your choice to dismiss the announcement bar — this data stays on your device and is never sent anywhere. The announcement admin panel, used only by charity staff, keeps a temporary session token in browser session storage; it ends with the session or after eight hours.',
         },
       ],
     },

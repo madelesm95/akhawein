@@ -76,7 +76,10 @@ const ROUTE_MAP = {
   '/contact': '/contact.html',
   '/الرئيسية': '/index.html',
   '/الرئيسيه': '/index.html',
-  '/home': '/index.html'
+  '/home': '/index.html',
+  '/admin': '/admin.html',
+  '/لوحة-التحكم': '/admin.html',
+  '/لوحة_التحكم': '/admin.html'
 };
 
 const handler = async (req, res) => {
@@ -119,10 +122,12 @@ const handler = async (req, res) => {
       urlPath = '/index.html';
     }
 
-    // Handle Arabic route aliases & clean URLs
-    const normalizedPath = urlPath.replace(/\/+$/, '');
+    // Handle Arabic route aliases & clean URLs (strip trailing slashes)
+    const normalizedPath = urlPath.replace(/\/+$/, '') || '/';
     if (ROUTE_MAP[normalizedPath]) {
       urlPath = ROUTE_MAP[normalizedPath];
+    } else {
+      urlPath = normalizedPath;
     }
 
     const baseDir = process.cwd();

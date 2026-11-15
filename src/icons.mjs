@@ -16,7 +16,7 @@ const lucide = [
   'utensils', 'shopping-basket', 'activity', 'snowflake', 'gift', 'globe', 'images', 'film', 'scroll-text', 'navigation',
   'gem', 'circle-check', 'medal', 'star', 'image', 'ribbon', 'wallet', 'leaf', 'school', 'chevron-up',
   'credit-card', 'smartphone', 'store', 'lock', 'loader-circle', 'receipt-text', 'life-buoy', 'paw-print', 'tag',
-  'eye',
+  'eye', 'megaphone', 'plus', 'pencil', 'trash-2', 'log-out', 'refresh-cw',
 ];
 const brands = { facebook: 'facebook', instagram: 'instagram', x: 'x', youtube: 'youtube', whatsapp: 'whatsapp' };
 

@@ -44,7 +44,7 @@
     {
       "id": "aftercare",
       "label": { "ar": "دار الرعاية اللاحقة", "en": "Aftercare home" },
-      "desc": { "ar": "رعاية وتأهيل بعد الخروج من المستشفى", "en": "Care and rehabilitation after hospital" },
+      "desc": { "ar": "رعاية وتأهيل الفتيات الأيتام للحياة العامة", "en": "Care and rehabilitation of orphan girls for public life" },
       "icon": "house-heart"
     },
     {

@@ -65,6 +65,301 @@
     }
   }
 
+  /* Announcement ticker — continuous moving marquee, cannot be closed or dismissed */
+  const announcementBar = $('[data-announcement-bar]');
+  if (announcementBar) {
+    const DISMISS_KEY = 'akh_announcements_dismissed_until';
+    try { localStorage.removeItem(DISMISS_KEY); } catch { /* ignore */ }
+    announcementBar.hidden = false;
+
+    const announcementList = $('[data-announcement-list]', announcementBar);
+    const announcementClone = $('[data-announcement-list-clone]', announcementBar);
+    const CACHE_KEY = 'akh_announcements_cache_v1';
+    const refreshMs = Math.max(1, Number(announcementBar.dataset.refresh) || 5) * 60000;
+    const maxItems = Math.max(1, Number(announcementBar.dataset.max) || 12);
+    const isEnglish = doc.lang === 'en';
+    let pageMap = {};
+    try { pageMap = JSON.parse(announcementBar.dataset.pageMap || '{}'); } catch { /* ignore malformed map */ }
+
+    if (announcementList) {
+      const pick = (ar, en) => (isEnglish ? (en || ar) : (ar || en));
+
+      const parseDate = (value, endOfDay) => {
+        const v = String(value || '').trim();
+        if (!v) return null;
+        let m = v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+        if (m) return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), endOfDay ? 23 : 0, endOfDay ? 59 : 0, endOfDay ? 59 : 0);
+        m = v.match(/^(\d{1,2})[/.](\d{1,2})[/.](\d{4})$/);
+        if (m) return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]), endOfDay ? 23 : 0, endOfDay ? 59 : 0, endOfDay ? 59 : 0);
+        const d = new Date(v);
+        return Number.isNaN(d.getTime()) ? null : d;
+      };
+
+      const localizeUrl = (value) => {
+        const v = String(value || '').trim();
+        if (!v) return '';
+        if (/^(https?:\/\/|mailto:|tel:|#)/i.test(v)) return v;
+        if (v.startsWith('//')) return 'https:' + v;
+        if (!v.startsWith('/')) return '';
+        if (!isEnglish) return v;
+        const [pathPart, hash = ''] = v.split('#');
+        const key = pathPart.replace(/\/$/, '') || '/';
+        const mapped = pageMap[key];
+        return mapped ? (mapped + (hash ? '#' + hash : '')) : v;
+      };
+
+      const parseCsv = (text) => {
+        const rows = [];
+        let row = [];
+        let field = '';
+        let inQuotes = false;
+        const s = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        for (let i = 0; i < s.length; i++) {
+          const c = s[i];
+          if (inQuotes) {
+            if (c === '"') {
+              if (s[i + 1] === '"') { field += '"'; i++; }
+              else { inQuotes = false; }
+            } else { field += c; }
+          } else if (c === '"') { inQuotes = true; }
+          else if (c === ',') { row.push(field); field = ''; }
+          else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+          else { field += c; }
+        }
+        if (field.length || row.length) { row.push(field); rows.push(row); }
+        return rows;
+      };
+
+      const parseAnnouncements = (text) => {
+        const rows = parseCsv(text).filter((row) => row.some((cell) => cell.trim().length));
+        if (rows.length < 2) return null;
+        const header = rows[0].map((h) => h.trim().toLowerCase().replace(/[^a-z0-9_]/g, '_'));
+        const idx = (name) => header.indexOf(name);
+        const colActive = idx('active');
+        const colStart = idx('start');
+        const colEnd = idx('end');
+        const colPriority = idx('priority');
+        const colTagAr = idx('tag_ar') !== -1 ? idx('tag_ar') : idx('tag');
+        const colTagEn = idx('tag_en');
+        const colTextAr = idx('text_ar') !== -1 ? idx('text_ar') : idx('text');
+        const colTextEn = idx('text_en');
+        const colUrl = idx('url') !== -1 ? idx('url') : idx('link');
+        const colLinkAr = idx('link_ar');
+        const colLinkEn = idx('link_en');
+        const colTone = idx('tone');
+
+        const now = new Date();
+        const items = [];
+        for (let i = 1; i < rows.length; i++) {
+          const r = rows[i];
+          const val = (c) => (c >= 0 && c < r.length ? r[c].trim() : '');
+          const activeVal = val(colActive).toLowerCase();
+          const active = !activeVal || !/^(false|0|no|off|لا|معطل|مغلق)$/.test(activeVal);
+          if (!active) continue;
+
+          const start = parseDate(val(colStart), false);
+          const end = parseDate(val(colEnd), true);
+          if (start && start > now) continue;
+          if (end && end < now) continue;
+
+          const textAr = val(colTextAr);
+          const textEn = val(colTextEn);
+          if (!textAr && !textEn) continue;
+
+          const priority = Number(val(colPriority)) || 0;
+          const tone = ['gold', 'green', 'red', 'navy'].includes(val(colTone).toLowerCase())
+            ? val(colTone).toLowerCase()
+            : 'gold';
+
+          items.push({
+            priority,
+            tagAr: val(colTagAr),
+            tagEn: val(colTagEn),
+            textAr,
+            textEn,
+            url: val(colUrl),
+            linkAr: val(colLinkAr),
+            linkEn: val(colLinkEn),
+            tone,
+          });
+        }
+        items.sort((a, b) => b.priority - a.priority);
+        return items.slice(0, maxItems);
+      };
+
+      const parseJsonAnnouncements = (body) => {
+        try {
+          const parsed = JSON.parse(body);
+          const list = Array.isArray(parsed) ? parsed : (parsed && Array.isArray(parsed.items) ? parsed.items : null);
+          if (!list) return null;
+          return list
+            .filter((it) => it && (it.textAr || it.text_ar || it.textEn || it.text_en))
+            .map((it) => ({
+              priority: Number(it.priority) || 0,
+              tagAr: String(it.tagAr || it.tag_ar || '').trim(),
+              tagEn: String(it.tagEn || it.tag_en || '').trim(),
+              textAr: String(it.textAr || it.text_ar || '').trim(),
+              textEn: String(it.textEn || it.text_en || '').trim(),
+              url: String(it.url || it.link || '').trim(),
+              linkAr: String(it.linkAr || it.link_ar || '').trim(),
+              linkEn: String(it.linkEn || it.link_en || '').trim(),
+              tone: ['gold', 'green', 'red', 'navy'].includes(String(it.tone || '').toLowerCase())
+                ? String(it.tone).toLowerCase()
+                : 'gold',
+            }))
+            .slice(0, maxItems);
+        } catch {
+          return null;
+        }
+      };
+
+      const announcementArrow = () => {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', 'i i-chevron-right' + (isEnglish ? '' : ' i-flip'));
+        svg.setAttribute('aria-hidden', 'true');
+        svg.setAttribute('focusable', 'false');
+        const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        use.setAttribute('href', '#i-chevron-right');
+        svg.appendChild(use);
+        return svg;
+      };
+
+      const createItemElement = (item) => {
+        const li = document.createElement('li');
+        li.className = 'announcement-bar__item';
+        li.dataset.announcementItem = '';
+
+        const tagText = pick(item.tagAr, item.tagEn);
+        if (tagText) {
+          const tag = document.createElement('span');
+          tag.className = 'announcement-bar__tag announcement-bar__tag--' + (item.tone || 'gold');
+          tag.textContent = tagText;
+          li.appendChild(tag);
+        }
+
+        const text = document.createElement('span');
+        text.className = 'announcement-bar__text';
+        text.textContent = pick(item.textAr, item.textEn);
+        if (isEnglish && !item.textEn && item.textAr) { text.lang = 'ar'; text.dir = 'rtl'; }
+        if (!isEnglish && !item.textAr && item.textEn) { text.lang = 'en'; text.dir = 'ltr'; }
+        li.appendChild(text);
+
+        const href = localizeUrl(item.url);
+        if (href) {
+          const link = document.createElement('a');
+          link.className = 'announcement-bar__link';
+          link.href = href;
+          link.textContent = pick(item.linkAr, item.linkEn) || (window.akhStrings && window.akhStrings.announcementMore) || 'المزيد';
+          if (/^https?:\/\//i.test(href)) { link.target = '_blank'; link.rel = 'noopener'; }
+          link.appendChild(announcementArrow());
+          li.appendChild(link);
+        }
+
+        const sep = document.createElement('span');
+        sep.className = 'announcement-bar__sep';
+        sep.setAttribute('aria-hidden', 'true');
+        sep.textContent = '✦';
+        li.appendChild(sep);
+
+        return li;
+      };
+
+      const SPEED_PX_PER_SEC = 50;
+
+      const updateTrackSpeed = () => {
+        requestAnimationFrame(() => {
+          const listWidth = announcementList.scrollWidth || announcementList.getBoundingClientRect().width;
+          if (listWidth > 0) {
+            const seconds = Math.max(8, Math.round(listWidth / SPEED_PX_PER_SEC));
+            const track = $('[data-announcement-track]', announcementBar);
+            if (track) {
+              track.style.setProperty('--marquee-duration', seconds + 's');
+              track.style.animationDuration = seconds + 's';
+            }
+          }
+        });
+      };
+
+      const renderItems = (items) => {
+        announcementList.innerHTML = '';
+        if (announcementClone) announcementClone.innerHTML = '';
+
+        const activeList = items.slice(0, maxItems);
+        if (!activeList.length) return;
+
+        // If there are few items (1 or 2), repeat them to fill the screen seamlessly
+        let repeated = [...activeList];
+        if (activeList.length === 1) {
+          repeated = [activeList[0], activeList[0], activeList[0], activeList[0]];
+        } else if (activeList.length === 2) {
+          repeated = [...activeList, ...activeList];
+        }
+
+        repeated.forEach((item) => {
+          const el = createItemElement(item);
+          announcementList.appendChild(el);
+          if (announcementClone) {
+            const cloneEl = el.cloneNode(true);
+            cloneEl.setAttribute('aria-hidden', 'true');
+            announcementClone.appendChild(cloneEl);
+          }
+        });
+
+        updateTrackSpeed();
+      };
+
+      const applyItems = (items) => {
+        if (!Array.isArray(items)) return;
+        if (!items.length) {
+          announcementBar.hidden = true;
+          announcementList.innerHTML = '';
+          if (announcementClone) announcementClone.innerHTML = '';
+          return;
+        }
+        renderItems(items);
+        announcementBar.hidden = false;
+        updateTrackSpeed();
+      };
+
+      const loadAnnouncements = async (force = false) => {
+        const src = announcementBar.dataset.src;
+        if (!src) return;
+        const isAdminPage = location.pathname.includes('/admin');
+        if (!force && !isAdminPage) {
+          try {
+            const cached = JSON.parse(sessionStorage.getItem(CACHE_KEY) || 'null');
+            if (cached && cached.src === src && cached.at && Date.now() - cached.at < refreshMs && Array.isArray(cached.items)) {
+              applyItems(cached.items);
+              return;
+            }
+          } catch { /* ignore cache */ }
+        }
+        try {
+          const url = new URL(src, location.href);
+          url.searchParams.set('_', String(Date.now()));
+          const res = await fetch(url.toString(), { cache: 'no-store', mode: 'cors' });
+          if (!res.ok) return;
+          const body = await res.text();
+          const looksJson = /json/i.test(res.headers.get('content-type') || '') || /^[[{]/.test(body.trim());
+          const items = looksJson ? parseJsonAnnouncements(body) : parseAnnouncements(body);
+          if (items === null) return;
+          if (!isAdminPage) {
+            try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), src, items })); } catch { /* storage unavailable */ }
+          }
+          applyItems(items);
+        } catch { /* keep the server-rendered fallback */ }
+      };
+
+      loadAnnouncements();
+      updateTrackSpeed();
+      window.addEventListener('resize', updateTrackSpeed);
+      window.addEventListener('akh:announcements-refresh', () => {
+        try { sessionStorage.removeItem(CACHE_KEY); } catch {}
+        loadAnnouncements(true);
+      });
+    }
+  }
+
   /* Unified rAF-throttled scroll updates — one pass per frame, no layout thrash */
   const scrollUpdates = [];
   let scrollRaf = 0;
@@ -325,7 +620,7 @@
 
   /* 3D tilt on hover for cards — desktop pointers only, rAF-throttled */
   if (!reduceMotion && !window.matchMedia('(pointer: coarse)').matches) {
-    const tiltSelectors = '.cause-card, .program-card, .branch, .cert, .story-mini, .stat, .fact, .principle, .member, .story-step, .caf-card, .honors-card, .legal-card, .governance, .page-hero__figure, .hero__photo, .story__media';
+    const tiltSelectors = '.cause-card, .program-card, .branch, .cert, .story-mini, .stat, .fact, .principle, .member, .story-step, .caf-card, .honors-card, .legal-card, .governance, .page-hero__figure, .hero__photo, .story__media, .partners__list li';
     const tiltCards = $$(tiltSelectors);
     const maxTilt = 5;
     tiltCards.forEach((card) => {
@@ -1047,11 +1342,16 @@
     // Show Modal
     overlay.classList.add('active');
     overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('cause-modal-open');
     document.body.style.overflow = 'hidden';
 
-    // Hide header
+    // Hide header and sticky announcement bar
+    const stickyWrap = document.querySelector('.sticky-top-wrap');
+    if (stickyWrap) stickyWrap.style.visibility = 'hidden';
     const header = document.querySelector('.site-header');
     if (header) header.style.visibility = 'hidden';
+    const annBar = document.querySelector('.announcement-bar');
+    if (annBar) annBar.style.visibility = 'hidden';
 
     const modalBody = document.getElementById('causeModalBody');
     if (modalBody) modalBody.scrollTop = 0;
@@ -1074,11 +1374,16 @@
       overlay.classList.remove('active');
       overlay.setAttribute('aria-hidden', 'true');
     }
+    document.body.classList.remove('cause-modal-open');
     document.body.style.overflow = '';
 
-    // Show header
+    // Restore header and sticky announcement bar
+    const stickyWrap = document.querySelector('.sticky-top-wrap');
+    if (stickyWrap) stickyWrap.style.visibility = '';
     const header = document.querySelector('.site-header');
     if (header) header.style.visibility = '';
+    const annBar = document.querySelector('.announcement-bar');
+    if (annBar) annBar.style.visibility = '';
     currentCauseId = null;
 
     if (window.location.hash.startsWith('#case-') && history.replaceState) {
@@ -1177,6 +1482,19 @@
       navigateCauseModal(doc.dir === 'rtl' ? 1 : -1);
     } else if (e.key === 'ArrowRight') {
       navigateCauseModal(doc.dir === 'rtl' ? -1 : 1);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const closeBtn = e.target.closest('.cause-modal-close-btn');
+    if (closeBtn) {
+      e.preventDefault();
+      closeCauseModal();
+      return;
+    }
+    const overlay = document.getElementById('causeModalOverlay');
+    if (overlay && overlay.classList.contains('active') && e.target === overlay) {
+      closeCauseModal();
     }
   });
 

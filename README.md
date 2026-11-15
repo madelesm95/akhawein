@@ -17,6 +17,7 @@ All text lives in `src/content/` as `{ ar: '…', en: '…' }` pairs. Never edit
 | Branches | `src/content/branches.mjs` |
 | About page, board, vision/mission | `src/content/about.mjs` |
 | Certificates of appreciation | `src/content/certificates.json` |
+| Announcement ticker + `/admin` panel | `src/content/announcements.mjs`, `src/pages/admin.mjs` — see [`docs/ANNOUNCEMENTS.md`](docs/ANNOUNCEMENTS.md) |
 
 Page layouts are in `src/pages/`, shared markup in `src/lib/`, styles in `assets/css/site.css`, behaviour in `assets/js/site.js`.
 
@@ -49,6 +50,12 @@ The donations page uses Paymob Intention API + Unified Checkout. The browser nev
 The footer counter is simulated in the browser (`assets/js/site.js`): it starts from `VISITOR_SEED` (1,002,500), grows slowly with time, and adds one on every page view (stored per browser in `localStorage`). It needs no backend, environment variables or Apps Script deployment.
 
 The `/api/visitors` endpoint and the `visit`/`visitorCount` actions in `google-apps-script/Code.gs` are kept for a future real, site-wide count; the footer does not call them today. If you switch to the real counter, remember that after updating `Code.gs` you must redeploy it as a new version of the same deployment (Deploy → Manage deployments → edit → New version) — the `/exec` URL stays the same, so Vercel needs no changes.
+
+## Announcement ticker and admin panel
+
+The slim bar under the utility bar is server-rendered from `src/content/announcements.mjs`, then refreshed in the browser from `/api/announcements`. Staff add, edit and delete announcements at **`/admin`** (Arabic-only, password-protected, `noindex`); the panel writes to the `Announcements` tab of the charity sheet through the existing Apps Script gateway. No rebuild or deploy is needed after the one-time setup.
+
+Required Vercel variables: `ADMIN_PASSWORD` (and optionally `ADMIN_TOKEN_SECRET`), on top of `SHEETS_WEBHOOK_URL` and `SHEETS_WEBHOOK_SECRET`. The `Announcements` sheet tab is created by `setup()` in `google-apps-script/Code.gs`; after changing that file, redeploy it as a new version of the same deployment (Deploy → Manage deployments → edit → New version) so the `/exec` URL stays the same. If the sheet cannot be reached, the server-rendered fallback stays visible. Full setup, columns, password reset and troubleshooting: [`docs/ANNOUNCEMENTS.md`](docs/ANNOUNCEMENTS.md).
 
 ## Notes
 

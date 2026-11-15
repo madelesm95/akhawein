@@ -13,6 +13,7 @@ export const PAGES = {
   privacy: 'privacy',
   refund: 'refund',
   delivery: 'delivery',
+  admin: 'admin',
 };
 
 export function pagePath(lang, key, hash = '') {

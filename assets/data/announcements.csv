@@ -1,0 +1,6 @@
+id,active,start,end,priority,tag_ar,tag_en,text_ar,text_en,url,link_ar,link_en,tone,updated_at
+ann-gaza-relief,TRUE,,,100,إغاثة,Relief,"إغاثة عاجلة لأهل غزة: غذاء ودواء وإيواء للأسر المنكوبة والنازحة","Urgent relief for Gaza: food, medicine and shelter for displaced families",/causes#cause-gaza-relief,تبرّع الآن,Donate now,red,
+ann-orphans,TRUE,,,90,كفالة,Sponsorship,"كفالة يتيم شهريًا: إقامة وغذاء ورعاية طبية ونفسية شاملة","Sponsor an orphan monthly: shelter, food and full medical and psychological care",/causes#cause-orphans,اكفل يتيمًا,Sponsor a child,gold,
+ann-dialysis,TRUE,,,80,صحة,Health,"تكفّل جلسات الغسيل الكلوي والفلاتر والدواء لمرضى الكلى غير القادرين","Cover dialysis sessions, filters and medication for kidney patients in need",/causes#cause-dialysis,ساهم,Contribute,green,
+ann-winter,TRUE,,,70,شتاء,Winter,"حملة «دفا»: بطاطين وأسقف آمنة تحمي الأسر في القرى من برد الشتاء","The Dafa campaign: blankets and safe roofs protect village families from the cold",/causes#cause-winter,تبرّع,Donate,navy,
+ann-story-moayad,TRUE,,,60,قصة,Story,"مؤيد من غزة استعاد حركة يده بعد جراحة تكفّلت بها الجمعية","Moayad from Gaza regained the use of his hand after surgery we covered",/stories#story-moayad,اقرأ القصة,Read the story,gold,
