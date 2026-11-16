@@ -1,5 +1,21 @@
 [
   {
+    "id": "ann-mwjgodi5da75e5",
+    "active": "FALSE",
+    "start": "",
+    "end": "",
+    "priority": "100",
+    "tag_ar": "إغاثة",
+    "tag_en": "Relief",
+    "text_ar": "إغاثة عاجلة لأهل غزة: غذاء ودواء وإيواء للأسر المنكوبة والنازحة",
+    "text_en": "Urgent relief for Gaza: food, medicine and shelter for displaced families",
+    "url": "/causes#cause-gaza-relief",
+    "link_ar": "تبرّع الآن",
+    "link_en": "Donate now",
+    "tone": "red",
+    "updated_at": "2026-11-16T17:17:55.581Z"
+  },
+  {
     "id": "ann-afghani-protocol",
     "active": "TRUE",
     "start": "",
@@ -7,13 +23,13 @@
     "priority": "100",
     "tag_ar": "بروتوكول تعاون",
     "tag_en": "Partnership",
-    "text_ar": "تم اليوم توقيع بروتوكول تعاون بين جمعية اخوين الخيرية وجمعية جمال الدين الافغاني",
+    "text_ar": "تم اليوم الموافق 15/11/2026 توقيع بروتوكول تعاون بين جمعية اخوين الخيرية وجمعية جمال الدين الافغاني.",
     "text_en": "A cooperation protocol was signed today between Akhawein Charity and Jamal Al-Din Al-Afghani Association",
-    "url": "/protocols",
-    "link_ar": "التفاصيل",
-    "link_en": "Details",
+    "url": "",
+    "link_ar": "عرض الحالات",
+    "link_en": "",
     "tone": "gold",
-    "updated_at": "2026-11-15T21:03:04.843Z"
+    "updated_at": "2026-11-16T17:52:02.497Z"
   },
   {
     "id": "ann-gaza-relief",
@@ -29,7 +45,7 @@
     "link_ar": "تبرّع الآن",
     "link_en": "Donate now",
     "tone": "red",
-    "updated_at": "2026-11-15T19:25:38.093Z"
+    "updated_at": "2026-11-16T17:17:16.921Z"
   },
   {
     "id": "ann-relief",
@@ -45,7 +61,7 @@
     "link_ar": "فرّج كربة",
     "link_en": "Relieve distress",
     "tone": "red",
-    "updated_at": "2026-11-15T21:02:34.578Z"
+    "updated_at": "2026-11-16T17:17:20.060Z"
   },
   {
     "id": "ann-orphans",
@@ -61,7 +77,7 @@
     "link_ar": "اكفل يتيمًا",
     "link_en": "Sponsor a child",
     "tone": "gold",
-    "updated_at": "2026-11-15T21:02:36.886Z"
+    "updated_at": "2026-11-16T17:17:22.829Z"
   },
   {
     "id": "ann-meals",
@@ -77,7 +93,7 @@
     "link_ar": "ساهم بالإطعام",
     "link_en": "Donate meals",
     "tone": "green",
-    "updated_at": "2026-11-15T21:02:39.866Z"
+    "updated_at": "2026-11-16T17:17:25.048Z"
   },
   {
     "id": "ann-dialysis",
@@ -93,7 +109,7 @@
     "link_ar": "ساهم",
     "link_en": "Contribute",
     "tone": "green",
-    "updated_at": "2026-11-15T21:02:42.629Z"
+    "updated_at": "2026-11-16T17:17:38.210Z"
   },
   {
     "id": "ann-brides",
@@ -109,7 +125,7 @@
     "link_ar": "جهّز عروسة",
     "link_en": "Support a bride",
     "tone": "gold",
-    "updated_at": "2026-11-15T21:02:45.198Z"
+    "updated_at": "2026-11-16T17:50:01.120Z"
   },
   {
     "id": "ann-winter",
@@ -125,7 +141,7 @@
     "link_ar": "تبرّع",
     "link_en": "Donate",
     "tone": "navy",
-    "updated_at": "2026-11-15T21:02:47.542Z"
+    "updated_at": "2026-11-16T17:17:39.682Z"
   },
   {
     "id": "ann-mobility",
@@ -141,7 +157,7 @@
     "link_ar": "وفّر جهازاً",
     "link_en": "Provide an aid",
     "tone": "navy",
-    "updated_at": "2026-11-15T21:02:49.728Z"
+    "updated_at": "2026-11-16T17:17:41.560Z"
   },
   {
     "id": "ann-story-moayad",
@@ -157,7 +173,7 @@
     "link_ar": "اقرأ القصة",
     "link_en": "Read story",
     "tone": "gold",
-    "updated_at": "2026-11-15T21:02:53.579Z"
+    "updated_at": "2026-11-16T17:17:40.681Z"
   },
   {
     "id": "ann-omneya",
@@ -173,7 +189,7 @@
     "link_ar": "حقّق أمنية",
     "link_en": "Grant a wish",
     "tone": "red",
-    "updated_at": "2026-11-15T21:02:56.304Z"
+    "updated_at": "2026-11-16T17:17:43.270Z"
   },
   {
     "id": "ann-food-parcels",
@@ -189,7 +205,7 @@
     "link_ar": "تبرّع بشنطة",
     "link_en": "Donate parcel",
     "tone": "green",
-    "updated_at": "2026-11-15T21:03:00.111Z"
+    "updated_at": "2026-11-16T17:17:45.365Z"
   },
   {
     "id": "ann-story-saber",
@@ -205,6 +221,6 @@
     "link_ar": "اقرأ القصة",
     "link_en": "Read story",
     "tone": "navy",
-    "updated_at": "2026-11-15T21:03:02.299Z"
+    "updated_at": "2026-11-16T17:46:55.548Z"
   }
 ]

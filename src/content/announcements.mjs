@@ -41,8 +41,6 @@ export const announcements = {
         ar: 'تم اليوم توقيع بروتوكول تعاون بين جمعية اخوين الخيرية وجمعية جمال الدين الافغاني',
         en: 'A cooperation protocol was signed today between Akhawein Charity and Jamal Al-Din Al-Afghani Association',
       },
-      url: '/protocols',
-      linkLabel: { ar: 'التفاصيل', en: 'Details' },
       tone: 'gold',
     },
     {

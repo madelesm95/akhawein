@@ -28,12 +28,42 @@
   // Enhanced Toolbar & Filter Controls
   const bulkEnableButton = $('[data-admin-bulk-enable]');
   const bulkDisableButton = $('[data-admin-bulk-disable]');
+  const progressWrap = $('[data-admin-progress]');
+  const progressBar = $('[data-admin-progress-bar]');
   const searchInput = $('[data-admin-search]');
   const searchClear = $('[data-admin-search-clear]');
   const filterPills = Array.from(root.querySelectorAll('[data-filter]'));
   const countAll = $('[data-count-all]');
   const countLive = $('[data-count-live]');
   const countOff = $('[data-count-off]');
+
+  // Loading & Process Indicator Elements
+  const topLoader = $('[data-admin-top-loader]');
+  const processPill = $('[data-admin-process-pill]');
+  const processPillText = $('[data-admin-process-text]');
+
+  let activeProcessCount = 0;
+
+  function showBusy(message = 'جارٍ تنفيذ العملية…') {
+    activeProcessCount++;
+    if (topLoader) topLoader.hidden = false;
+    if (processPill) {
+      if (processPillText) processPillText.textContent = message;
+      processPill.hidden = false;
+    }
+  }
+
+  function updateBusyMessage(message) {
+    if (processPillText && message) processPillText.textContent = message;
+  }
+
+  function hideBusy() {
+    activeProcessCount = Math.max(0, activeProcessCount - 1);
+    if (activeProcessCount === 0) {
+      if (topLoader) topLoader.hidden = true;
+      if (processPill) processPill.hidden = true;
+    }
+  }
 
   // Live Preview Elements
   const previewTag = $('[data-preview-tag]');
@@ -68,22 +98,44 @@
     } catch { /* storage unavailable */ }
   }
 
-  function setStatus(node, message, kind) {
+  function setStatus(node, message, kind, busy) {
     if (!node) return;
     node.textContent = message || '';
     if (kind) node.dataset.kind = kind;
     else delete node.dataset.kind;
+    if (busy) node.dataset.busy = 'true';
+    else delete node.dataset.busy;
+  }
+
+  function setProgress(completed, total) {
+    if (!progressWrap || !progressBar) return;
+    const percent = total > 0 ? Math.min(100, Math.round((completed / total) * 100)) : 0;
+    progressWrap.hidden = false;
+    progressWrap.setAttribute('aria-valuenow', String(percent));
+    progressBar.style.width = `${percent}%`;
+  }
+
+  function hideProgress() {
+    if (progressWrap) {
+      progressWrap.hidden = true;
+      progressWrap.setAttribute('aria-valuenow', '0');
+    }
+    if (progressBar) progressBar.style.width = '0%';
   }
 
   async function api(path, options = {}) {
     const headers = { ...(options.body ? { 'Content-Type': 'application/json' } : {}), ...(options.headers || {}) };
     if (token) headers.Authorization = `Bearer ${token}`;
 
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 30000);
     let response;
     try {
-      response = await fetch(path, { ...options, headers, cache: 'no-store' });
+      response = await fetch(path, { ...options, headers, cache: 'no-store', signal: controller.signal });
     } catch {
       return { ok: false, offline: true, data: null };
+    } finally {
+      clearTimeout(timer);
     }
 
     let data = null;
@@ -294,35 +346,39 @@
       const nextActive = switchInput.checked;
       switchLabel.classList.add('is-loading');
       switchInput.disabled = true;
-      setStatus(panelStatus, 'جارٍ تحديث حالة الإعلان…');
+      setStatus(panelStatus, 'جارٍ تحديث حالة الإعلان…', undefined, true);
+      showBusy(nextActive ? 'جارٍ تفعيل الإعلان…' : 'جارٍ إيقاف الإعلان…');
 
-      const updated = { ...item, active: nextActive ? 'TRUE' : 'FALSE' };
-      const { ok, data } = await api('/api/announcements', {
-        method: 'POST',
-        body: JSON.stringify({ action: 'save', item: updated }),
-      });
+      try {
+        const updated = { ...item, active: nextActive ? 'TRUE' : 'FALSE' };
+        const { ok, data } = await api('/api/announcements', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'save', item: updated }),
+        });
 
-      switchLabel.classList.remove('is-loading');
-      switchInput.disabled = false;
+        if (!ok) {
+          switchInput.checked = !nextActive;
+          setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر تحديث الحالة.', 'error');
+          return;
+        }
 
-      if (!ok) {
-        switchInput.checked = !nextActive;
-        setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر تحديث الحالة.', 'error');
-        return;
+        item.active = nextActive ? 'TRUE' : 'FALSE';
+        switchText.textContent = nextActive ? 'نشط' : 'موقوف';
+        switchLabel.title = nextActive ? 'إيقاف الإعلان فورياً' : 'تفعيل الإعلان فورياً';
+        li.classList.toggle('admin-item--off', !nextActive);
+
+        const newState = stateOf(item, todayISO());
+        stateEl.className = `admin-state admin-state--${newState.cls}`;
+        stateEl.textContent = newState.label;
+
+        notifyTickerUpdate();
+        updateFilterCounts();
+        setStatus(panelStatus, nextActive ? 'تم تفعيل الإعلان فورياً.' : 'تم إيقاف الإعلان فورياً.', 'ok');
+      } finally {
+        switchLabel.classList.remove('is-loading');
+        switchInput.disabled = false;
+        hideBusy();
       }
-
-      item.active = nextActive ? 'TRUE' : 'FALSE';
-      switchText.textContent = nextActive ? 'نشط' : 'موقوف';
-      switchLabel.title = nextActive ? 'إيقاف الإعلان فورياً' : 'تفعيل الإعلان فورياً';
-      li.classList.toggle('admin-item--off', !nextActive);
-
-      const newState = stateOf(item, todayISO());
-      stateEl.className = `admin-state admin-state--${newState.cls}`;
-      stateEl.textContent = newState.label;
-
-      notifyTickerUpdate();
-      updateFilterCounts();
-      setStatus(panelStatus, nextActive ? 'تم تفعيل الإعلان فورياً.' : 'تم إيقاف الإعلان فورياً.', 'ok');
     });
 
     const edit = actionButton('تعديل', 'pencil', 'btn btn--secondary btn--sm');
@@ -333,7 +389,7 @@
     copy.addEventListener('click', () => openForm(item, true));
 
     const remove = actionButton('حذف', 'trash-2', 'btn btn--ghost btn--sm admin-item__delete');
-    remove.addEventListener('click', () => deleteItem(item));
+    remove.addEventListener('click', () => deleteItem(item, remove));
 
     actions.append(switchWrap, edit, copy, remove);
     li.append(main, actions);
@@ -403,39 +459,69 @@
     window.dispatchEvent(new CustomEvent('akh:announcements-refresh'));
   }
 
-  async function loadList() {
-    setStatus(panelStatus, 'جارٍ التحميل…');
-    const { ok, data } = await api('/api/announcements');
-    if (!ok) {
-      setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر تحميل الإعلانات.', 'error');
-      return;
+  async function loadList(isUserRefresh = false) {
+    if (refreshButton) {
+      refreshButton.disabled = true;
+      refreshButton.classList.add('is-loading');
     }
-    if (!data || data.admin !== true) {
-      storeToken('');
-      showLogin('انتهت الجلسة. سجّل الدخول من جديد.');
-      return;
+    if (list) list.classList.add('is-busy');
+    setStatus(panelStatus, isUserRefresh ? 'جارٍ تحديث الإعلانات…' : 'جارٍ التحميل…', undefined, true);
+    showBusy(isUserRefresh ? 'جارٍ تحديث قائمة الإعلانات…' : 'جارٍ تحميل الإعلانات…');
+
+    try {
+      const { ok, data } = await api('/api/announcements');
+      if (!ok) {
+        setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر تحميل الإعلانات.', 'error');
+        return;
+      }
+      if (!data || data.admin !== true) {
+        storeToken('');
+        showLogin('انتهت الجلسة. سجّل الدخول من جديد.');
+        return;
+      }
+      allItems = Array.isArray(data.items) ? data.items : [];
+      filterAndRender();
+      setStatus(panelStatus, allItems.length ? `عدد الإعلانات: ${allItems.length}` : '');
+      notifyTickerUpdate();
+    } finally {
+      if (refreshButton) {
+        refreshButton.disabled = false;
+        refreshButton.classList.remove('is-loading');
+      }
+      if (list) list.classList.remove('is-busy');
+      hideBusy();
     }
-    allItems = Array.isArray(data.items) ? data.items : [];
-    filterAndRender();
-    setStatus(panelStatus, allItems.length ? `عدد الإعلانات: ${allItems.length}` : '');
-    notifyTickerUpdate();
   }
 
-  async function deleteItem(item) {
+  async function deleteItem(item, buttonEl) {
     if (!item || !item.id) return;
     if (!window.confirm('حذف هذا الإعلان نهائيًا؟')) return;
-    setStatus(panelStatus, 'جارٍ الحذف…');
-    const { ok, data } = await api('/api/announcements', {
-      method: 'POST',
-      body: JSON.stringify({ action: 'delete', id: item.id }),
-    });
-    if (!ok) {
-      setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر الحذف.', 'error');
-      return;
+    if (buttonEl) {
+      buttonEl.disabled = true;
+      buttonEl.classList.add('is-loading');
     }
-    await loadList();
-    setStatus(panelStatus, 'تم الحذف بنجاح.', 'ok');
-    notifyTickerUpdate();
+    setStatus(panelStatus, 'جارٍ الحذف…', undefined, true);
+    showBusy('جارٍ حذف الإعلان…');
+
+    try {
+      const { ok, data } = await api('/api/announcements', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'delete', id: item.id }),
+      });
+      if (!ok) {
+        setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر الحذف.', 'error');
+        return;
+      }
+      await loadList();
+      setStatus(panelStatus, 'تم الحذف بنجاح.', 'ok');
+      notifyTickerUpdate();
+    } finally {
+      if (buttonEl) {
+        buttonEl.disabled = false;
+        buttonEl.classList.remove('is-loading');
+      }
+      hideBusy();
+    }
   }
 
   async function toggleAll(enable) {
@@ -453,45 +539,87 @@
 
     if (bulkEnableButton) bulkEnableButton.disabled = true;
     if (bulkDisableButton) bulkDisableButton.disabled = true;
+    const activeBulkBtn = enable ? bulkEnableButton : bulkDisableButton;
+    if (activeBulkBtn) activeBulkBtn.classList.add('is-loading');
 
-    setStatus(panelStatus, enable ? `جارٍ تفعيل ${targets.length} إعلانات…` : `جارٍ إيقاف ${targets.length} إعلانات…`);
-
+    const total = targets.length;
     let done = 0;
-    for (const item of targets) {
-      const updated = { ...item, active: enable ? 'TRUE' : 'FALSE' };
-      const { ok } = await api('/api/announcements', {
-        method: 'POST',
-        body: JSON.stringify({ action: 'save', item: updated }),
-      });
-      if (ok) {
-        item.active = enable ? 'TRUE' : 'FALSE';
-        done += 1;
+    const failures = [];
+
+    setProgress(0, total);
+    showBusy(`جارٍ ${enable ? 'تفعيل' : 'إيقاف'} الإعلانات (0/${total})…`);
+
+    try {
+      for (let i = 0; i < targets.length; i += 1) {
+        const item = targets[i];
+        setProgress(i, total);
+        const msg = `${enable ? 'جارٍ تفعيل' : 'جارٍ إيقاف'} ${i + 1} من ${total}…`;
+        setStatus(panelStatus, msg, undefined, true);
+        updateBusyMessage(msg);
+        const updated = { ...item, active: enable ? 'TRUE' : 'FALSE' };
+        const { ok, data } = await api('/api/announcements', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'save', item: updated }),
+        });
+        if (ok) {
+          item.active = enable ? 'TRUE' : 'FALSE';
+          done += 1;
+        } else {
+          failures.push((data && data.error && data.error.ar) || 'تعذّر الحفظ.');
+        }
+        setProgress(i + 1, total);
       }
+    } finally {
+      if (bulkEnableButton) bulkEnableButton.disabled = false;
+      if (bulkDisableButton) bulkDisableButton.disabled = false;
+      if (activeBulkBtn) activeBulkBtn.classList.remove('is-loading');
+      hideBusy();
     }
 
-    if (bulkEnableButton) bulkEnableButton.disabled = false;
-    if (bulkDisableButton) bulkDisableButton.disabled = false;
-
-    filterAndRender();
+    // Reload from the source of truth so the panel never shows a state the
+    // sheet did not actually save.
+    try {
+      await loadList();
+    } finally {
+      hideProgress();
+    }
     notifyTickerUpdate();
-    setStatus(panelStatus, enable ? `تم تفعيل ${done} إعلانات بنجاح.` : `تم إيقاف ${done} إعلانات بنجاح.`, 'ok');
+
+    if (failures.length) {
+      setStatus(
+        panelStatus,
+        `تم ${enable ? 'تفعيل' : 'إيقاف'} ${done} من ${total}، وفشل ${failures.length}. ${failures[0]}`,
+        'error',
+      );
+    } else {
+      setStatus(
+        panelStatus,
+        `تم ${enable ? 'تفعيل' : 'إيقاف'} ${done} ${done === 1 ? 'إعلان' : 'إعلانات'} بنجاح.`,
+        'ok',
+      );
+    }
   }
 
   async function init() {
-    const { ok, data } = await api('/api/admin/login');
-    if (ok && data && data.ready === false) {
-      showLogin('لوحة التحكم غير مفعّلة حالياً.');
-      const submit = loginForm.querySelector('button[type="submit"]');
-      if (submit) submit.disabled = true;
-      return;
+    showBusy('جارٍ التحقق وتجهيز لوحة الإعلانات…');
+    try {
+      const { ok, data } = await api('/api/admin/login');
+      if (ok && data && data.ready === false) {
+        showLogin('لوحة التحكم غير مفعّلة حالياً.');
+        const submit = loginForm.querySelector('button[type="submit"]');
+        if (submit) submit.disabled = true;
+        return;
+      }
+      if (ok && data && data.authenticated === true && token) {
+        showPanel();
+        await loadList();
+        return;
+      }
+      if (token) storeToken('');
+      showLogin();
+    } finally {
+      hideBusy();
     }
-    if (ok && data && data.authenticated === true && token) {
-      showPanel();
-      await loadList();
-      return;
-    }
-    if (token) storeToken('');
-    showLogin();
   }
 
   loginForm.addEventListener('submit', async (event) => {
@@ -502,25 +630,36 @@
       return;
     }
     const submit = loginForm.querySelector('button[type="submit"]');
-    if (submit) submit.disabled = true;
-    setStatus(loginStatus, 'جارٍ التحقق…');
-
-    const { ok, data } = await api('/api/admin/login', {
-      method: 'POST',
-      body: JSON.stringify({ password }),
-    });
-
-    if (submit) submit.disabled = false;
-    if (!ok) {
-      setStatus(loginStatus, (data && data.error && data.error.ar) || 'تعذّر الدخول. حاول مرة أخرى.', 'error');
-      return;
+    if (submit) {
+      submit.disabled = true;
+      submit.classList.add('is-loading');
     }
+    setStatus(loginStatus, 'جارٍ التحقق…', undefined, true);
+    showBusy('جارٍ تسجيل الدخول…');
 
-    storeToken(String(data.token || ''));
-    loginForm.reset();
-    setStatus(loginStatus, '');
-    showPanel();
-    await loadList();
+    try {
+      const { ok, data } = await api('/api/admin/login', {
+        method: 'POST',
+        body: JSON.stringify({ password }),
+      });
+
+      if (!ok) {
+        setStatus(loginStatus, (data && data.error && data.error.ar) || 'تعذّر الدخول. حاول مرة أخرى.', 'error');
+        return;
+      }
+
+      storeToken(String(data.token || ''));
+      loginForm.reset();
+      setStatus(loginStatus, '');
+      showPanel();
+      await loadList();
+    } finally {
+      if (submit) {
+        submit.disabled = false;
+        submit.classList.remove('is-loading');
+      }
+      hideBusy();
+    }
   });
 
   newButton.addEventListener('click', () => openForm(null));
@@ -585,27 +724,36 @@
     seedButton.addEventListener('click', async () => {
       if (!seedItems.length) return;
       seedButton.disabled = true;
+      seedButton.classList.add('is-loading');
       let saved = 0;
-      for (const item of seedItems) {
-        setStatus(panelStatus, `جارٍ إضافة الإعلانات الجاهزة… (${saved + 1}/${seedItems.length})`);
-        const { ok, data } = await api('/api/announcements', {
-          method: 'POST',
-          body: JSON.stringify({ action: 'save', item }),
-        });
-        if (!ok) {
-          seedButton.disabled = false;
-          setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر إضافة الإعلانات الجاهزة.', 'error');
-          return;
+      showBusy(`جارٍ إضافة الإعلانات الجاهزة… (0/${seedItems.length})`);
+      try {
+        for (const item of seedItems) {
+          const msg = `جارٍ إضافة الإعلانات الجاهزة… (${saved + 1}/${seedItems.length})`;
+          setStatus(panelStatus, msg, undefined, true);
+          updateBusyMessage(msg);
+          const { ok, data } = await api('/api/announcements', {
+            method: 'POST',
+            body: JSON.stringify({ action: 'save', item }),
+          });
+          if (!ok) {
+            setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر إضافة الإعلانات الجاهزة.', 'error');
+            return;
+          }
+          saved += 1;
         }
-        saved += 1;
+        await loadList();
+        setStatus(panelStatus, `تمت إضافة ${saved} إعلانات جاهزة.`, 'ok');
+        notifyTickerUpdate();
+      } finally {
+        seedButton.disabled = false;
+        seedButton.classList.remove('is-loading');
+        hideBusy();
       }
-      await loadList();
-      setStatus(panelStatus, `تمت إضافة ${saved} إعلانات جاهزة.`, 'ok');
-      notifyTickerUpdate();
     });
   }
 
-  refreshButton.addEventListener('click', () => loadList());
+  refreshButton.addEventListener('click', () => loadList(true));
   cancelButton.addEventListener('click', () => closeForm());
   logoutButton.addEventListener('click', () => {
     storeToken('');
@@ -650,24 +798,35 @@
     }
 
     const submit = form.querySelector('button[type="submit"]');
-    if (submit) submit.disabled = true;
-    setStatus(panelStatus, 'جارٍ الحفظ…');
-
-    const { ok, data } = await api('/api/announcements', {
-      method: 'POST',
-      body: JSON.stringify({ action: 'save', item }),
-    });
-
-    if (submit) submit.disabled = false;
-    if (!ok) {
-      setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر الحفظ.', 'error');
-      return;
+    if (submit) {
+      submit.disabled = true;
+      submit.classList.add('is-loading');
     }
+    setStatus(panelStatus, 'جارٍ الحفظ…', undefined, true);
+    showBusy('جارٍ حفظ الإعلان…');
 
-    closeForm();
-    await loadList();
-    setStatus(panelStatus, 'تم الحفظ بنجاح.', 'ok');
-    notifyTickerUpdate();
+    try {
+      const { ok, data } = await api('/api/announcements', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'save', item }),
+      });
+
+      if (!ok) {
+        setStatus(panelStatus, (data && data.error && data.error.ar) || 'تعذّر الحفظ.', 'error');
+        return;
+      }
+
+      closeForm();
+      await loadList();
+      setStatus(panelStatus, 'تم الحفظ بنجاح.', 'ok');
+      notifyTickerUpdate();
+    } finally {
+      if (submit) {
+        submit.disabled = false;
+        submit.classList.remove('is-loading');
+      }
+      hideBusy();
+    }
   });
 
   init();

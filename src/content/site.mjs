@@ -97,7 +97,7 @@ export const ui = {
   },
   noResults: { ar: 'لا توجد نتائج مطابقة', en: 'No matching results' },
   officialBadge: { ar: 'جمعية أهلية معتمدة', en: 'Officially registered NGO' },
-  announcements: { ar: 'آخر الإعلانات', en: 'Latest announcements' },
+  announcements: { ar: 'آخر الأخبار', en: 'Latest news' },
   announcementPrev: { ar: 'الإعلان السابق', en: 'Previous announcement' },
   announcementNext: { ar: 'الإعلان التالي', en: 'Next announcement' },
   announcementClose: { ar: 'إغلاق شريط الإعلانات', en: 'Dismiss announcements' },

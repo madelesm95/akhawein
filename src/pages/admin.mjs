@@ -26,11 +26,17 @@ export default function adminPage(ctx, { assets } = {}) {
 
   const body = html`
 <section class="section admin-page" data-admin>
+  <div class="admin-top-loader" data-admin-top-loader hidden aria-hidden="true">
+    <div class="admin-top-loader__bar"></div>
+  </div>
+  <div class="admin-process-pill" data-admin-process-pill hidden role="status" aria-live="polite">
+    <span class="admin-spinner" aria-hidden="true"></span>
+    <span class="admin-process-pill__text" data-admin-process-text>جارٍ تنفيذ العملية...</span>
+  </div>
   <div class="container">
     <div class="admin-head">
       <p class="eyebrow">إدارة المحتوى</p>
       <h1>لوحة الإعلانات</h1>
-      <p class="admin-head__lead">أضف إعلانات شريط «آخر الإعلانات» وعدّلها من هنا. تُحفظ في Google Sheets وتظهر في الموقع خلال دقائق، بدون إعادة نشر.</p>
     </div>
 
     <div class="admin-card" data-admin-login>
@@ -52,6 +58,10 @@ export default function adminPage(ctx, { assets } = {}) {
         <button class="btn btn--ghost btn--sm" type="button" data-admin-refresh title="تحديث القائمة">${icon(ctx, 'refresh-cw')}<span>تحديث</span></button>
         <button class="btn btn--ghost btn--sm" type="button" data-admin-logout title="تسجيل الخروج">${icon(ctx, 'log-out')}<span>خروج</span></button>
         <p class="admin-status" data-admin-status-panel role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="admin-progress" data-admin-progress role="progressbar" aria-label="تقدم العملية" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
+        <span class="admin-progress__bar" data-admin-progress-bar></span>
       </div>
 
       <div class="admin-filter-bar" data-admin-filter-bar>
